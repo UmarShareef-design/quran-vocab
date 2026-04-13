@@ -1,0 +1,15 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Files referenced in HTML but not yet created (avoid broken references in repo)
+# Uncomment when these images are created:
+# og-image.png
+# apple-touch-icon.png

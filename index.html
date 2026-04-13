@@ -1,0 +1,2244 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuranVocab — Learn Quranic Arabic | Free Quran Vocabulary Companion</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a6b4a'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='20' fill='white' text-anchor='middle' font-weight='700'%3E%D9%82%3C/text%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Learn Quranic Arabic with 600 essential Quran words — a free companion for online Quran classes and Quran memorization. Supplement your online Quran tutor lessons." />
+  <meta name="keywords" content="best online Quran classes, Quran classes, learn Quranic Arabic, Quran memorization, Quran teacher near me, online Quran classes, best online Quran classes free, online Quran tutor, Quran vocabulary, Quranic Arabic, Quran words, Arabic vocabulary" />
+  <meta name="author" content="Umar Shareef" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1a6b4a" />
+  <link rel="canonical" href="https://quranvocab.com/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://quranvocab.com/" />
+  <meta property="og:title" content="Quran Vocabulary — Learn Quranic Arabic, Free Companion for Online Quran Classes" />
+  <meta property="og:description" content="Learn Quranic Arabic with 600 essential Quran words. Free vocabulary companion for online Quran classes, Quran memorization, and online Quran tutor students." />
+  <meta property="og:site_name" content="QuranVocab" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://quranvocab.com/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Quran Vocabulary — Learn Quranic Arabic, Free Companion for Online Quran Classes" />
+  <meta name="twitter:description" content="Learn Quranic Arabic with 600 essential Quran words. Free vocabulary companion for online Quran classes, Quran memorization, and online Quran tutor students." />
+  <meta name="twitter:image" content="https://quranvocab.com/og-image.png" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "QuranVocab",
+    "url": "https://quranvocab.com",
+    "description": "Learn Quranic Arabic with 600 essential Quran words. A free vocabulary companion for online Quran classes, Quran memorization, and students with an online Quran tutor.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Umar Shareef",
+      "url": "https://umarshareef.framer.website"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ========== CSS RESET & BASE ========== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #1a6b4a;
+      --primary-light: #2d9d6f;
+      --primary-dark: #0e4a32;
+      --accent: #c9a84c;
+      --accent-light: #e0c878;
+      --bg-dark: #0c1a14;
+      --bg-mid: #122a1e;
+      --bg-card: rgba(18, 42, 30, 0.55);
+      --glass: rgba(255, 255, 255, 0.06);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #e8f0ec;
+      --text-secondary: #9bb8a8;
+      --text-muted: #6a8f7a;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.4);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ========== ANIMATED BACKGROUND ========== */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(26, 107, 74, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 90%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(12, 26, 20, 1) 0%, rgba(18, 42, 30, 0.8) 100%);
+    }
+
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: 
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .floating-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .floating-orb:nth-child(1) {
+      width: 400px; height: 400px;
+      background: rgba(26, 107, 74, 0.12);
+      top: -100px; left: -100px;
+      animation-duration: 25s;
+    }
+    .floating-orb:nth-child(2) {
+      width: 300px; height: 300px;
+      background: rgba(201, 168, 76, 0.06);
+      bottom: -80px; right: -80px;
+      animation-duration: 30s;
+      animation-delay: -5s;
+    }
+    .floating-orb:nth-child(3) {
+      width: 250px; height: 250px;
+      background: rgba(45, 157, 111, 0.08);
+      top: 40%; right: 20%;
+      animation-duration: 22s;
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -40px) scale(1.05); }
+      50% { transform: translate(-20px, 20px) scale(0.95); }
+      75% { transform: translate(40px, 30px) scale(1.02); }
+    }
+
+    /* ========== SCREEN READER ONLY (SEO H1) ========== */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ========== LAYOUT ========== */
+    .app-container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ========== NAVIGATION ========== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 24px;
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      background: rgba(12, 26, 20, 0.7);
+      border-bottom: 1px solid var(--glass-border);
+      transition: var(--transition-smooth);
+    }
+
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .nav-brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Scheherazade New', serif;
+      font-size: 18px;
+      color: white;
+      font-weight: 700;
+    }
+
+    .nav-brand-text {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand-text span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link {
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: var(--transition-fast);
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+      background: var(--glass);
+    }
+
+    .nav-link.active {
+      color: var(--accent);
+      background: rgba(201, 168, 76, 0.1);
+    }
+
+    .nav-progress {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .progress-bar-mini {
+      width: 60px;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--glass);
+      overflow: hidden;
+    }
+
+    .progress-bar-mini-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--primary-light), var(--accent));
+      transition: width 0.6s ease;
+    }
+
+    /* ========== HERO / WORD CARD SECTION ========== */
+    .hero-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+    }
+
+    .hero-content {
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .word-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      backdrop-filter: blur(10px);
+    }
+
+    .word-counter .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ========== WORD CARD ========== */
+    .word-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(40px) saturate(1.2);
+      -webkit-backdrop-filter: blur(40px) saturate(1.2);
+      padding: 32px 36px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .word-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.04) 0%,
+        transparent 40%,
+        transparent 60%,
+        rgba(201, 168, 76, 0.02) 100%
+      );
+      pointer-events: none;
+    }
+
+    .word-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .word-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .word-card-category {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .word-arabic {
+      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-size: clamp(48px, 9vw, 80px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      direction: rtl;
+      text-shadow: 0 0 60px rgba(201, 168, 76, 0.15);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .word-transliteration {
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 300;
+      color: var(--accent);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+      font-style: italic;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .word-meaning {
+      font-size: clamp(15px, 2vw, 18px);
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .word-divider {
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 0 auto 14px;
+      border-radius: 1px;
+    }
+
+    .word-example {
+      font-size: clamp(14px, 2vw, 16px);
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 520px;
+      margin: 0 auto;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .word-example .arabic-part {
+      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-size: 1.1em;
+      color: var(--text-secondary);
+      direction: rtl;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* ========== VERSE LOADING ========== */
+    .verse-loading {
+      opacity: 0.5;
+      font-style: italic;
+    }
+
+    .full-verse-label {
+      display: inline-block;
+      font-size: 10px;
+      color: var(--primary-light);
+      opacity: 0.6;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    /* ========== VERSE REFERENCE ========== */
+    .word-verse {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .word-verse a {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 12px;
+      border-radius: 12px;
+      background: rgba(45, 157, 111, 0.08);
+      border: 1px solid rgba(45, 157, 111, 0.15);
+      color: var(--primary-light);
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+
+    .word-verse a:hover {
+      background: rgba(45, 157, 111, 0.15);
+      border-color: rgba(45, 157, 111, 0.25);
+      transform: translateY(-1px);
+    }
+
+    /* Word card animations */
+    .word-card.fade-out .word-verse,
+    .word-card.fade-in .word-verse {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .word-card.fade-in .word-verse {
+      transform: translateY(10px);
+    }
+
+    .word-card.visible .word-verse {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .word-card.fade-out .word-arabic,
+    .word-card.fade-out .word-transliteration,
+    .word-card.fade-out .word-meaning,
+    .word-card.fade-out .word-example {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .word-card.fade-in .word-arabic,
+    .word-card.fade-in .word-transliteration,
+    .word-card.fade-in .word-meaning,
+    .word-card.fade-in .word-example {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .word-card.visible .word-arabic,
+    .word-card.visible .word-transliteration,
+    .word-card.visible .word-meaning,
+    .word-card.visible .word-example {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== ACTION BUTTONS ========== */
+    .action-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition-fast);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .btn:hover::after {
+      opacity: 1;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      box-shadow: 0 4px 16px rgba(26, 107, 74, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(26, 107, 74, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-glass {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-glass:hover {
+      background: var(--glass-hover);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-icon {
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .btn-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* ========== REPOSITORY SECTION ========== */
+    .repository-section {
+      padding: 60px 24px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* Search */
+    .search-container {
+      max-width: 480px;
+      margin: 0 auto 32px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 20px 14px 48px;
+      border-radius: var(--radius-md);
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-input:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(45, 157, 111, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* Category filters */
+    .category-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .category-chip {
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .category-chip:hover {
+      background: var(--glass-hover);
+      color: var(--text-secondary);
+    }
+
+    .category-chip.active {
+      background: rgba(201, 168, 76, 0.15);
+      border-color: rgba(201, 168, 76, 0.3);
+      color: var(--accent);
+    }
+
+    /* Word grid */
+    .word-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .word-grid-item {
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      cursor: pointer;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .word-grid-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .word-grid-item:hover::before {
+      opacity: 1;
+    }
+
+    .word-grid-item:hover {
+      background: var(--glass-hover);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .word-grid-item:active {
+      transform: translateY(0);
+    }
+
+    .grid-item-arabic {
+      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      direction: rtl;
+      min-width: 48px;
+    }
+
+    .grid-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .grid-item-transliteration {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .grid-item-meaning {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .grid-item-verse {
+      font-size: 10px;
+      color: var(--primary-light);
+      opacity: 0.7;
+      margin-top: 1px;
+      transition: opacity var(--transition-fast);
+    }
+
+    .grid-item-verse::before {
+      content: '📖 ';
+    }
+
+    .meaning-letter-badge {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(45, 157, 111, 0.08);
+      border: 1px solid rgba(45, 157, 111, 0.12);
+      color: var(--primary-light);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.6;
+      transition: var(--transition-fast);
+    }
+
+    .word-grid-item:hover .meaning-letter-badge {
+      opacity: 1;
+      background: rgba(45, 157, 111, 0.12);
+    }
+
+    .word-grid-item:hover .grid-item-verse {
+      opacity: 1;
+    }
+
+    /* ========== SORT CONTROLS ========== */
+    .sort-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .sort-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .sort-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .sort-chip svg {
+      opacity: 0.6;
+      transition: opacity var(--transition-fast);
+    }
+
+    .sort-chip:hover {
+      background: var(--glass-hover);
+      color: var(--text-secondary);
+    }
+
+    .sort-chip:hover svg {
+      opacity: 1;
+    }
+
+    .sort-chip.active {
+      background: rgba(45, 157, 111, 0.12);
+      border-color: rgba(45, 157, 111, 0.25);
+      color: var(--primary-light);
+    }
+
+    .sort-chip.active svg {
+      opacity: 1;
+    }
+
+    /* ========== FREQUENCY BADGE ========== */
+    .freq-badge {
+      flex-shrink: 0;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      line-height: 1.6;
+      transition: var(--transition-fast);
+    }
+
+    .word-grid-item:hover .freq-badge {
+      background: rgba(201, 168, 76, 0.18);
+      border-color: rgba(201, 168, 76, 0.25);
+    }
+
+    .freq-tier-icon {
+      font-size: 18px;
+      line-height: 1;
+      background: none;
+      border: none;
+      box-shadow: none;
+      width: auto;
+      height: auto;
+      padding: 0;
+    }
+
+    /* ========== MODAL FREQUENCY ========== */
+    .modal-frequency {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .modal-frequency::before {
+      content: '📊';
+      font-size: 14px;
+    }
+
+    .modal-verse {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .modal-verse a {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 16px;
+      border-radius: 14px;
+      background: rgba(45, 157, 111, 0.08);
+      border: 1px solid rgba(45, 157, 111, 0.15);
+      color: var(--primary-light);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+
+    .modal-verse a:hover {
+      background: rgba(45, 157, 111, 0.15);
+      border-color: rgba(45, 157, 111, 0.25);
+      transform: translateY(-1px);
+    }
+
+    /* Category group headers */
+    .category-group-header {
+      grid-column: 1 / -1;
+      padding: 20px 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .category-group-letter {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .category-group-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .category-group-line {
+      flex: 1;
+      height: 1px;
+      background: var(--glass-border);
+    }
+
+    /* ========== MODAL ========== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      max-width: 560px;
+      width: 100%;
+      border-radius: var(--radius-xl);
+      background: var(--bg-mid);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(40px);
+      overflow: hidden;
+      transform: scale(0.9) translateY(20px);
+      transition: var(--transition-spring);
+    }
+
+    .modal-overlay.open .modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      padding: 32px 32px 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      font-size: 18px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .modal-close:hover {
+      background: var(--glass-hover);
+      color: var(--text-primary);
+    }
+
+    .modal-body {
+      padding: 24px 32px 32px;
+      text-align: center;
+    }
+
+    .modal-arabic {
+      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-size: 64px;
+      font-weight: 700;
+      direction: rtl;
+      color: var(--text-primary);
+      text-shadow: 0 0 40px rgba(201, 168, 76, 0.15);
+      margin-bottom: 4px;
+    }
+
+    .modal-transliteration {
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--accent);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .modal-meaning {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .modal-divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 0 auto 24px;
+    }
+
+    .modal-example {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .modal-example .arabic-part {
+      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-size: 1.1em;
+      color: var(--text-secondary);
+      direction: rtl;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .modal-footer {
+      padding: 0 32px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+
+    /* ========== BOOKMARK REMOVE BUTTON ========== */
+    .btn-bookmark-remove {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      color: var(--accent);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      padding: 0;
+    }
+
+    .btn-bookmark-remove:hover {
+      background: rgba(201, 168, 76, 0.2);
+      border-color: rgba(201, 168, 76, 0.35);
+      transform: scale(1.1);
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--text-muted);
+      font-size: 13px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ========== SCROLL TO TOP ========== */
+    .scroll-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 150;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: var(--transition-smooth);
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-top:hover {
+      background: var(--glass-hover);
+      color: var(--text-primary);
+    }
+
+    /* ========== KEYBOARD SHORTCUT HINT ========== */
+    .shortcut-hint {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    .kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 6px;
+      border-radius: 4px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ========== LOADING SHIMMER ========== */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .navbar-inner { height: 56px; }
+      .nav-brand-text { font-size: 16px; }
+      .nav-progress { display: none; }
+      .nav-link { padding: 6px 10px; font-size: 13px; }
+
+      .hero-section {
+        padding: 24px 16px;
+      }
+
+      .word-card {
+        padding: 24px 20px;
+        border-radius: var(--radius-lg);
+      }
+
+      .word-arabic {
+        margin-bottom: 4px;
+      }
+
+      .action-row {
+        gap: 8px;
+      }
+
+      .btn {
+        padding: 10px 18px;
+        font-size: 13px;
+      }
+
+      .repository-section {
+        padding: 40px 16px 60px;
+      }
+
+      .word-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 8px;
+      }
+
+      .word-grid-item {
+        padding: 12px 14px;
+        gap: 10px;
+      }
+
+      .grid-item-arabic {
+        font-size: 18px;
+        min-width: 38px;
+      }
+
+      .modal {
+        max-width: 100%;
+        border-radius: var(--radius-lg);
+      }
+
+      .modal-body { padding: 16px 24px 24px; }
+      .modal-header { padding: 24px 24px 0; }
+      .modal-footer { padding: 0 24px 20px; }
+      .modal-arabic { font-size: 48px; }
+
+      .shortcut-hint { display: none; }
+
+      .category-filters {
+        gap: 6px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .category-chip {
+        flex-shrink: 0;
+      }
+
+      .sort-controls {
+        gap: 6px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+      }
+
+      .sort-chip {
+        flex-shrink: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .word-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 4px;
+      }
+
+      .nav-link span { display: none; }
+      .nav-link { padding: 6px 8px; font-size: 12px; }
+    }
+
+    /* ========== NO RESULTS ========== */
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--text-muted);
+    }
+
+    .no-results-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    .no-results-text {
+      font-size: 16px;
+      margin-bottom: 4px;
+      color: var(--text-secondary);
+    }
+
+    .no-results-sub {
+      font-size: 13px;
+    }
+
+    /* ========== MARKED WORDS ========== */
+    .word-grid-item.marked {
+      border-color: rgba(201, 168, 76, 0.25);
+      background: rgba(201, 168, 76, 0.05);
+    }
+
+    .word-grid-item .mark-dot {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0;
+      transition: var(--transition-fast);
+    }
+
+    .word-grid-item.marked .mark-dot {
+      opacity: 1;
+    }
+
+    /* Smooth scroll target offset */
+    [id] {
+      scroll-margin-top: 80px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-layer">
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+    <div class="floating-orb"></div>
+    <div class="floating-orb"></div>
+    <div class="floating-orb"></div>
+  </div>
+
+  <!-- App Container -->
+  <div class="app-container">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="navbar-inner">
+        <a href="#" class="nav-brand" onclick="scrollToTop(); return false;">
+          <div class="nav-brand-icon">ق</div>
+          <div class="nav-brand-text">Quran<span>Vocab</span></div>
+        </a>
+        <div class="nav-links">
+          <button class="nav-link active" onclick="scrollToTop()" id="nav-daily">Daily Word</button>
+          <button class="nav-link" onclick="scrollToRepository()" id="nav-explore">Explore</button>
+          <a href="about.html" class="nav-link" id="nav-about">About</a>
+          <button class="nav-link" onclick="scrollToBookmarks()" id="nav-bookmarks">🔖 Bookmarks</button>
+          <div class="nav-progress">
+            <div class="progress-bar-mini">
+              <div class="progress-bar-mini-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+            <span id="progress-text">0 viewed</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- SEO H1 (visually hidden) -->
+    <h1 class="sr-only">Quran Vocabulary — Learn Quranic Arabic with 600 Essential Quran Words. A Free Companion for Online Quran Classes and Quran Memorization.</h1>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-content">
+        <div class="word-counter" id="word-counter">
+          <span class="dot"></span>
+          <span id="counter-text">Word 1 of 100</span>
+        </div>
+
+        <div class="word-card visible" id="word-card">
+          <div class="word-card-inner">
+            <div class="word-card-category" id="card-category">A</div>
+            <div class="word-arabic" id="card-arabic">الله</div>
+            <div class="word-transliteration" id="card-transliteration">Allah</div>
+            <div class="word-meaning" id="card-meaning">God</div>
+            <div class="word-divider"></div>
+            <div class="word-example" id="card-example">
+              <span class="arabic-part">بسم الله الرحمن الرحيم</span>
+              In the name of Allah, the Most Gracious, the Most Merciful
+            </div>
+            <div class="word-verse" id="card-verse">
+              <a href="https://quran.com/1/1" target="_blank" rel="noopener">Quran 1:1 ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="btn btn-primary" id="btn-new-word" onclick="showNewWord()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            New Word
+          </button>
+          <button class="btn btn-glass btn-icon" id="btn-bookmark" onclick="toggleBookmark()" title="Bookmark this word">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+          <button class="btn btn-glass" onclick="scrollToRepository()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Explore All
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bookmarks Section -->
+    <section class="repository-section" id="bookmarks-section" style="display:none">
+      <div class="section-header">
+        <h2 class="section-title">🔖 <span>Bookmarks</span></h2>
+        <p class="section-subtitle">Your saved words — stored locally so you can review anytime</p>
+      </div>
+      <div class="word-grid" id="bookmarks-grid"></div>
+      <div class="no-results" id="bookmarks-empty" style="display:none">
+        <div class="no-results-icon">🔖</div>
+        <div class="no-results-text">No bookmarks yet</div>
+        <div class="no-results-sub">Click the bookmark icon on any word to save it here</div>
+      </div>
+    </section>
+
+    <!-- Repository Section -->
+    <section class="repository-section" id="repository">
+      <div class="section-header">
+        <h2 class="section-title">Explore <span>Vocabulary</span></h2>
+        <p class="section-subtitle">Browse all 100 words alphabetically — click any word for details</p>
+      </div>
+
+      <!-- Search -->
+      <div class="search-container">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search by Arabic, transliteration, or meaning..." />
+      </div>
+
+      <!-- Category Filters -->
+      <div class="category-filters" id="category-filters"></div>
+
+      <!-- Sort Controls -->
+      <div class="sort-controls" id="sort-controls">
+        <span class="sort-label">Sort by:</span>
+        <button class="sort-chip active" id="sort-alpha" onclick="setSortBy('alpha')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h12M3 18h6"/></svg>
+          A–Z
+        </button>
+        <button class="sort-chip" id="sort-frequency" onclick="setSortBy('frequency')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          Frequency
+        </button>
+      </div>
+
+      <!-- Word Grid -->
+      <div class="word-grid" id="word-grid"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>QuranVocab — A free vocabulary companion for online Quran classes and Quran memorization. Learn Quranic Arabic with 600 essential words.</p>
+      <p style="margin-top:6px;">Supplement your <a href="about.html" style="color: var(--primary-light); text-decoration: none;">online Quran classes</a> and online Quran tutor lessons today.</p>
+      <p style="margin-top:6px;">An initiative by <a href="https://umarshareef.framer.website" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none; font-weight: 500;">Umar Shareef</a></p>
+    </footer>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)" role="presentation">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-transliteration" aria-describedby="modal-meaning">
+      <div class="modal-header">
+        <div class="word-card-category" id="modal-category">A</div>
+        <button class="modal-close" onclick="closeModal()" aria-label="Close dialog">&#x2715;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-arabic" id="modal-arabic">الله</div>
+        <div class="modal-transliteration" id="modal-transliteration">Allah</div>
+        <div class="modal-meaning" id="modal-meaning">God</div>
+        <div class="modal-frequency" id="modal-frequency">Appears ~2816 times in the Quran</div>
+        <div class="modal-divider"></div>
+        <div class="modal-example" id="modal-example">
+          <span class="arabic-part">بسم الله الرحمن الرحيم</span>
+          In the name of Allah, the Most Gracious, the Most Merciful
+        </div>
+        <div class="modal-verse" id="modal-verse">
+          <a href="https://quran.com/1/1" target="_blank" rel="noopener">Quran 1:1 ↗</a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="modal-btn-next" onclick="modalNextWord()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          Next Word
+        </button>
+        <button class="btn btn-glass btn-icon" id="modal-btn-bookmark" onclick="toggleModalBookmark()" title="Bookmark this word">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <button class="btn btn-glass" id="modal-btn-focus" onclick="focusWord()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M12 2v4"/><path d="M12 18v4"/></svg>
+          Focus
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scroll-top" onclick="scrollToTop()" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <!-- Keyboard shortcut hint -->
+  <div class="shortcut-hint">
+    <span class="kbd">Space</span> New Word
+    <span style="margin-left:8px" class="kbd">Esc</span> Close
+  </div>
+
+  <!-- Data & App Logic -->
+  <script src="data.js"></script>
+  <script>
+    // ========== APP STATE ==========
+    const state = {
+      currentIndex: 0,
+      viewedWords: new Set(JSON.parse(localStorage.getItem('qv_viewed') || '[]')),
+      bookmarkedWords: new Set(JSON.parse(localStorage.getItem('qv_bookmarked') || '[]')),
+      activeCategory: 'All',
+      sortBy: localStorage.getItem('qv_sort') || 'alpha', // 'alpha' | 'frequency'
+      searchQuery: '',
+      modalWordId: null,
+      isAnimating: false,
+    };
+
+    // ========== LOCALSTORAGE PERSISTENCE ==========
+    function persistState() {
+      try {
+        localStorage.setItem('qv_viewed', JSON.stringify([...state.viewedWords]));
+        localStorage.setItem('qv_bookmarked', JSON.stringify([...state.bookmarkedWords]));
+      } catch(e) { /* quota exceeded — silently fail */ }
+    }
+
+    // ========== UTILITY ==========
+    function getRandomIndex() {
+      let newIndex;
+      do {
+        newIndex = Math.floor(Math.random() * quranVocabulary.length);
+      } while (newIndex === state.currentIndex && quranVocabulary.length > 1);
+      return newIndex;
+    }
+
+    function parseExample(example) {
+      const parts = example.split(' — ');
+      if (parts.length === 2) {
+        return { arabic: parts[0], english: parts[1] };
+      }
+      return { arabic: '', english: example };
+    }
+
+    function verseLink(verse) {
+      const [surah, ayah] = verse.split(':');
+      return `https://quran.com/${surah}/${ayah}`;
+    }
+
+    // ========== FULL VERSE API ==========
+    const VERSE_CACHE_KEY = 'qv_verses';
+    let verseCache = JSON.parse(localStorage.getItem(VERSE_CACHE_KEY) || '{}');
+
+    function saveVerseCache() {
+      try { localStorage.setItem(VERSE_CACHE_KEY, JSON.stringify(verseCache)); } catch(e) {}
+    }
+
+    async function fetchFullVerse(verseRef) {
+      if (verseCache[verseRef]) return verseCache[verseRef];
+      const [surah, ayah] = verseRef.split(':');
+      try {
+        const res = await fetch(`https://api.alquran.cloud/v1/ayah/${surah}:${ayah}/editions/quran-uthmani,en.sahih`);
+        if (!res.ok) throw new Error('API error');
+        const data = await res.json();
+        if (data.code === 200 && data.data) {
+          const arabic = data.data[0].text;   // Uthmani Arabic
+          const english = data.data[1].text;  // Sahih International English
+          verseCache[verseRef] = { arabic, english };
+          saveVerseCache();
+          return verseCache[verseRef];
+        }
+      } catch(e) {
+        console.warn('Verse fetch failed for', verseRef, e);
+      }
+      return null;
+    }
+
+    // ========== RENDER FULL VERSE ==========
+    // Per-container render ID prevents stale API responses from overwriting newer content
+    // (WeakMap avoids leaks — keys are DOM elements that get GC'd when removed)
+    const verseRenderIds = new WeakMap();
+
+    function renderFullVerse(containerEl, word, fallbackParsed) {
+      const myId = (verseRenderIds.get(containerEl) || 0) + 1;
+      verseRenderIds.set(containerEl, myId);
+      // Immediately show the partial excerpt
+      containerEl.innerHTML = `<span class="full-verse-label">Full Verse · ${word.verse}</span>` +
+        `<span class="arabic-part verse-loading">${fallbackParsed.arabic}</span>${fallbackParsed.english}`;
+      
+      // Then fetch and render the full verse
+      fetchFullVerse(word.verse).then(verse => {
+        if (myId !== verseRenderIds.get(containerEl)) return; // Stale for this container — discard
+        if (!verse) {
+          // API failed — remove loading state, show partial excerpt normally
+          const arabicPart = containerEl.querySelector('.arabic-part');
+          if (arabicPart) arabicPart.classList.remove('verse-loading');
+          return;
+        }
+        containerEl.innerHTML = 
+          `<span class="full-verse-label">Full Verse · ${word.verse}</span>` +
+          `<span class="arabic-part">${verse.arabic}</span>${verse.english}`;
+      });
+    }
+
+    // ========== DISPLAY ARABIC WITH HARAKAAT ==========
+    // Returns the fully voweled form for display, falls back to bare arabic
+    function displayArabic(word) {
+      return VOCALIZED[word.id] || word.arabic;
+    }
+
+    // Get the grouping letter from a word's English meaning
+    // Ignores leading articles/stop-words (The, A, An, He, etc.) for better grouping
+    const STOP_WORDS = ['the', 'a', 'an', 'he', 'she', 'they', 'you', 'his', 'her', 'its', 'and', 'or', 'from', 'in', 'of', 'to', 'is', 'was', 'were', 'most', 'very', 'that', 'this', 'those', 'these'];
+
+    function getMeaningLetter(word) {
+      let text = word.meaning.toLowerCase().replace(/[^a-z ]/g, '').trim();
+      // Skip leading stop words
+      const words = text.split(/\s+/);
+      let i = 0;
+      while (i < words.length && STOP_WORDS.includes(words[i])) i++;
+      const key = words[i] || words[0] || ' ';
+      return key.charAt(0).toUpperCase();
+    }
+
+    function getCategories() {
+      const cats = new Set(quranVocabulary.map(w => getMeaningLetter(w)));
+      return ['All', ...Array.from(cats).sort()];
+    }
+
+    function getFilteredWords() {
+      const words = quranVocabulary.filter(w => {
+        const letter = getMeaningLetter(w);
+        const matchesCategory = state.activeCategory === 'All' || letter === state.activeCategory;
+        const q = state.searchQuery.toLowerCase();
+        const matchesSearch = !q || 
+          w.arabic.includes(q) || 
+          w.transliteration.toLowerCase().includes(q) || 
+          w.meaning.toLowerCase().includes(q);
+        return matchesCategory && matchesSearch;
+      });
+
+      // Sort
+      if (state.sortBy === 'frequency') {
+        words.sort((a, b) => b.frequency - a.frequency);
+      } else {
+        // Alphabetical: sort by meaning letter, then by meaning within group
+        words.sort((a, b) => {
+          const la = getMeaningLetter(a), lb = getMeaningLetter(b);
+          if (la !== lb) return la.localeCompare(lb);
+          return a.meaning.localeCompare(b.meaning);
+        });
+      }
+
+      return words;
+    }
+
+    function setSortBy(mode) {
+      state.sortBy = mode;
+      localStorage.setItem('qv_sort', mode);
+      document.getElementById('sort-alpha').classList.toggle('active', mode === 'alpha');
+      document.getElementById('sort-frequency').classList.toggle('active', mode === 'frequency');
+      renderWordGrid();
+    }
+
+    // ========== RENDER WORD CARD ==========
+    function renderWordCard(word, animate = true) {
+      const card = document.getElementById('word-card');
+      const parsed = parseExample(word.example);
+
+      if (animate && !state.isAnimating) {
+        state.isAnimating = true;
+        // Fade out
+        card.classList.remove('visible');
+        card.classList.add('fade-out');
+
+        setTimeout(() => {
+          updateCardContent(word, parsed);
+          card.classList.remove('fade-out');
+          card.classList.add('fade-in');
+
+          // Trigger reflow
+          void card.offsetWidth;
+
+          requestAnimationFrame(() => {
+            card.classList.remove('fade-in');
+            card.classList.add('visible');
+            state.isAnimating = false;
+          });
+        }, 300);
+      } else if (!animate) {
+        updateCardContent(word, parsed);
+        card.classList.add('visible');
+      }
+    }
+
+    function updateCardContent(word, parsed) {
+      document.getElementById('card-category').textContent = `Letter ${getMeaningLetter(word)}`;
+      document.getElementById('card-arabic').textContent = displayArabic(word);
+      document.getElementById('card-transliteration').textContent = word.transliteration;
+      document.getElementById('card-meaning').textContent = word.meaning;
+      // Render full verse (with partial fallback)
+      renderFullVerse(document.getElementById('card-example'), word, parsed);
+      document.getElementById('card-verse').innerHTML = 
+        `<a href="${verseLink(word.verse)}" target="_blank" rel="noopener">Quran ${word.verse} ↗</a>`;
+    }
+
+    // ========== NEW WORD ==========
+    function showNewWord() {
+      const newIndex = getRandomIndex();
+      state.currentIndex = newIndex;
+      const word = quranVocabulary[newIndex];
+      state.viewedWords.add(word.id);
+      persistState();
+      renderWordCard(word, true);
+      updateCounter();
+      updateStats();
+      updateBookmarkButton();
+    }
+
+    // ========== BOOKMARK ==========
+    function toggleBookmark() {
+      const word = quranVocabulary[state.currentIndex];
+      if (state.bookmarkedWords.has(word.id)) {
+        state.bookmarkedWords.delete(word.id);
+      } else {
+        state.bookmarkedWords.add(word.id);
+      }
+      updateBookmarkButton();
+      updateStats();
+      persistState();
+      // Toggle class on matching grid item instead of full re-render
+      const gridItem = document.querySelector(`.word-grid-item[data-word-id="${word.id}"]`);
+      if (gridItem) {
+        gridItem.classList.toggle('marked', state.bookmarkedWords.has(word.id));
+      }
+    }
+
+    function updateBookmarkButton() {
+      const btn = document.getElementById('btn-bookmark');
+      const word = quranVocabulary[state.currentIndex];
+      const isBookmarked = state.bookmarkedWords.has(word.id);
+      const svg = btn.querySelector('svg');
+
+      if (isBookmarked) {
+        svg.setAttribute('fill', 'currentColor');
+        btn.style.color = 'var(--accent)';
+      } else {
+        svg.setAttribute('fill', 'none');
+        btn.style.color = '';
+      }
+    }
+
+    // ========== COUNTER & STATS ==========
+    function updateCounter() {
+      const word = quranVocabulary[state.currentIndex];
+      const wordNum = state.viewedWords.size;
+      document.getElementById('counter-text').textContent = 
+        `Word ${wordNum} of ${quranVocabulary.length} explored`;
+    }
+
+    function updateStats() {
+      const pct = (state.viewedWords.size / quranVocabulary.length * 100).toFixed(0);
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('progress-text').textContent = `${state.viewedWords.size} viewed`;
+    }
+
+    // ========== CATEGORY FILTERS ==========
+    function renderCategoryFilters() {
+      const container = document.getElementById('category-filters');
+      const categories = getCategories();
+      container.innerHTML = categories.map(cat => 
+        `<button class="category-chip ${cat === state.activeCategory ? 'active' : ''}" 
+                 onclick="setCategory('${cat}')">${cat}</button>`
+      ).join('');
+    }
+
+    function setCategory(cat) {
+      state.activeCategory = cat;
+      renderCategoryFilters();
+      renderWordGrid();
+    }
+
+    // ========== WORD GRID ==========
+    function renderWordGrid() {
+      const container = document.getElementById('word-grid');
+      const words = getFilteredWords();
+
+      if (words.length === 0) {
+        container.innerHTML = `
+          <div class="no-results">
+            <div class="no-results-icon">🔍</div>
+            <div class="no-results-text">No words found</div>
+            <div class="no-results-sub">Try a different search or category</div>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+
+      if (state.sortBy === 'frequency') {
+        // Frequency-sorted: flat list with rank groups
+        const topTier = words.filter(w => w.frequency >= 100);
+        const midTier = words.filter(w => w.frequency >= 30 && w.frequency < 100);
+        const lowTier = words.filter(w => w.frequency < 30);
+
+        const tiers = [
+          { label: 'High Frequency (100+)', tier: topTier, icon: '🔥' },
+          { label: 'Medium Frequency (30–99)', tier: midTier, icon: '📘' },
+          { label: 'Lower Frequency (<30)', tier: lowTier, icon: '📗' },
+        ];
+
+        tiers.forEach(({ label, tier, icon }) => {
+          if (tier.length === 0) return;
+          html += `
+            <div class="category-group-header">
+              <div class="category-group-letter freq-tier-icon">${icon}</div>
+              <div class="category-group-label">${label}</div>
+              <div class="category-group-line"></div>
+            </div>
+          `;
+          tier.forEach(word => {
+            const isBookmarked = state.bookmarkedWords.has(word.id);
+            html += `
+              <div class="word-grid-item ${isBookmarked ? 'marked' : ''}" 
+                   data-word-id="${word.id}"
+                   onclick="openModal(${word.id})" 
+                   tabindex="0"
+                   role="button"
+                   aria-label="View details for ${word.transliteration}">
+                <div class="mark-dot"></div>
+                <div class="grid-item-arabic">${displayArabic(word)}</div>
+                <div class="grid-item-info">
+                  <div class="grid-item-transliteration">${word.transliteration}</div>
+                  <div class="grid-item-meaning">${word.meaning}</div>
+                  <div class="grid-item-verse">${word.verse}</div>
+                </div>
+                <div class="freq-badge" title="Appears ~${word.frequency} times in the Quran">${word.frequency}</div>
+              </div>
+            `;
+          });
+        });
+      } else {
+        // Alphabetical: group by category
+        const groups = {};
+        words.forEach(w => {
+          const letter = getMeaningLetter(w);
+          if (!groups[letter]) groups[letter] = [];
+          groups[letter].push(w);
+        });
+
+        const sortedCats = Object.keys(groups).sort();
+
+        sortedCats.forEach(cat => {
+          // Count how many words in this group
+          const count = groups[cat].length;
+          html += `
+            <div class="category-group-header">
+              <div class="category-group-letter">${cat}</div>
+              <div class="category-group-label">${cat} · ${count} word${count !== 1 ? 's' : ''}</div>
+              <div class="category-group-line"></div>
+            </div>
+          `;
+          groups[cat].forEach(word => {
+            const isBookmarked = state.bookmarkedWords.has(word.id);
+            html += `
+              <div class="word-grid-item ${isBookmarked ? 'marked' : ''}" 
+                   data-word-id="${word.id}"
+                   onclick="openModal(${word.id})" 
+                   tabindex="0"
+                   role="button"
+                   aria-label="View details for ${word.transliteration}">
+                <div class="mark-dot"></div>
+                <div class="grid-item-arabic">${displayArabic(word)}</div>
+                <div class="grid-item-info">
+                  <div class="grid-item-transliteration">${word.transliteration}</div>
+                  <div class="grid-item-meaning">${word.meaning}</div>
+                  <div class="grid-item-verse">${word.verse}</div>
+                </div>
+                <div class="meaning-letter-badge">${getMeaningLetter(word)}</div>
+              </div>
+            `;
+          });
+        });
+      }
+
+      container.innerHTML = html;
+    }
+
+    // ========== MODAL ==========
+    function openModal(wordId) {
+      const word = quranVocabulary.find(w => w.id === wordId);
+      if (!word) return;
+
+      state.modalWordId = wordId;
+      state.viewedWords.add(word.id);
+      persistState();
+      updateStats();
+
+      const parsed = parseExample(word.example);
+      document.getElementById('modal-category').textContent = `Letter ${getMeaningLetter(word)}`;
+      document.getElementById('modal-arabic').textContent = displayArabic(word);
+      document.getElementById('modal-transliteration').textContent = word.transliteration;
+      document.getElementById('modal-meaning').textContent = word.meaning;
+      // Render full verse (with partial fallback)
+      renderFullVerse(document.getElementById('modal-example'), word, parsed);
+
+      // Update verse link in modal
+      const verseLinkEl = document.getElementById('modal-verse');
+      if (verseLinkEl) {
+        verseLinkEl.innerHTML = `<a href="${verseLink(word.verse)}" target="_blank" rel="noopener">Quran ${word.verse} ↗</a>`;
+      }
+
+      // Show frequency in modal
+      const freqEl = document.getElementById('modal-frequency');
+      if (freqEl) {
+        freqEl.textContent = `Appears ~${word.frequency} times in the Quran`;
+      }
+
+      const overlay = document.getElementById('modal-overlay');
+      previousFocusEl = document.activeElement;
+      // Update modal bookmark button state
+      updateModalBookmarkButton();
+
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // Focus trap: move focus into modal
+      requestAnimationFrame(() => overlay.querySelector('.modal-close').focus());
+    }
+
+    let previousFocusEl = null;
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+      if (previousFocusEl) previousFocusEl.focus();
+    }
+
+    // Focus trap inside modal
+    document.getElementById('modal-overlay').addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const modal = document.querySelector('.modal-overlay.open .modal');
+      if (!modal) return;
+      const focusable = modal.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    });
+
+    function closeModalOutside(event) {
+      if (event.target === event.currentTarget) {
+        closeModal();
+      }
+    }
+
+    function modalNextWord() {
+      const currentWord = quranVocabulary.find(w => w.id === state.modalWordId);
+      const currentIdx = currentWord ? quranVocabulary.indexOf(currentWord) : 0;
+      const nextIdx = (currentIdx + 1) % quranVocabulary.length;
+      const nextWord = quranVocabulary[nextIdx];
+      openModal(nextWord.id);
+    }
+
+    function toggleModalBookmark() {
+      const word = quranVocabulary.find(w => w.id === state.modalWordId);
+      if (!word) return;
+      if (state.bookmarkedWords.has(word.id)) {
+        state.bookmarkedWords.delete(word.id);
+      } else {
+        state.bookmarkedWords.add(word.id);
+      }
+      updateModalBookmarkButton();
+      updateBookmarkButton(); // Keep hero button in sync
+      updateStats();
+      persistState();
+      // Toggle class on matching grid item
+      const gridItem = document.querySelector(`.word-grid-item[data-word-id="${word.id}"]`);
+      if (gridItem) gridItem.classList.toggle('marked', state.bookmarkedWords.has(word.id));
+    }
+
+    function updateModalBookmarkButton() {
+      const btn = document.getElementById('modal-btn-bookmark');
+      if (!btn) return;
+      const word = quranVocabulary.find(w => w.id === state.modalWordId);
+      if (!word) return;
+      const isBookmarked = state.bookmarkedWords.has(word.id);
+      const svg = btn.querySelector('svg');
+      if (isBookmarked) {
+        svg.setAttribute('fill', 'currentColor');
+        btn.style.color = 'var(--accent)';
+      } else {
+        svg.setAttribute('fill', 'none');
+        btn.style.color = '';
+      }
+    }
+
+    function focusWord() {
+      const word = quranVocabulary.find(w => w.id === state.modalWordId);
+      if (!word) return;
+      
+      closeModal();
+      const idx = quranVocabulary.indexOf(word);
+      state.currentIndex = idx;
+      renderWordCard(word, true);
+      updateCounter();
+      updateBookmarkButton();
+      scrollToTop();
+    }
+
+    // ========== SCROLL ==========
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Show the explore section again if it was hidden by bookmarks
+      document.getElementById('repository').style.display = '';
+      document.getElementById('bookmarks-section').style.display = 'none';
+      document.getElementById('nav-daily').classList.add('active');
+      document.getElementById('nav-explore').classList.remove('active');
+      document.getElementById('nav-bookmarks').classList.remove('active');
+    }
+
+    function scrollToRepository() {
+      document.getElementById('bookmarks-section').style.display = 'none';
+      document.getElementById('repository').style.display = '';
+      document.getElementById('repository').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('nav-explore').classList.add('active');
+      document.getElementById('nav-daily').classList.remove('active');
+      document.getElementById('nav-bookmarks').classList.remove('active');
+    }
+
+    function scrollToBookmarks() {
+      document.getElementById('repository').style.display = 'none';
+      document.getElementById('bookmarks-section').style.display = '';
+      renderBookmarksGrid();
+      document.getElementById('bookmarks-section').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('nav-bookmarks').classList.add('active');
+      document.getElementById('nav-daily').classList.remove('active');
+      document.getElementById('nav-explore').classList.remove('active');
+    }
+
+    function renderBookmarksGrid() {
+      const container = document.getElementById('bookmarks-grid');
+      const emptyMsg = document.getElementById('bookmarks-empty');
+      const bookmarkedWords = quranVocabulary.filter(w => state.bookmarkedWords.has(w.id));
+
+      if (bookmarkedWords.length === 0) {
+        container.innerHTML = '';
+        container.style.display = 'none';
+        emptyMsg.style.display = '';
+        return;
+      }
+
+      container.style.display = '';
+      emptyMsg.style.display = 'none';
+
+      container.innerHTML = bookmarkedWords.map(word => {
+        return `
+          <div class="word-grid-item marked" 
+               data-word-id="${word.id}"
+               onclick="openModal(${word.id})" 
+               tabindex="0"
+               role="button"
+               aria-label="View details for ${word.transliteration}">
+            <div class="mark-dot"></div>
+            <div class="grid-item-arabic">${displayArabic(word)}</div>
+            <div class="grid-item-info">
+              <div class="grid-item-transliteration">${word.transliteration}</div>
+              <div class="grid-item-meaning">${word.meaning}</div>
+              <div class="grid-item-verse">${word.verse}</div>
+            </div>
+            <button class="btn-bookmark-remove" onclick="event.stopPropagation(); removeBookmark(${word.id})" title="Remove bookmark">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function removeBookmark(wordId) {
+      state.bookmarkedWords.delete(wordId);
+      persistState();
+      renderBookmarksGrid();
+      // Also update the grid item in the explore section if visible
+      const gridItem = document.querySelector(`.word-grid-item[data-word-id="${wordId}"]`);
+      if (gridItem) gridItem.classList.remove('marked');
+      // Update hero bookmark button if this is the current word
+      const currentWord = quranVocabulary[state.currentIndex];
+      if (currentWord && currentWord.id === wordId) updateBookmarkButton();
+    }
+
+    // Throttled scroll handler
+    let scrollTicking = false;
+    function onScroll() {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        const btn = document.getElementById('scroll-top');
+        btn.classList.toggle('visible', window.scrollY > 400);
+
+        const repoTop = document.getElementById('repository').getBoundingClientRect().top;
+        const exploreActive = repoTop < window.innerHeight / 2;
+        const bookmarksSection = document.getElementById('bookmarks-section');
+        const bookmarksVisible = bookmarksSection.style.display !== 'none';
+        if (!bookmarksVisible) {
+          document.getElementById('nav-explore').classList.toggle('active', exploreActive);
+          document.getElementById('nav-daily').classList.toggle('active', !exploreActive);
+        }
+        scrollTicking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ========== SEARCH ==========
+    document.getElementById('search-input').addEventListener('input', (e) => {
+      state.searchQuery = e.target.value;
+      renderWordGrid();
+    });
+
+    // ========== KEYBOARD SHORTCUTS ==========
+    document.addEventListener('keydown', (e) => {
+      // Don't trigger when typing in search
+      if (document.activeElement.tagName === 'INPUT') return;
+
+      if (e.code === 'Space') {
+        e.preventDefault();
+        showNewWord();
+      } else if (e.code === 'Escape') {
+        const overlay = document.getElementById('modal-overlay');
+        if (overlay.classList.contains('open')) {
+          closeModal();
+        }
+      }
+    });
+
+    // Enter on grid items
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Enter' && e.target.classList.contains('word-grid-item')) {
+        e.target.click();
+      }
+    });
+
+    // ========== INIT ==========
+    function init() {
+      // Pick a random starting word
+      state.currentIndex = Math.floor(Math.random() * quranVocabulary.length);
+      const word = quranVocabulary[state.currentIndex];
+      state.viewedWords.add(word.id);
+
+      renderWordCard(word, false);
+      updateCounter();
+      updateStats();
+      updateBookmarkButton();
+      persistState();
+      renderCategoryFilters();
+      renderWordGrid();
+    }
+
+    init();
+  </script>
+</body>
+</html>
