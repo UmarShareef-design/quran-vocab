@@ -9,10 +9,10 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a6b4a'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='20' fill='white' text-anchor='middle' font-weight='700'%3E%D9%82%3C/text%3E%3C/svg%3E" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.json" />
 
   <!-- SEO Meta Tags -->
   <meta name="description" content="Learn Quranic Arabic with 600 essential Quran words — a free companion for online Quran classes and Quran memorization. Supplement your online Quran tutor lessons." />
-  <meta name="keywords" content="best online Quran classes, Quran classes, learn Quranic Arabic, Quran memorization, Quran teacher near me, online Quran classes, best online Quran classes free, online Quran tutor, Quran vocabulary, Quranic Arabic, Quran words, Arabic vocabulary" />
   <meta name="author" content="Umar Shareef" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#1a6b4a" />
@@ -26,16 +26,20 @@
   <meta property="og:site_name" content="QuranVocab" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://quranvocab.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="QuranVocab — Learn Quranic Arabic with 600 essential Quran words" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Quran Vocabulary — Learn Quranic Arabic, Free Companion for Online Quran Classes" />
   <meta name="twitter:description" content="Learn Quranic Arabic with 600 essential Quran words. Free vocabulary companion for online Quran classes, Quran memorization, and online Quran tutor students." />
   <meta name="twitter:image" content="https://quranvocab.com/og-image.png" />
+  <meta name="twitter:image:alt" content="QuranVocab — Learn Quranic Arabic with 600 essential Quran words" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
-  {
+  [{
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "QuranVocab",
@@ -53,12 +57,21 @@
       "name": "Umar Shareef",
       "url": "https://umarshareef.framer.website"
     }
-  }
+  }, {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://quranvocab.com/"
+    }]
+  }]
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     /* ========== CSS RESET & BASE ========== */
     *, *::before, *::after {
@@ -92,6 +105,8 @@
       --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      --font-arabic: 'Noto Kufi Arabic', 'Scheherazade New', 'Amiri', serif;
+      --font-arabic-body: 'Scheherazade New', 'Amiri', serif;
     }
 
     html {
@@ -229,7 +244,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Scheherazade New', serif;
+      font-family: var(--font-arabic);
       font-size: 18px;
       color: white;
       font-weight: 700;
@@ -399,7 +414,7 @@
     }
 
     .word-arabic {
-      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-family: var(--font-arabic);
       font-size: clamp(48px, 9vw, 80px);
       font-weight: 700;
       line-height: 1.2;
@@ -446,7 +461,7 @@
     }
 
     .word-example .arabic-part {
-      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-family: var(--font-arabic-body);
       font-size: 1.1em;
       color: var(--text-secondary);
       direction: rtl;
@@ -782,7 +797,7 @@
     }
 
     .grid-item-arabic {
-      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-family: var(--font-arabic);
       font-size: 22px;
       font-weight: 700;
       color: var(--text-primary);
@@ -1088,7 +1103,7 @@
     }
 
     .modal-arabic {
-      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-family: var(--font-arabic);
       font-size: 64px;
       font-weight: 700;
       direction: rtl;
@@ -1125,7 +1140,7 @@
     }
 
     .modal-example .arabic-part {
-      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-family: var(--font-arabic-body);
       font-size: 1.1em;
       color: var(--text-secondary);
       direction: rtl;
@@ -1416,7 +1431,7 @@
     <nav class="navbar">
       <div class="navbar-inner">
         <a href="#" class="nav-brand" onclick="scrollToTop(); return false;">
-          <div class="nav-brand-icon">ق</div>
+          <div class="nav-brand-icon" lang="ar" dir="rtl">ق</div>
           <div class="nav-brand-text">Quran<span>Vocab</span></div>
         </a>
         <div class="nav-links">
@@ -1448,12 +1463,12 @@
         <div class="word-card visible" id="word-card">
           <div class="word-card-inner">
             <div class="word-card-category" id="card-category">A</div>
-            <div class="word-arabic" id="card-arabic">الله</div>
+            <div class="word-arabic" id="card-arabic" lang="ar" dir="rtl">الله</div>
             <div class="word-transliteration" id="card-transliteration">Allah</div>
             <div class="word-meaning" id="card-meaning">God</div>
             <div class="word-divider"></div>
             <div class="word-example" id="card-example">
-              <span class="arabic-part">بسم الله الرحمن الرحيم</span>
+              <span class="arabic-part" lang="ar" dir="rtl">بسم الله الرحمن الرحيم</span>
               In the name of Allah, the Most Gracious, the Most Merciful
             </div>
             <div class="word-verse" id="card-verse">
@@ -1541,13 +1556,13 @@
         <button class="modal-close" onclick="closeModal()" aria-label="Close dialog">&#x2715;</button>
       </div>
       <div class="modal-body">
-        <div class="modal-arabic" id="modal-arabic">الله</div>
+        <div class="modal-arabic" id="modal-arabic" lang="ar" dir="rtl">الله</div>
         <div class="modal-transliteration" id="modal-transliteration">Allah</div>
         <div class="modal-meaning" id="modal-meaning">God</div>
         <div class="modal-frequency" id="modal-frequency">Appears ~2816 times in the Quran</div>
         <div class="modal-divider"></div>
         <div class="modal-example" id="modal-example">
-          <span class="arabic-part">بسم الله الرحمن الرحيم</span>
+          <span class="arabic-part" lang="ar" dir="rtl">بسم الله الرحمن الرحيم</span>
           In the name of Allah, the Most Gracious, the Most Merciful
         </div>
         <div class="modal-verse" id="modal-verse">
@@ -1580,6 +1595,37 @@
     <span class="kbd">Space</span> New Word
     <span style="margin-left:8px" class="kbd">Esc</span> Close
   </div>
+
+  <!-- Noscript fallback for search engines and no-JS browsers -->
+  <noscript>
+    <section style="max-width:800px;margin:0 auto;padding:24px;">
+      <h2 style="font-size:24px;margin-bottom:16px;">Quran Vocabulary — 600 Essential Quran Words</h2>
+      <p style="margin-bottom:20px;line-height:1.7;">Learn Quranic Arabic with 600 essential Quran words. A free vocabulary companion for online Quran classes, Quran memorization, and students with an online Quran tutor. This page requires JavaScript for the interactive experience — below is a sample of the vocabulary available.</p>
+      <ul style="list-style:none;padding:0;">
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ٱللَّهُ</span> (Allah) — God — Quran 1:1</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ٱلرَّحْمَـٰنُ</span> (Ar-Rahman) — The Most Gracious — Quran 20:5</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ٱلرَّحِيمُ</span> (Ar-Raheem) — The Most Merciful — Quran 2:173</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">رَبٌّ</span> (Rabb) — Lord / Sustainer — Quran 1:2</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ءَامَنَ</span> (Aaman) — He believed — Quran 2:25</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">قُرْءَانٌ</span> (Qur'aan) — The Quran / recitation — Quran 17:9</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">صَلَوٰةٌ</span> (Salaah) — Prayer — Quran 17:78</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">نُورٌ</span> (Noor) — Light — Quran 24:35</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">حَقٌّ</span> (Haqq) — Truth / right — Quran 17:81</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">يَوْمٌ</span> (Yawm) — Day — Quran 26:88</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">عِلْمٌ</span> (Ilm) — Knowledge — Quran 58:11</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">رَحْمَةٌ</span> (Rahmah) — Mercy — Quran 7:156</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">رَسُولٌ</span> (Rasool) — Messenger — Quran 33:40</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">كِتَـٰبٌ</span> (Kitaab) — Book / scripture — Quran 2:2</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">هُدًى</span> (Hudaa) — Guidance — Quran 1:6</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">جَنَّةٌ</span> (Jannah) — Garden / Paradise — Quran 54:54</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">دُنْيَا</span> (Dunyaa) — The world / this life — Quran 3:185</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">صَبْرٌ</span> (Sabr) — Patience / steadfastness — Quran 2:153</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">مُؤْمِنٌ</span> (Mu'min) — Believer — Quran 2:25</li>
+        <li style="padding:8px 0;"><span lang="ar" dir="rtl">مُسْتَقِيمٌ</span> (Mustaqeem) — Straight / upright — Quran 1:6</li>
+      </ul>
+      <p style="margin-top:20px;"><a href="about.html" style="color:#2d9d6f;">Learn more about QuranVocab</a> — Visit <a href="https://quranvocab.com" style="color:#2d9d6f;">quranvocab.com</a> for the full interactive experience.</p>
+    </section>
+  </noscript>
 
   <!-- Data & App Logic -->
   <script src="data.js"></script>
@@ -1664,7 +1710,7 @@
       verseRenderIds.set(containerEl, myId);
       // Immediately show the partial excerpt
       containerEl.innerHTML = `<span class="full-verse-label">Full Verse · ${word.verse}</span>` +
-        `<span class="arabic-part verse-loading">${fallbackParsed.arabic}</span>${fallbackParsed.english}`;
+        `<span class="arabic-part verse-loading" lang="ar" dir="rtl">${fallbackParsed.arabic}</span>${fallbackParsed.english}`;
       
       // Then fetch and render the full verse
       fetchFullVerse(word.verse).then(verse => {
@@ -1677,7 +1723,7 @@
         }
         containerEl.innerHTML = 
           `<span class="full-verse-label">Full Verse · ${word.verse}</span>` +
-          `<span class="arabic-part">${verse.arabic}</span>${verse.english}`;
+          `<span class="arabic-part" lang="ar" dir="rtl">${verse.arabic}</span>${verse.english}`;
       });
     }
 
@@ -1908,7 +1954,7 @@
                    role="button"
                    aria-label="View details for ${word.transliteration}">
                 <div class="mark-dot"></div>
-                <div class="grid-item-arabic">${displayArabic(word)}</div>
+                <div class="grid-item-arabic" lang="ar" dir="rtl">${displayArabic(word)}</div>
                 <div class="grid-item-info">
                   <div class="grid-item-transliteration">${word.transliteration}</div>
                   <div class="grid-item-meaning">${word.meaning}</div>
@@ -1950,7 +1996,7 @@
                    role="button"
                    aria-label="View details for ${word.transliteration}">
                 <div class="mark-dot"></div>
-                <div class="grid-item-arabic">${displayArabic(word)}</div>
+                <div class="grid-item-arabic" lang="ar" dir="rtl">${displayArabic(word)}</div>
                 <div class="grid-item-info">
                   <div class="grid-item-transliteration">${word.transliteration}</div>
                   <div class="grid-item-meaning">${word.meaning}</div>
@@ -2145,7 +2191,7 @@
                role="button"
                aria-label="View details for ${word.transliteration}">
             <div class="mark-dot"></div>
-            <div class="grid-item-arabic">${displayArabic(word)}</div>
+            <div class="grid-item-arabic" lang="ar" dir="rtl">${displayArabic(word)}</div>
             <div class="grid-item-info">
               <div class="grid-item-transliteration">${word.transliteration}</div>
               <div class="grid-item-meaning">${word.meaning}</div>

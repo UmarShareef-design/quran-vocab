@@ -1,0 +1,8 @@
+# robots.txt for quranvocab.com
+# https://quranvocab.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://quranvocab.com/sitemap.xml

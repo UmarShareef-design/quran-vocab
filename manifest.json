@@ -1,0 +1,24 @@
+{
+  "name": "QuranVocab — Learn Quranic Arabic",
+  "short_name": "QuranVocab",
+  "description": "Learn Quranic Arabic with 600 essential Quran words. A free vocabulary companion for online Quran classes and Quran memorization.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0c1a14",
+  "theme_color": "#1a6b4a",
+  "orientation": "any",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

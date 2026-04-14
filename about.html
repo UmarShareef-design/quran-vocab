@@ -9,10 +9,10 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a6b4a'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='20' fill='white' text-anchor='middle' font-weight='700'%3E%D9%82%3C/text%3E%3C/svg%3E" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.json" />
 
   <!-- SEO Meta Tags -->
   <meta name="description" content="A free Quran vocabulary companion for online Quran classes and memorization. Learn Quranic Arabic with 600 essential words alongside your online Quran tutor." />
-  <meta name="keywords" content="best online Quran classes, Quran classes, learn Quranic Arabic, Quran memorization, Quran teacher near me, online Quran classes, best online Quran classes free, online Quran tutor, Quran vocabulary, Quranic Arabic, Quran words, Arabic vocabulary" />
   <meta name="author" content="Umar Shareef" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#1a6b4a" />
@@ -26,16 +26,20 @@
   <meta property="og:site_name" content="QuranVocab" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://quranvocab.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="QuranVocab — Learn Quranic Arabic with 600 essential Quran words" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="About — Quran Vocabulary Companion for Online Quran Classes" />
   <meta name="twitter:description" content="A free Quran vocabulary companion for online Quran classes. Learn Quranic Arabic with 600 essential words alongside your online Quran tutor and Quran memorization." />
   <meta name="twitter:image" content="https://quranvocab.com/og-image.png" />
+  <meta name="twitter:image:alt" content="QuranVocab — Learn Quranic Arabic with 600 essential Quran words" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
-  {
+  [{
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "About QuranVocab",
@@ -51,12 +55,58 @@
       "name": "Umar Shareef",
       "url": "https://umarshareef.framer.website"
     }
-  }
+  }, {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://quranvocab.com/"
+    }, {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About",
+      "item": "https://quranvocab.com/about"
+    }]
+  }, {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "Why learn Quranic Arabic vocabulary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Around 80% of Quranic vocabulary repeats frequently. Understanding key words unlocks meanings of entire verses and accelerates both reading and comprehension skills."
+      }
+    }, {
+      "@type": "Question",
+      "name": "How many Quran words does QuranVocab cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QuranVocab covers 600 essential Quran words, focusing on the most frequently used vocabulary in the Quran."
+      }
+    }, {
+      "@type": "Question",
+      "name": "Is QuranVocab free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, QuranVocab is completely free. It is designed as a supplement for online Quran classes, Quran memorization, and self-study."
+      }
+    }, {
+      "@type": "Question",
+      "name": "Can I use QuranVocab alongside online Quran classes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, QuranVocab is a perfect companion to online Quran classes. It reinforces what you learn from your online Quran tutor and helps you retain lessons outside class time."
+      }
+    }]
+  }]
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -83,6 +133,8 @@
       --radius-xl: 32px;
       --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-arabic: 'Noto Kufi Arabic', 'Scheherazade New', 'Amiri', serif;
+      --font-arabic-body: 'Scheherazade New', 'Amiri', serif;
     }
 
     html { scroll-behavior: smooth; font-size: 16px; }
@@ -152,7 +204,7 @@
       width: 36px; height: 36px; border-radius: var(--radius-sm);
       background: linear-gradient(135deg, var(--primary), var(--primary-light));
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Scheherazade New', serif; font-size: 18px; color: white; font-weight: 700;
+      font-family: var(--font-arabic); font-size: 18px; color: white; font-weight: 700;
     }
     .nav-brand-text { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
     .nav-brand-text span { color: var(--accent); }
@@ -335,7 +387,7 @@
     <nav class="navbar">
       <div class="navbar-inner">
         <a href="index.html" class="nav-brand">
-          <div class="nav-brand-icon">ق</div>
+          <div class="nav-brand-icon" lang="ar" dir="rtl">ق</div>
           <div class="nav-brand-text">Quran<span>Vocab</span></div>
         </a>
         <div class="nav-links">
