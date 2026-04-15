@@ -94,7 +94,7 @@
       --glass-hover: rgba(255, 255, 255, 0.12);
       --text-primary: #e8f0ec;
       --text-secondary: #9bb8a8;
-      --text-muted: #6a8f7a;
+      --text-muted: #8bb8a5;
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
       --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.3);
       --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.4);
@@ -292,7 +292,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-muted);
     }
 
@@ -333,7 +333,7 @@
       border-radius: 20px;
       background: var(--glass);
       border: 1px solid var(--glass-border);
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-muted);
       margin-bottom: 32px;
       backdrop-filter: blur(10px);
@@ -399,12 +399,12 @@
 
     .word-card-category {
       display: inline-block;
-      padding: 3px 10px;
+      padding: 4px 12px;
       border-radius: 12px;
       background: rgba(201, 168, 76, 0.1);
       border: 1px solid rgba(201, 168, 76, 0.2);
       color: var(--accent);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -469,15 +469,15 @@
 
     /* ========== VERSE LOADING ========== */
     .verse-loading {
-      opacity: 0.5;
+      opacity: 0.8;
       font-style: italic;
     }
 
     .full-verse-label {
       display: inline-block;
-      font-size: 10px;
+      font-size: 12px;
       color: var(--primary-light);
-      opacity: 0.6;
+      opacity: 1;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 6px;
@@ -496,12 +496,12 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      padding: 4px 12px;
+      padding: 8px 14px;
       border-radius: 12px;
       background: rgba(45, 157, 111, 0.08);
       border: 1px solid rgba(45, 157, 111, 0.15);
       color: var(--primary-light);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 500;
       text-decoration: none;
       transition: var(--transition-fast);
@@ -725,7 +725,7 @@
     }
 
     .category-chip {
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 20px;
       background: var(--glass);
       border: 1px solid var(--glass-border);
@@ -809,7 +809,7 @@
     }
 
     .grid-item-transliteration {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       color: var(--accent);
       white-space: nowrap;
@@ -818,7 +818,7 @@
     }
 
     .grid-item-meaning {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-muted);
       white-space: nowrap;
       overflow: hidden;
@@ -826,9 +826,9 @@
     }
 
     .grid-item-verse {
-      font-size: 10px;
+      font-size: 12px;
       color: var(--primary-light);
-      opacity: 0.7;
+      opacity: 1;
       margin-top: 1px;
       transition: opacity var(--transition-fast);
     }
@@ -839,28 +839,27 @@
 
     .meaning-letter-badge {
       flex-shrink: 0;
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       border-radius: 6px;
       background: rgba(45, 157, 111, 0.08);
       border: 1px solid rgba(45, 157, 111, 0.12);
       color: var(--primary-light);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0.6;
+      opacity: 1;
       transition: var(--transition-fast);
     }
 
     .word-grid-item:hover .meaning-letter-badge {
-      opacity: 1;
-      background: rgba(45, 157, 111, 0.12);
+      background: rgba(45, 157, 111, 0.15);
     }
 
     .word-grid-item:hover .grid-item-verse {
-      opacity: 1;
+      color: var(--accent);
     }
 
     /* ========== SORT CONTROLS ========== */
@@ -883,7 +882,7 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 20px;
       background: var(--glass);
       border: 1px solid var(--glass-border);
@@ -922,12 +921,12 @@
     /* ========== FREQUENCY BADGE ========== */
     .freq-badge {
       flex-shrink: 0;
-      padding: 2px 8px;
+      padding: 4px 10px;
       border-radius: 10px;
       background: rgba(201, 168, 76, 0.1);
       border: 1px solid rgba(201, 168, 76, 0.15);
       color: var(--accent);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 600;
       white-space: nowrap;
       line-height: 1.6;
@@ -952,7 +951,7 @@
 
     /* ========== MODAL FREQUENCY ========== */
     .modal-frequency {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-muted);
       margin-bottom: 20px;
       display: flex;
@@ -976,12 +975,12 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      padding: 6px 16px;
+      padding: 8px 16px;
       border-radius: 14px;
       background: rgba(45, 157, 111, 0.08);
       border: 1px solid rgba(45, 157, 111, 0.15);
       color: var(--primary-light);
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       text-decoration: none;
       transition: var(--transition-fast);
@@ -1074,8 +1073,8 @@
     }
 
     .modal-close {
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: var(--glass);
       border: 1px solid var(--glass-border);
@@ -1157,8 +1156,8 @@
     /* ========== BOOKMARK REMOVE BUTTON ========== */
     .btn-bookmark-remove {
       flex-shrink: 0;
-      width: 28px;
-      height: 28px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background: rgba(201, 168, 76, 0.1);
       border: 1px solid rgba(201, 168, 76, 0.2);
@@ -1182,7 +1181,7 @@
       text-align: center;
       padding: 32px 24px;
       color: var(--text-muted);
-      font-size: 13px;
+      font-size: 14px;
       border-top: 1px solid var(--glass-border);
     }
 
@@ -1236,22 +1235,22 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-muted);
-      opacity: 0.6;
+      opacity: 0.8;
     }
 
     .kbd {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 24px;
-      height: 24px;
-      padding: 0 6px;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 8px;
       border-radius: 4px;
       background: var(--glass);
       border: 1px solid var(--glass-border);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 600;
       color: var(--text-muted);
     }
@@ -1267,7 +1266,7 @@
       .navbar-inner { height: 56px; }
       .nav-brand-text { font-size: 16px; }
       .nav-progress { display: none; }
-      .nav-link { padding: 6px 10px; font-size: 13px; }
+      .nav-link { padding: 8px 12px; font-size: 13px; }
 
       .hero-section {
         padding: 24px 16px;
@@ -1358,7 +1357,7 @@
       }
 
       .nav-link span { display: none; }
-      .nav-link { padding: 6px 8px; font-size: 12px; }
+      .nav-link { padding: 8px 10px; font-size: 13px; }
     }
 
     /* ========== NO RESULTS ========== */
@@ -1407,6 +1406,87 @@
       opacity: 1;
     }
 
+    /* ========== FOCUS VISIBLE ========== */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .btn:focus-visible,
+    .nav-link:focus-visible,
+    .category-chip:focus-visible,
+    .sort-chip:focus-visible,
+    .word-grid-item:focus-visible,
+    .modal-close:focus-visible,
+    .btn-bookmark-remove:focus-visible,
+    .scroll-top:focus-visible,
+    .search-input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Remove default focus for mouse clicks */
+    :focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    /* ========== REDUCED MOTION ========== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html {
+        scroll-behavior: auto;
+      }
+      .floating-orb {
+        animation: none;
+      }
+      .word-card {
+        transition: none;
+      }
+      .word-card.fade-out .word-arabic,
+      .word-card.fade-out .word-transliteration,
+      .word-card.fade-out .word-meaning,
+      .word-card.fade-out .word-example,
+      .word-card.fade-out .word-verse,
+      .word-card.fade-in .word-arabic,
+      .word-card.fade-in .word-transliteration,
+      .word-card.fade-in .word-meaning,
+      .word-card.fade-in .word-example,
+      .word-card.fade-in .word-verse {
+        opacity: 1;
+        transform: none;
+      }
+      .word-counter .dot {
+        animation: none;
+        opacity: 1;
+      }
+    }
+
+    /* ========== SKIP NAV ========== */
+    .skip-nav {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      z-index: 1000;
+      padding: 12px 20px;
+      background: var(--primary);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+
+    .skip-nav:focus {
+      top: 8px;
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
     /* Smooth scroll target offset */
     [id] {
       scroll-margin-top: 80px;
@@ -1414,6 +1494,9 @@
   </style>
 </head>
 <body>
+  <!-- Skip Navigation -->
+  <a href="#hero" class="skip-nav">Skip to main content</a>
+
   <!-- Animated Background -->
   <div class="bg-layer">
     <div class="bg-gradient"></div>
@@ -1458,7 +1541,7 @@
           <span id="counter-text">Word 1 of 100</span>
         </div>
 
-        <div class="word-card visible" id="word-card">
+        <div class="word-card visible" id="word-card" aria-live="polite">
           <div class="word-card-inner">
             <div class="word-card-category" id="card-category">A</div>
             <div class="word-arabic" id="card-arabic" lang="ar" dir="rtl">الله</div>
@@ -1515,7 +1598,7 @@
       <!-- Search -->
       <div class="search-container">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        <input type="text" class="search-input" id="search-input" placeholder="Search by Arabic, transliteration, or meaning..." />
+        <input type="text" class="search-input" id="search-input" placeholder="Search by Arabic, transliteration, or meaning..." aria-label="Search vocabulary words" />
       </div>
 
       <!-- Category Filters -->
@@ -1547,7 +1630,7 @@
   </div>
 
   <!-- Modal Overlay -->
-  <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)" role="presentation">
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-transliteration" aria-describedby="modal-meaning">
       <div class="modal-header">
         <div class="word-card-category" id="modal-category">A</div>
@@ -2259,9 +2342,10 @@
       }
     });
 
-    // Enter on grid items
+    // Enter/Space on grid items
     document.addEventListener('keydown', (e) => {
-      if (e.code === 'Enter' && e.target.classList.contains('word-grid-item')) {
+      if ((e.code === 'Enter' || e.code === 'Space') && e.target.classList.contains('word-grid-item')) {
+        e.preventDefault();
         e.target.click();
       }
     });
