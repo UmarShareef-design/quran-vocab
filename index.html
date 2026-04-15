@@ -82,7 +82,7 @@
 
     :root {
       --primary: #1a6b4a;
-      --primary-light: #2d9d6f;
+      --primary-light: #42cc88;
       --primary-dark: #0e4a32;
       --accent: #c9a84c;
       --accent-light: #e0c878;
@@ -421,6 +421,9 @@
       direction: rtl;
       text-shadow: 0 0 60px rgba(201, 168, 76, 0.15);
       transition: opacity 0.3s ease, transform 0.3s ease;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "mark" 1, "mkmk" 1;
+      letter-spacing: normal;
     }
 
     .word-transliteration {
@@ -465,6 +468,9 @@
       direction: rtl;
       display: block;
       margin-bottom: 4px;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "mark" 1, "mkmk" 1;
+      letter-spacing: normal;
     }
 
     /* ========== VERSE LOADING ========== */
@@ -801,6 +807,9 @@
       color: var(--text-primary);
       direction: rtl;
       min-width: 48px;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "mark" 1, "mkmk" 1;
+      letter-spacing: normal;
     }
 
     .grid-item-info {
@@ -1107,6 +1116,9 @@
       color: var(--text-primary);
       text-shadow: 0 0 40px rgba(201, 168, 76, 0.15);
       margin-bottom: 4px;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "mark" 1, "mkmk" 1;
+      letter-spacing: normal;
     }
 
     .modal-transliteration {
@@ -1143,6 +1155,9 @@
       direction: rtl;
       display: block;
       margin-bottom: 6px;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "mark" 1, "mkmk" 1;
+      letter-spacing: normal;
     }
 
     .modal-footer {
@@ -1187,11 +1202,13 @@
 
     .footer a {
       color: var(--accent);
-      text-decoration: none;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
     }
 
     .footer a:hover {
-      text-decoration: underline;
+      text-decoration-style: solid;
     }
 
     /* ========== SCROLL TO TOP ========== */
@@ -1495,7 +1512,7 @@
 </head>
 <body>
   <!-- Skip Navigation -->
-  <a href="#hero" class="skip-nav">Skip to main content</a>
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
 
   <!-- Animated Background -->
   <div class="bg-layer">
@@ -1508,6 +1525,7 @@
 
   <!-- App Container -->
   <div class="app-container">
+  <main id="main-content">
     <!-- Navigation -->
     <nav class="navbar">
       <div class="navbar-inner">
@@ -1621,11 +1639,12 @@
       <div class="word-grid" id="word-grid"></div>
     </section>
 
+    </main>
     <!-- Footer -->
     <footer class="footer">
       <p>QuranVocab — A free vocabulary companion for online Quran classes and Quran memorization. Learn Quranic Arabic with 600 essential words.</p>
-      <p style="margin-top:6px;">Supplement your <a href="about.html" style="color: var(--primary-light); text-decoration: none;">online Quran classes</a> and online Quran tutor lessons today.</p>
-      <p style="margin-top:6px;">An initiative by <a href="https://umarshareef.framer.website" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none; font-weight: 500;">Umar Shareef</a></p>
+      <p style="margin-top:6px;">Supplement your <a href="about.html" style="color: var(--primary-light);">online Quran classes</a> and online Quran tutor lessons today.</p>
+      <p style="margin-top:6px;">An initiative by <a href="https://umarshareef.framer.website" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 500;">Umar Shareef</a></p>
     </footer>
   </div>
 
@@ -2033,7 +2052,7 @@
                    onclick="openModal(${word.id})" 
                    tabindex="0"
                    role="button"
-                   aria-label="View details for ${word.transliteration}">
+                   aria-label="${word.transliteration}, ${word.meaning}">
                 <div class="mark-dot"></div>
                 <div class="grid-item-arabic" lang="ar" dir="rtl">${displayArabic(word)}</div>
                 <div class="grid-item-info">
@@ -2075,7 +2094,7 @@
                    onclick="openModal(${word.id})" 
                    tabindex="0"
                    role="button"
-                   aria-label="View details for ${word.transliteration}">
+                   aria-label="${word.transliteration}, ${word.meaning}">
                 <div class="mark-dot"></div>
                 <div class="grid-item-arabic" lang="ar" dir="rtl">${displayArabic(word)}</div>
                 <div class="grid-item-info">
@@ -2270,7 +2289,7 @@
                onclick="openModal(${word.id})" 
                tabindex="0"
                role="button"
-               aria-label="View details for ${word.transliteration}">
+               aria-label="${word.transliteration}, ${word.meaning}">
             <div class="mark-dot"></div>
             <div class="grid-item-arabic" lang="ar" dir="rtl">${displayArabic(word)}</div>
             <div class="grid-item-info">
