@@ -179,26 +179,6 @@
     .nav-link:hover { color: var(--text-primary); background: var(--glass); }
     .nav-link.active { color: var(--accent); background: rgba(201, 168, 76, 0.1); }
 
-    .saved-count {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 18px;
-      height: 18px;
-      padding: 0 5px;
-      border-radius: 9px;
-      background: rgba(201, 168, 76, 0.2);
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 1;
-      margin-left: 4px;
-      transition: var(--transition-fast);
-    }
-    .saved-count:empty,
-    .saved-count[data-count="0"] {
-      display: none;
-    }
 
     /* ========== SCROLL TO TOP ========== */
     .scroll-top {
@@ -315,6 +295,45 @@
     /* Pair count */
     .pair-count {
       text-align: center; color: var(--text-muted); font-size: 14px; margin-bottom: 28px;
+    }
+
+    /* ========== PAIR SAVE BUTTON ========== */
+    .pair-save-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 2;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      padding: 0;
+      font-size: 16px;
+      line-height: 1;
+    }
+    .pair-save-btn:hover {
+      background: var(--glass-hover);
+      color: var(--accent);
+      border-color: rgba(201, 168, 76, 0.3);
+    }
+    .pair-save-btn.saved {
+      background: rgba(201, 168, 76, 0.15);
+      border-color: rgba(201, 168, 76, 0.3);
+      color: var(--accent);
+    }
+    .pair-save-btn.saved:hover {
+      background: rgba(201, 168, 76, 0.25);
+    }
+    .pair-save-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
 
     /* ========== PAIR CARDS ========== */
@@ -517,6 +536,7 @@
     .nav-link:focus-visible,
     .btn:focus-visible,
     .nav-hamburger:focus-visible,
+    .pair-save-btn:focus-visible,
     .category-chip:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
@@ -572,6 +592,26 @@
     .load-more-btn:active { transform: translateY(0); }
     .load-more-btn svg { transition: transform var(--transition-fast); }
     .load-more-btn:hover svg { transform: translateY(2px); }
+      .saved-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 9px;
+      background: rgba(201, 168, 76, 0.2);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+      margin-left: 4px;
+      transition: var(--transition-fast);
+    }
+    .saved-count:empty,
+    .saved-count[data-count="0"] {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -640,6 +680,7 @@
         <button class="category-chip" onclick="filterCategory('One-Letter Swap')" data-cat="One-Letter Swap">🔤 One-Letter Swap</button>
         <button class="category-chip" onclick="filterCategory('Vowel Shift')" data-cat="Vowel Shift">🔄 Vowel Shift</button>
         <button class="category-chip" onclick="filterCategory('Letter Added/Removed')" data-cat="Letter Added/Removed">➕ Letter Added/Removed</button>
+        <button class="category-chip" onclick="filterCategory('saved')" data-cat="saved">📝 Saved</button>
       </div>
 
       <div class="pair-count" id="pair-count">Showing 223 confusable pairs</div>
@@ -658,7 +699,7 @@
       <!-- No results -->
       <div class="no-results" id="no-results" style="display:none">
         <div class="no-results-icon">🔍</div>
-        <div class="no-results-text">No pairs in this category</div>
+        <div class="no-results-text" id="no-results-text">No pairs in this category</div>
       </div>
 
       <!-- Study Tips -->
@@ -710,20 +751,6 @@
       }
     });
 
-    // ========== SAVED COUNT SYNC ==========
-    (function syncSavedCount() {
-      try {
-        const bookmarked = JSON.parse(localStorage.getItem('qv_bookmarked') || '[]');
-        const count = bookmarked.length;
-        ['saved-count', 'saved-count-mobile'].forEach(function(id) {
-          const el = document.getElementById(id);
-          if (el) {
-            el.textContent = count;
-            el.setAttribute('data-count', count);
-          }
-        });
-      } catch(e) {}
-    })();
 
     // ========== SIMILAR-SOUNDING PAIRS DATA ==========
     const SIMILAR_PAIRS = [
@@ -955,6 +982,26 @@
     const PAIRS_PER_PAGE = 40;
     let activeFilter = 'all';
     let visibleCount = PAIRS_PER_PAGE;
+    let savedPairs = new Set(JSON.parse(localStorage.getItem('qv_saved_pairs') || '[]'));
+    // Migrate old index-based saves to composite keys
+    if (savedPairs.size > 0 && [...savedPairs][0].match(/^\d+$/)) {
+      savedPairs.clear();
+      saveSavedPairs();
+    }
+
+    function saveSavedPairs() {
+      localStorage.setItem('qv_saved_pairs', JSON.stringify([...savedPairs]));
+    }
+
+    function togglePairSave(key) {
+      if (savedPairs.has(key)) {
+        savedPairs.delete(key);
+      } else {
+        savedPairs.add(key);
+      }
+      saveSavedPairs();
+      renderPairs();
+    }
 
     function filterCategory(cat) {
       activeFilter = cat;
@@ -986,13 +1033,17 @@
 
       const filtered = activeFilter === 'all'
         ? SIMILAR_PAIRS
-        : SIMILAR_PAIRS.filter(p => p.category === activeFilter);
+        : activeFilter === 'saved'
+          ? SIMILAR_PAIRS.filter(p => savedPairs.has(p.arabic1+'|'+p.arabic2))
+          : SIMILAR_PAIRS.filter(p => p.category === activeFilter);
 
       if (filtered.length === 0) {
         grid.innerHTML = '';
         noResults.style.display = '';
         loadMoreContainer.style.display = 'none';
-        countEl.textContent = 'No pairs found';
+        const noResultsText = document.getElementById('no-results-text');
+        if (noResultsText) noResultsText.textContent = activeFilter === 'saved' ? 'No saved pairs yet \u2014 tap the 📄 icon on any pair to save it' : 'No pairs in this category';
+        countEl.textContent = activeFilter === 'saved' ? 'No saved pairs' : 'No pairs found';
         return;
       }
 
@@ -1006,6 +1057,7 @@
         return `
           <div class="pair-card">
             <div class="pair-card-inner">
+              <button class="pair-save-btn ${savedPairs.has(p.arabic1+'|'+p.arabic2) ? 'saved' : ''}" onclick="event.stopPropagation(); togglePairSave('${p.arabic1}|${p.arabic2}')" title="${savedPairs.has(p.arabic1+'|'+p.arabic2) ? 'Remove from saved' : 'Save this pair'}" aria-label="${savedPairs.has(p.arabic1+'|'+p.arabic2) ? 'Unsave pair' : 'Save pair'}">${savedPairs.has(p.arabic1+'|'+p.arabic2) ? '📝' : '📄'}</button>
               <div class="pair-category-badge ${badgeClass}">${badgeIcon} ${p.category}</div>
               <div class="pair-words">
                 <div class="pair-word">
@@ -1050,6 +1102,21 @@
       hamburger.setAttribute('aria-expanded', !isOpen);
       document.body.style.overflow = isOpen ? '' : 'hidden';
     }
+      // ========== SAVED COUNT SYNC ==========
+    (function syncSavedCount() {
+      try {
+        const bookmarked = JSON.parse(localStorage.getItem('qv_bookmarked') || '[]');
+        const count = bookmarked.length;
+        ['saved-count', 'saved-count-mobile'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.textContent = count;
+            el.dataset.count = count;
+          }
+        });
+      } catch(e) {}
+    })();
+
   </script>
 </body>
 </html>

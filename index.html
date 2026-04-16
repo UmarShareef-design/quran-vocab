@@ -281,39 +281,6 @@
       background: rgba(201, 168, 76, 0.1);
     }
 
-    .saved-count {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 18px;
-      height: 18px;
-      padding: 0 5px;
-      border-radius: 9px;
-      background: rgba(201, 168, 76, 0.2);
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 1;
-      margin-left: 4px;
-      transition: var(--transition-fast);
-    }
-
-    .saved-count:empty,
-    .saved-count[data-count="0"] {
-      display: none;
-    }
-
-    @keyframes saved-badge-pop {
-      0% { transform: scale(1); }
-      40% { transform: scale(1.35); }
-      70% { transform: scale(0.9); }
-      100% { transform: scale(1); }
-    }
-
-    .saved-count.pop {
-      animation: saved-badge-pop 0.35s ease-out;
-    }
-
     /* ========== HAMBURGER MENU ========== */
     .nav-hamburger {
       display: none;
@@ -384,43 +351,46 @@
       font-size: 16px;
       border-radius: var(--radius-md);
     }
-    .nav-mobile-menu .nav-progress {
-      margin-top: 16px;
+
+    .saved-count {
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 9px;
+      background: rgba(201, 168, 76, 0.2);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+      margin-left: 4px;
+      transition: var(--transition-fast);
+    }
+    .saved-count:empty,
+    .saved-count[data-count="0"] {
+      display: none;
+    }
+    @keyframes saved-badge-pop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.35); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+    .saved-count.pop {
+      animation: saved-badge-pop 0.35s ease-out;
     }
 
     @media (max-width: 768px) {
       .nav-hamburger { display: flex; }
       .nav-links { display: none; }
       .nav-mobile-menu { display: flex; }
-      .nav-mobile-menu .nav-progress { display: flex; }
     }
     @media (min-width: 769px) {
       .nav-mobile-menu { display: none !important; }
     }
 
-    .nav-progress {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .progress-bar-mini {
-      width: 60px;
-      height: 4px;
-      border-radius: 2px;
-      background: var(--glass);
-      overflow: hidden;
-    }
-
-    .progress-bar-mini-fill {
-      height: 100%;
-      border-radius: 2px;
-      background: linear-gradient(90deg, var(--primary-light), var(--accent));
-      transition: width 0.6s ease;
-    }
 
     /* ========== HERO / WORD CARD SECTION ========== */
     .hero-section {
@@ -436,32 +406,6 @@
       text-align: center;
     }
 
-    .word-counter {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 32px;
-      backdrop-filter: blur(10px);
-    }
-
-    .word-counter .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--primary-light);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
 
     /* ========== WORD CARD ========== */
     .word-card {
@@ -957,7 +901,6 @@
     }
 
 
-
     .grid-freq-badge {
       flex-shrink: 0;
       width: auto;
@@ -1396,7 +1339,6 @@
     @media (max-width: 768px) {
       .navbar-inner { height: 56px; }
       .nav-brand-text { font-size: 16px; }
-      .nav-progress { display: none; }
       .nav-link { padding: 8px 12px; font-size: 13px; }
       .nav-hamburger { display: flex; }
       .nav-links { display: none; }
@@ -1585,10 +1527,6 @@
       .word-card.fade-in .word-verse {
         opacity: 1;
         transform: none;
-      }
-      .word-counter .dot {
-        animation: none;
-        opacity: 1;
       }
     }
 
@@ -1897,13 +1835,11 @@
     }
 
 
-
     .quiz-correct-answer.visible {
 
       display: block;
 
     }
-
 
 
     @keyframes fadeSlideUp {
@@ -2052,13 +1988,7 @@
           <a href="about.html" class="nav-link" id="nav-about">About</a>
           <button class="nav-link" onclick="scrollToBookmarks()" id="nav-bookmarks">🔖 Saved <span class="saved-count" id="saved-count" data-count="0">0</span></button>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link" id="nav-feedback">Feedback</a>
-          <div class="nav-progress">
-            <div class="progress-bar-mini">
-              <div class="progress-bar-mini-fill" id="progress-fill" style="width: 0%"></div>
             </div>
-            <span id="progress-text">0 viewed</span>
-          </div>
-        </div>
         <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu" aria-expanded="false">
           <span></span>
           <span></span>
@@ -2072,16 +2002,10 @@
       <button class="nav-link active" onclick="scrollToTop(); closeMobileMenu()" id="nav-daily-mobile">Daily Word</button>
       <button class="nav-link" onclick="scrollToRepository(); closeMobileMenu()" id="nav-explore-mobile">Explore</button>
       <button class="nav-link" onclick="scrollToQuiz(); closeMobileMenu()" id="nav-quiz-mobile">🎯 Quiz</button>
-      <a href=similar.html class=nav-link>🔀 Similar</a>
+      <a href="similar.html" class="nav-link">🔀 Similar</a>
       <a href="about.html" class="nav-link">About</a>
       <button class="nav-link" onclick="scrollToBookmarks(); closeMobileMenu()" id="nav-bookmarks-mobile">🔖 Saved <span class="saved-count" id="saved-count-mobile" data-count="0">0</span></button>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
-      <div class="nav-progress">
-        <div class="progress-bar-mini">
-          <div class="progress-bar-mini-fill" id="progress-fill-mobile" style="width: 0%"></div>
-        </div>
-        <span id="progress-text-mobile">0 viewed</span>
-      </div>
     </div>
 
     <!-- SEO H1 (visually hidden) -->
@@ -2090,10 +2014,6 @@
     <!-- Hero Section -->
     <section class="hero-section" id="hero">
       <div class="hero-content">
-        <div class="word-counter" id="word-counter">
-          <span class="dot"></span>
-          <span id="counter-text">Word 1 of 100</span>
-        </div>
 
         <div class="word-card visible" id="word-card" aria-live="polite">
           <div class="word-card-inner">
@@ -2220,7 +2140,7 @@
     <!-- Repository Section -->
     <section class="repository-section" id="repository">
       <div class="section-header">
-        <h2 class="section-title">Explore <span>Vocabulary</span></h2>
+        <h2 class="section-title">Explore more words of the Holy <span>Quran</span></h2>
         <p class="section-subtitle">Browse all 100 words alphabetically — click any word for details</p>
       </div>
 
@@ -2341,7 +2261,6 @@
     // ========== APP STATE ==========
     const state = {
       currentIndex: 0,
-      viewedWords: new Set(JSON.parse(localStorage.getItem('qv_viewed') || '[]')),
       bookmarkedWords: new Set(JSON.parse(localStorage.getItem('qv_bookmarked') || '[]')),
       activeCategory: 'All',
       sortBy: localStorage.getItem('qv_sort') || 'alpha', // 'alpha' | 'frequency'
@@ -2353,9 +2272,28 @@
     // ========== LOCALSTORAGE PERSISTENCE ==========
     function persistState() {
       try {
-        localStorage.setItem('qv_viewed', JSON.stringify([...state.viewedWords]));
         localStorage.setItem('qv_bookmarked', JSON.stringify([...state.bookmarkedWords]));
       } catch(e) { /* quota exceeded — silently fail */ }
+    }
+
+    function updateSavedCount() {
+      const count = state.bookmarkedWords.size;
+      const el = document.getElementById('saved-count');
+      const mobileEl = document.getElementById('saved-count-mobile');
+      if (el) {
+        const prev = el.dataset.count;
+        el.textContent = count;
+        el.dataset.count = count;
+        if (prev !== String(count)) {
+          el.classList.remove('pop');
+          void el.offsetWidth; // reflow
+          el.classList.add('pop');
+        }
+      }
+      if (mobileEl) {
+        mobileEl.textContent = count;
+        mobileEl.dataset.count = count;
+      }
     }
 
     // ========== UTILITY ==========
@@ -2582,11 +2520,8 @@
       const newIndex = getRandomIndex();
       state.currentIndex = newIndex;
       const word = quranVocabulary[newIndex];
-      state.viewedWords.add(word.id);
       persistState();
       renderWordCard(word, true);
-      updateCounter();
-      updateStats();
       updateBookmarkButton();
     }
 
@@ -2599,8 +2534,8 @@
         state.bookmarkedWords.add(word.id);
       }
       updateBookmarkButton();
-      updateStats();
       persistState();
+        updateSavedCount();
       // Toggle class on matching grid item instead of full re-render
       const gridItem = document.querySelector(`.word-grid-item[data-word-id="${word.id}"]`);
       if (gridItem) {
@@ -2623,44 +2558,6 @@
       }
     }
 
-    // ========== COUNTER & STATS ==========
-    function updateCounter() {
-      const word = quranVocabulary[state.currentIndex];
-      const wordNum = state.viewedWords.size;
-      document.getElementById('counter-text').textContent = 
-        `Word ${wordNum} of ${quranVocabulary.length} explored`;
-    }
-
-    function updateStats() {
-      const pct = (state.viewedWords.size / quranVocabulary.length * 100).toFixed(0);
-      document.getElementById('progress-fill').style.width = pct + '%';
-      document.getElementById('progress-text').textContent = `${state.viewedWords.size} viewed`;
-      // Sync mobile menu progress bar
-      const mobileFill = document.getElementById('progress-fill-mobile');
-      const mobileText = document.getElementById('progress-text-mobile');
-      if (mobileFill) mobileFill.style.width = pct + '%';
-      if (mobileText) mobileText.textContent = `${state.viewedWords.size} viewed`;
-      // Update saved count badge in navbar
-      updateSavedCount();
-    }
-
-    function updateSavedCount() {
-      const count = state.bookmarkedWords.size;
-      const countEl = document.getElementById('saved-count');
-      const countMobileEl = document.getElementById('saved-count-mobile');
-      [countEl, countMobileEl].forEach(el => {
-        if (!el) return;
-        const prev = parseInt(el.getAttribute('data-count') || '0', 10);
-        el.textContent = count;
-        el.setAttribute('data-count', count);
-        if (count !== prev) {
-          // Trigger pop animation on change
-          el.classList.remove('pop');
-          void el.offsetWidth; // force reflow to restart animation
-          el.classList.add('pop');
-        }
-      });
-    }
 
     // ========== CATEGORY FILTERS ==========
     function renderCategoryFilters() {
@@ -2791,9 +2688,7 @@
       if (!word) return;
 
       state.modalWordId = wordId;
-      state.viewedWords.add(word.id);
       persistState();
-      updateStats();
 
       const parsed = parseExample(word.example);
       document.getElementById('modal-category').textContent = `~${word.frequency}× in Quran`;
@@ -2868,8 +2763,8 @@
       }
       updateModalBookmarkButton();
       updateBookmarkButton(); // Keep hero button in sync
-      updateStats();
       persistState();
+      updateSavedCount();
       // Toggle class on matching grid item
       const gridItem = document.querySelector(`.word-grid-item[data-word-id="${word.id}"]`);
       if (gridItem) gridItem.classList.toggle('marked', state.bookmarkedWords.has(word.id));
@@ -2899,7 +2794,6 @@
       const idx = quranVocabulary.indexOf(word);
       state.currentIndex = idx;
       renderWordCard(word, true);
-      updateCounter();
       updateBookmarkButton();
       scrollToTop();
     }
@@ -2984,8 +2878,8 @@
     function removeBookmark(wordId) {
       state.bookmarkedWords.delete(wordId);
       persistState();
-      renderBookmarksGrid();
       updateSavedCount();
+      renderBookmarksGrid();
       // Also update the grid item in the explore section if visible
       const gridItem = document.querySelector(`.word-grid-item[data-word-id="${wordId}"]`);
       if (gridItem) gridItem.classList.remove('marked');
@@ -3368,10 +3262,7 @@
         // Initialize normally first, then switch to quiz
         state.currentIndex = Math.floor(Math.random() * quranVocabulary.length);
         const word = quranVocabulary[state.currentIndex];
-        state.viewedWords.add(word.id);
-        renderWordCard(word, false);
-        updateCounter();
-        updateStats();
+          renderWordCard(word, false);
         updateBookmarkButton();
         persistState();
         renderCategoryFilters();
@@ -3384,11 +3275,8 @@
       // Pick a random starting word
       state.currentIndex = Math.floor(Math.random() * quranVocabulary.length);
       const word = quranVocabulary[state.currentIndex];
-      state.viewedWords.add(word.id);
 
       renderWordCard(word, false);
-      updateCounter();
-      updateStats();
       updateBookmarkButton();
       persistState();
       renderCategoryFilters();

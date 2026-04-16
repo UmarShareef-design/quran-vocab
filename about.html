@@ -212,27 +212,6 @@
     .nav-link:hover { color: var(--text-primary); background: var(--glass); }
     .nav-link.active { color: var(--accent); background: rgba(201, 168, 76, 0.1); }
 
-    .saved-count {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 18px;
-      height: 18px;
-      padding: 0 5px;
-      border-radius: 9px;
-      background: rgba(201, 168, 76, 0.2);
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 1;
-      margin-left: 4px;
-      transition: var(--transition-fast);
-    }
-    .saved-count:empty,
-    .saved-count[data-count="0"] {
-      display: none;
-    }
-
     /* ========== SCROLL TO TOP ========== */
     .scroll-top {
       position: fixed;
@@ -509,7 +488,27 @@
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
-  </style>
+      .saved-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 9px;
+      background: rgba(201, 168, 76, 0.2);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+      margin-left: 4px;
+      transition: var(--transition-fast);
+    }
+    .saved-count:empty,
+    .saved-count[data-count="0"] {
+      display: none;
+    }
+    </style>
 </head>
 <body>
   <!-- Skip Navigation -->
@@ -669,20 +668,6 @@
       document.body.style.overflow = isOpen ? '' : 'hidden';
     }
 
-    // Sync saved count from localStorage
-    (function syncSavedCount() {
-      try {
-        const bookmarked = JSON.parse(localStorage.getItem('qv_bookmarked') || '[]');
-        const count = bookmarked.length;
-        ['saved-count', 'saved-count-mobile'].forEach(function(id) {
-          const el = document.getElementById(id);
-          if (el) {
-            el.textContent = count;
-            el.setAttribute('data-count', count);
-          }
-        });
-      } catch(e) {}
-    })();
   
     // Scroll to top visibility
     (function() {
@@ -692,6 +677,21 @@
         btn.classList.toggle('visible', window.scrollY > 400);
       });
     })();
+      // ========== SAVED COUNT SYNC ==========
+    (function syncSavedCount() {
+      try {
+        const bookmarked = JSON.parse(localStorage.getItem('qv_bookmarked') || '[]');
+        const count = bookmarked.length;
+        ['saved-count', 'saved-count-mobile'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.textContent = count;
+            el.dataset.count = count;
+          }
+        });
+      } catch(e) {}
+    })();
+
   </script>
   <!-- Scroll to top -->
   <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
