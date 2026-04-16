@@ -913,21 +913,24 @@
     }
 
     .grid-item-verse {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--primary-light);
       opacity: 1;
       margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       transition: opacity var(--transition-fast);
     }
 
-    .grid-item-verse::before {
-      content: '📖 ';
-    }
 
-    .meaning-letter-badge {
+
+    .grid-freq-badge {
       flex-shrink: 0;
-      width: 28px;
+      width: auto;
+      min-width: 28px;
       height: 28px;
+      padding: 2px 8px;
       border-radius: 6px;
       background: rgba(45, 157, 111, 0.08);
       border: 1px solid rgba(45, 157, 111, 0.12);
@@ -941,7 +944,7 @@
       transition: var(--transition-fast);
     }
 
-    .word-grid-item:hover .meaning-letter-badge {
+    .word-grid-item:hover .grid-freq-badge {
       background: rgba(45, 157, 111, 0.15);
     }
 
@@ -1656,7 +1659,7 @@
 
         <div class="word-card visible" id="word-card" aria-live="polite">
           <div class="word-card-inner">
-            <div class="word-card-category" id="card-category">A</div>
+            <div class="word-card-category" id="card-category">~2816× in Quran</div>
             <div class="word-arabic" id="card-arabic" lang="ar" dir="rtl">الله</div>
             <div class="word-transliteration" id="card-transliteration">Allah</div>
             <div class="word-meaning" id="card-meaning">God</div>
@@ -1666,7 +1669,7 @@
               In the name of Allah, the Most Gracious, the Most Merciful
             </div>
             <div class="word-verse" id="card-verse">
-              <a href="https://quran.com/1/1" target="_blank" rel="noopener">Quran 1:1 ↗</a>
+              <a href="https://quran.com/1/1" target="_blank" rel="noopener">Surah Al-Fatihah, Verse 1 ↗</a>
             </div>
           </div>
         </div>
@@ -1746,21 +1749,20 @@
   <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-transliteration" aria-describedby="modal-meaning">
       <div class="modal-header">
-        <div class="word-card-category" id="modal-category">A</div>
+        <div class="word-card-category" id="modal-category">~2816× in Quran</div>
         <button class="modal-close" onclick="closeModal()" aria-label="Close dialog">&#x2715;</button>
       </div>
       <div class="modal-body">
         <div class="modal-arabic" id="modal-arabic" lang="ar" dir="rtl">الله</div>
         <div class="modal-transliteration" id="modal-transliteration">Allah</div>
         <div class="modal-meaning" id="modal-meaning">God</div>
-        <div class="modal-frequency" id="modal-frequency">Appears ~2816 times in the Quran</div>
         <div class="modal-divider"></div>
         <div class="modal-example" id="modal-example">
           <span class="arabic-part" lang="ar" dir="rtl">بسم الله الرحمن الرحيم</span>
           In the name of Allah, the Most Gracious, the Most Merciful
         </div>
         <div class="modal-verse" id="modal-verse">
-          <a href="https://quran.com/1/1" target="_blank" rel="noopener">Quran 1:1 ↗</a>
+          <a href="https://quran.com/1/1" target="_blank" rel="noopener">Surah Al-Fatihah, Verse 1 ↗</a>
         </div>
       </div>
       <div class="modal-footer">
@@ -1796,26 +1798,26 @@
       <h2 style="font-size:24px;margin-bottom:16px;">Quran Vocabulary — 600 Essential Quran Words</h2>
       <p style="margin-bottom:20px;line-height:1.7;">Learn Quranic Arabic with 600 essential Quran words. A free vocabulary companion for online Quran classes, Quran memorization, and students with an online Quran tutor. This page requires JavaScript for the interactive experience — below is a sample of the vocabulary available.</p>
       <ul style="list-style:none;padding:0;">
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ٱللَّهُ</span> (Allah) — God — Quran 1:1</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ٱلرَّحْمَـٰنُ</span> (Ar-Rahman) — The Most Gracious — Quran 20:5</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ٱلرَّحِيمُ</span> (Ar-Raheem) — The Most Merciful — Quran 2:173</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">رَبٌّ</span> (Rabb) — Lord / Sustainer — Quran 1:2</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ءَامَنَ</span> (Aaman) — He believed — Quran 2:25</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">قُرْءَانٌ</span> (Qur'aan) — The Quran / recitation — Quran 17:9</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">صَلَوٰةٌ</span> (Salaah) — Prayer — Quran 17:78</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">نُورٌ</span> (Noor) — Light — Quran 24:35</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">حَقٌّ</span> (Haqq) — Truth / right — Quran 17:81</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">يَوْمٌ</span> (Yawm) — Day — Quran 26:88</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">عِلْمٌ</span> (Ilm) — Knowledge — Quran 58:11</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">رَحْمَةٌ</span> (Rahmah) — Mercy — Quran 7:156</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">رَسُولٌ</span> (Rasool) — Messenger — Quran 33:40</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">كِتَـٰبٌ</span> (Kitaab) — Book / scripture — Quran 2:2</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">هُدًى</span> (Hudaa) — Guidance — Quran 1:6</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">جَنَّةٌ</span> (Jannah) — Garden / Paradise — Quran 54:54</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">دُنْيَا</span> (Dunyaa) — The world / this life — Quran 3:185</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">صَبْرٌ</span> (Sabr) — Patience / steadfastness — Quran 2:153</li>
-        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">مُؤْمِنٌ</span> (Mu'min) — Believer — Quran 2:25</li>
-        <li style="padding:8px 0;"><span lang="ar" dir="rtl">مُسْتَقِيمٌ</span> (Mustaqeem) — Straight / upright — Quran 1:6</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ٱللَّهُ</span> (Allah) — God — Surah Al-Fatihah, Verse 1</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ٱلرَّحْمَـٰنُ</span> (Ar-Rahman) — The Most Gracious — Surah Taha, Verse 5</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ٱلرَّحِيمُ</span> (Ar-Raheem) — The Most Merciful — Surah Al-Baqarah, Verse 173</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">رَبٌّ</span> (Rabb) — Lord / Sustainer — Surah Al-Fatihah, Verse 2</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">ءَامَنَ</span> (Aaman) — He believed — Surah Al-Baqarah, Verse 25</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">قُرْءَانٌ</span> (Qur'aan) — The Quran / recitation — Surah Al-Isra, Verse 9</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">صَلَوٰةٌ</span> (Salaah) — Prayer — Surah Al-Isra, Verse 78</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">نُورٌ</span> (Noor) — Light — Surah An-Nur, Verse 35</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">حَقٌّ</span> (Haqq) — Truth / right — Surah Al-Isra, Verse 81</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">يَوْمٌ</span> (Yawm) — Day — Surah Ash-Shu'ara, Verse 88</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">عِلْمٌ</span> (Ilm) — Knowledge — Surah Al-Mujadila, Verse 11</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">رَحْمَةٌ</span> (Rahmah) — Mercy — Surah Al-A'raf, Verse 156</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">رَسُولٌ</span> (Rasool) — Messenger — Surah Al-Ahzab, Verse 40</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">كِتَـٰبٌ</span> (Kitaab) — Book / scripture — Surah Al-Baqarah, Verse 2</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">هُدًى</span> (Hudaa) — Guidance — Surah Al-Fatihah, Verse 6</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">جَنَّةٌ</span> (Jannah) — Garden / Paradise — Surah Al-Qamar, Verse 54</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">دُنْيَا</span> (Dunyaa) — The world / this life — Surah Ali 'Imran, Verse 185</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">صَبْرٌ</span> (Sabr) — Patience / steadfastness — Surah Al-Baqarah, Verse 153</li>
+        <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">مُؤْمِنٌ</span> (Mu'min) — Believer — Surah Al-Baqarah, Verse 25</li>
+        <li style="padding:8px 0;"><span lang="ar" dir="rtl">مُسْتَقِيمٌ</span> (Mustaqeem) — Straight / upright — Surah Al-Fatihah, Verse 6</li>
       </ul>
       <p style="margin-top:20px;"><a href="about.html" style="color:#2d9d6f;">Learn more about LearnQuranwords</a> — Visit <a href="https://learnquranwords.com" style="color:#2d9d6f;">learnquranwords.com</a> for the full interactive experience.</p>
     </section>
@@ -1861,6 +1863,46 @@
       return { arabic: '', english: example };
     }
 
+    // Surah name lookup (1–114)
+    const SURAH_NAMES = {
+      1:'Al-Fatihah',2:'Al-Baqarah',3:'Ali \'Imran',4:'An-Nisa',5:'Al-Ma\'idah',
+      6:'Al-An\'am',7:'Al-A\'raf',8:'Al-Anfal',9:'At-Tawbah',10:'Yunus',
+      11:'Hud',12:'Yusuf',13:'Ar-Ra\'d',14:'Ibrahim',15:'Al-Hijr',
+      16:'An-Nahl',17:'Al-Isra',18:'Al-Kahf',19:'Maryam',20:'Taha',
+      21:'Al-Anbya',22:'Al-Hajj',23:'Al-Mu\'minun',24:'An-Nur',25:'Al-Furqan',
+      26:'Ash-Shu\'ara',27:'An-Naml',28:'Al-Qasas',29:'Al-\'Ankabut',30:'Ar-Rum',
+      31:'Luqman',32:'As-Sajdah',33:'Al-Ahzab',34:'Saba',35:'Fatir',
+      36:'Ya-Sin',37:'As-Saffat',38:'Sad',39:'Az-Zumar',40:'Ghafir',
+      41:'Fussilat',42:'Ash-Shuraa',43:'Az-Zukhruf',44:'Ad-Dukhan',45:'Al-Jathiyah',
+      46:'Al-Ahqaf',47:'Muhammad',48:'Al-Fath',49:'Al-Hujurat',50:'Qaf',
+      51:'Adh-Dhariyat',52:'At-Tur',53:'An-Najm',54:'Al-Qamar',55:'Ar-Rahman',
+      56:'Al-Waqi\'ah',57:'Al-Hadid',58:'Al-Mujadila',59:'Al-Hashr',60:'Al-Mumtahanah',
+      61:'As-Saf',62:'Al-Jumu\'ah',63:'Al-Munafiqun',64:'At-Taghabun',65:'At-Talaq',
+      66:'At-Tahrim',67:'Al-Mulk',68:'Al-Qalam',69:'Al-Haqqah',70:'Al-Ma\'arij',
+      71:'Nuh',72:'Al-Jinn',73:'Al-Muzzammil',74:'Al-Muddaththir',75:'Al-Qiyamah',
+      76:'Al-Insan',77:'Al-Mursalat',78:'An-Naba',79:'An-Nazi\'at',80:'\'Abasa',
+      81:'At-Takwir',82:'Al-Infitar',83:'Al-Mutaffifin',84:'Al-Inshiqaq',85:'Al-Buruj',
+      86:'At-Tariq',87:'Al-A\'la',88:'Al-Ghashiyah',89:'Al-Fajr',90:'Al-Balad',
+      91:'Ash-Shams',92:'Al-Layl',93:'Ad-Duhaa',94:'Ash-Sharh',95:'At-Tin',
+      96:'Al-\'Alaq',97:'Al-Qadr',98:'Al-Bayyinah',99:'Az-Zalzalah',100:'Al-\'Adiyat',
+      101:'Al-Qari\'ah',102:'At-Takathur',103:'Al-\'Asr',104:'Al-Humazah',105:'Al-Fil',
+      106:'Quraysh',107:'Al-Ma\'un',108:'Al-Kawthar',109:'Al-Kafirun',110:'An-Nasr',
+      111:'Al-Masad',112:'Al-Ikhlas',113:'Al-Falaq',114:'An-Nas'
+    };
+
+    function formatVerseRef(verse) {
+      const [surah, ayah] = verse.split(':');
+      const name = SURAH_NAMES[parseInt(surah)] || `Surah ${surah}`;
+      return `Surah ${name}, Verse ${ayah}`;
+    }
+
+    // Short format for compact grid items (drops "Surah" prefix and "Verse" label)
+    function formatVerseRefShort(verse) {
+      const [surah, ayah] = verse.split(':');
+      const name = SURAH_NAMES[parseInt(surah)] || `Surah ${surah}`;
+      return `${name}, ${ayah}`;
+    }
+
     function verseLink(verse) {
       const [surah, ayah] = verse.split(':');
       return `https://quran.com/${surah}/${ayah}`;
@@ -1903,7 +1945,7 @@
       const myId = (verseRenderIds.get(containerEl) || 0) + 1;
       verseRenderIds.set(containerEl, myId);
       // Immediately show the partial excerpt
-      containerEl.innerHTML = `<span class="full-verse-label">Full Verse · ${word.verse}</span>` +
+      containerEl.innerHTML = `<span class="full-verse-label">${formatVerseRef(word.verse)}</span>` +
         `<span class="arabic-part verse-loading" lang="ar" dir="rtl">${fallbackParsed.arabic}</span>${fallbackParsed.english}`;
       
       // Then fetch and render the full verse
@@ -1916,7 +1958,7 @@
           return;
         }
         containerEl.innerHTML = 
-          `<span class="full-verse-label">Full Verse · ${word.verse}</span>` +
+          `<span class="full-verse-label">${formatVerseRef(word.verse)}</span>` +
           `<span class="arabic-part" lang="ar" dir="rtl">${verse.arabic}</span>${verse.english}`;
       });
     }
@@ -2013,14 +2055,14 @@
     }
 
     function updateCardContent(word, parsed) {
-      document.getElementById('card-category').textContent = `Letter ${getMeaningLetter(word)}`;
+      document.getElementById('card-category').textContent = `~${word.frequency}× in Quran`;
       document.getElementById('card-arabic').textContent = displayArabic(word);
       document.getElementById('card-transliteration').textContent = word.transliteration;
       document.getElementById('card-meaning').textContent = word.meaning;
       // Render full verse (with partial fallback)
       renderFullVerse(document.getElementById('card-example'), word, parsed);
       document.getElementById('card-verse').innerHTML = 
-        `<a href="${verseLink(word.verse)}" target="_blank" rel="noopener">Quran ${word.verse} ↗</a>`;
+        `<a href="${verseLink(word.verse)}" target="_blank" rel="noopener">${formatVerseRef(word.verse)} ↗</a>`;
     }
 
     // ========== NEW WORD ==========
@@ -2157,7 +2199,7 @@
                 <div class="grid-item-info">
                   <div class="grid-item-transliteration">${word.transliteration}</div>
                   <div class="grid-item-meaning">${word.meaning}</div>
-                  <div class="grid-item-verse">${word.verse}</div>
+                  <div class="grid-item-verse">${formatVerseRefShort(word.verse)}</div>
                 </div>
                 <div class="freq-badge" title="Appears ~${word.frequency} times in the Quran">${word.frequency}</div>
               </div>
@@ -2199,9 +2241,9 @@
                 <div class="grid-item-info">
                   <div class="grid-item-transliteration">${word.transliteration}</div>
                   <div class="grid-item-meaning">${word.meaning}</div>
-                  <div class="grid-item-verse">${word.verse}</div>
+                  <div class="grid-item-verse">${formatVerseRefShort(word.verse)}</div>
                 </div>
-                <div class="meaning-letter-badge">${getMeaningLetter(word)}</div>
+                <div class="grid-freq-badge" title="Appears ~${word.frequency} times in the Quran">${word.frequency}</div>
               </div>
             `;
           });
@@ -2222,7 +2264,7 @@
       updateStats();
 
       const parsed = parseExample(word.example);
-      document.getElementById('modal-category').textContent = `Letter ${getMeaningLetter(word)}`;
+      document.getElementById('modal-category').textContent = `~${word.frequency}× in Quran`;
       document.getElementById('modal-arabic').textContent = displayArabic(word);
       document.getElementById('modal-transliteration').textContent = word.transliteration;
       document.getElementById('modal-meaning').textContent = word.meaning;
@@ -2232,13 +2274,7 @@
       // Update verse link in modal
       const verseLinkEl = document.getElementById('modal-verse');
       if (verseLinkEl) {
-        verseLinkEl.innerHTML = `<a href="${verseLink(word.verse)}" target="_blank" rel="noopener">Quran ${word.verse} ↗</a>`;
-      }
-
-      // Show frequency in modal
-      const freqEl = document.getElementById('modal-frequency');
-      if (freqEl) {
-        freqEl.textContent = `Appears ~${word.frequency} times in the Quran`;
+        verseLinkEl.innerHTML = `<a href="${verseLink(word.verse)}" target="_blank" rel="noopener">${formatVerseRef(word.verse)} ↗</a>`;
       }
 
       const overlay = document.getElementById('modal-overlay');
@@ -2415,7 +2451,7 @@
             <div class="grid-item-info">
               <div class="grid-item-transliteration">${word.transliteration}</div>
               <div class="grid-item-meaning">${word.meaning}</div>
-              <div class="grid-item-verse">${word.verse}</div>
+              <div class="grid-item-verse">${formatVerseRefShort(word.verse)}</div>
             </div>
             <button class="btn-bookmark-remove" onclick="event.stopPropagation(); removeBookmark(${word.id})" title="Remove from saved">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
