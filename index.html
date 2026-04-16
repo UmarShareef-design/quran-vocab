@@ -1822,7 +1822,6 @@
   <!-- Keyboard shortcut hint -->
   <div class="shortcut-hint">
     <span class="kbd">Space</span> New Word
-    <span style="margin-left:8px" class="kbd">Esc</span> Close
   </div>
 
   <!-- Noscript fallback for search engines and no-JS browsers -->
@@ -2565,11 +2564,6 @@
       if (e.code === 'Space') {
         e.preventDefault();
         showNewWord();
-      } else if (e.code === 'Escape') {
-        const overlay = document.getElementById('modal-overlay');
-        if (overlay.classList.contains('open')) {
-          closeModal();
-        }
       }
     });
 
