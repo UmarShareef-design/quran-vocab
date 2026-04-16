@@ -1618,6 +1618,394 @@
     [id] {
       scroll-margin-top: 80px;
     }
+
+    /* ========== QUIZ MODE ========== */
+    .quiz-section {
+      padding: 32px 24px 60px;
+      max-width: 680px;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+      display: none;
+    }
+
+    .quiz-section.active {
+      display: block;
+    }
+
+    .quiz-header {
+      margin-bottom: 32px;
+    }
+
+    .quiz-title {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .quiz-title span {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .quiz-subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .quiz-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .quiz-hearts {
+      display: flex;
+      gap: 4px;
+    }
+
+    .quiz-heart {
+      font-size: 20px;
+      line-height: 1;
+      transition: var(--transition-fast);
+    }
+
+    .quiz-heart.lost {
+      opacity: 0.2;
+      transform: scale(0.85);
+    }
+
+    @keyframes heart-break {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.3); }
+      50% { transform: scale(0.7); }
+      75% { transform: scale(1.1); }
+      100% { transform: scale(0.85); opacity: 0.2; }
+    }
+
+    .quiz-heart.breaking {
+      animation: heart-break 0.5s ease-out forwards;
+    }
+
+    .quiz-score-value {
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .quiz-streak {
+      color: var(--primary-light);
+      font-weight: 700;
+    }
+
+    .quiz-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(40px) saturate(1.2);
+      -webkit-backdrop-filter: blur(40px) saturate(1.2);
+      padding: 36px 32px 28px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .quiz-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 40%, transparent 60%, rgba(201,168,76,0.02) 100%);
+      pointer-events: none;
+    }
+
+    .quiz-question-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary-light);
+      margin-bottom: 16px;
+    }
+
+    .quiz-word-arabic {
+      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-size: clamp(52px, 10vw, 88px);
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text-primary);
+      direction: rtl;
+      text-shadow: 0 0 60px rgba(201,168,76,0.15);
+      margin-bottom: 8px;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "mark" 1, "mkmk" 1;
+      letter-spacing: normal;
+    }
+
+    .quiz-word-transliteration {
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 300;
+      color: var(--accent);
+      font-style: italic;
+      margin-bottom: 4px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .quiz-word-transliteration.revealed {
+      opacity: 1;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .quiz-option {
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      text-align: center;
+      line-height: 1.4;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-option::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .quiz-option:hover:not(.disabled)::before {
+      opacity: 1;
+    }
+
+    .quiz-option:hover:not(.disabled) {
+      background: var(--glass-hover);
+      border-color: rgba(255,255,255,0.18);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quiz-option:active:not(.disabled) {
+      transform: translateY(0);
+    }
+
+    .quiz-option.disabled {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .quiz-option.correct {
+      background: rgba(45, 157, 111, 0.2);
+      border-color: rgba(45, 157, 111, 0.4);
+      color: var(--primary-light);
+      box-shadow: 0 0 20px rgba(45, 157, 111, 0.15);
+    }
+
+    .quiz-option.wrong {
+      background: rgba(220, 60, 60, 0.15);
+      border-color: rgba(220, 60, 60, 0.35);
+      color: #e87070;
+    }
+
+    @keyframes option-correct {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+
+    .quiz-option.correct {
+      animation: option-correct 0.35s ease-out;
+    }
+
+    @keyframes option-wrong {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    .quiz-option.wrong {
+      animation: option-wrong 0.45s ease-out;
+    }
+
+    /* Quiz game over */
+
+
+    .quiz-correct-answer {
+
+      display: none;
+
+      margin-top: 16px;
+
+      padding: 12px 20px;
+
+      background: rgba(26, 107, 74, 0.12);
+
+      border: 1px solid rgba(26, 107, 74, 0.25);
+
+      border-radius: 12px;
+
+      font-size: 15px;
+
+      color: var(--primary-light);
+
+      font-weight: 600;
+
+      animation: fadeSlideUp 0.35s ease-out;
+
+    }
+
+
+
+    .quiz-correct-answer.visible {
+
+      display: block;
+
+    }
+
+
+
+    @keyframes fadeSlideUp {
+
+      from { opacity: 0; transform: translateY(8px); }
+
+      to { opacity: 1; transform: translateY(0); }
+
+    }
+
+    .quiz-gameover {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .quiz-gameover.active {
+      display: block;
+    }
+
+    .quiz-gameover-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .quiz-gameover-title {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .quiz-gameover-title.perfect {
+      background: linear-gradient(135deg, var(--accent), #f0d78c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .quiz-gameover-score {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 12px 0 4px;
+    }
+
+    .quiz-gameover-label {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .quiz-gameover-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Quiz start screen */
+    .quiz-start {
+      display: none;
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .quiz-start.active {
+      display: block;
+    }
+
+    .quiz-start-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .quiz-start-title {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .quiz-start-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+      max-width: 400px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+
+    /* Quiz responsive */
+    @media (max-width: 768px) {
+      .quiz-section { padding: 24px 16px 40px; }
+      .quiz-card { padding: 28px 20px 24px; border-radius: var(--radius-lg); }
+      .quiz-options { gap: 10px; }
+      .quiz-option { padding: 14px 16px; font-size: 14px; }
+      .quiz-stats { gap: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+      .quiz-option { padding: 14px 18px; }
+    }
+
+    /* Quiz focus visible */
+    .quiz-option:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
@@ -1646,6 +2034,8 @@
         <div class="nav-links">
           <button class="nav-link active" onclick="scrollToTop()" id="nav-daily">Daily Word</button>
           <button class="nav-link" onclick="scrollToRepository()" id="nav-explore">Explore</button>
+          <button class="nav-link" onclick="scrollToQuiz()" id="nav-quiz">🎯 Quiz</button>
+          <a href="similar.html" class="nav-link" id="nav-similar">🔀 Similar</a>
           <a href="about.html" class="nav-link" id="nav-about">About</a>
           <button class="nav-link" onclick="scrollToBookmarks()" id="nav-bookmarks">🔖 Saved <span class="saved-count" id="saved-count" data-count="0">0</span></button>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link" id="nav-feedback">Feedback</a>
@@ -1668,6 +2058,8 @@
     <div class="nav-mobile-menu" id="nav-mobile-menu">
       <button class="nav-link active" onclick="scrollToTop(); closeMobileMenu()" id="nav-daily-mobile">Daily Word</button>
       <button class="nav-link" onclick="scrollToRepository(); closeMobileMenu()" id="nav-explore-mobile">Explore</button>
+      <button class="nav-link" onclick="scrollToQuiz(); closeMobileMenu()" id="nav-quiz-mobile">🎯 Quiz</button>
+      <a href=similar.html class=nav-link>🔀 Similar</a>
       <a href="about.html" class="nav-link">About</a>
       <button class="nav-link" onclick="scrollToBookmarks(); closeMobileMenu()" id="nav-bookmarks-mobile">🔖 Saved <span class="saved-count" id="saved-count-mobile" data-count="0">0</span></button>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
@@ -1718,6 +2110,79 @@
           <button class="btn btn-glass" onclick="scrollToRepository()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             Explore All
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section" id="quiz-section">
+      <div class="quiz-header">
+        <button class="btn btn-glass" onclick="exitQuiz()" style="margin-bottom:12px;font-size:13px;padding:8px 16px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <h2 class="quiz-title">🎯 <span>Quiz Mode</span></h2>
+        <p class="quiz-subtitle">Test your Quranic Arabic knowledge</p>
+      </div>
+
+      <!-- Quiz Start Screen -->
+      <div class="quiz-start active" id="quiz-start">
+        <div class="quiz-start-icon">🕌</div>
+        <div class="quiz-start-title">Ready to test yourself?</div>
+        <div class="quiz-start-desc">You'll see an Arabic word and pick the correct meaning from 4 options. You have 5 lives — how far can you go?</div>
+        <button class="btn btn-primary" onclick="startQuiz()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Start Quiz
+        </button>
+      </div>
+
+      <!-- Quiz Play Area -->
+      <div id="quiz-play" style="display:none">
+        <div class="quiz-stats">
+          <div class="quiz-stat">
+            <div class="quiz-hearts" id="quiz-hearts">
+              <span class="quiz-heart">❤️</span>
+              <span class="quiz-heart">❤️</span>
+              <span class="quiz-heart">❤️</span>
+              <span class="quiz-heart">❤️</span>
+              <span class="quiz-heart">❤️</span>
+            </div>
+          </div>
+          <div class="quiz-stat">Score: <span class="quiz-score-value" id="quiz-score">0</span></div>
+          <div class="quiz-stat">🔥 <span class="quiz-streak" id="quiz-streak">0</span> streak</div>
+        </div>
+
+        <div class="quiz-card">
+          <div class="quiz-question-label">What does this word mean?</div>
+          <div class="quiz-word-arabic" id="quiz-word-arabic" lang="ar" dir="rtl">الله</div>
+          <div class="quiz-word-transliteration" id="quiz-word-transliteration">Allah</div>
+        </div>
+
+        <div class="quiz-options" id="quiz-options">
+          <button class="quiz-option" onclick="selectQuizOption(0)">God</button>
+          <button class="quiz-option" onclick="selectQuizOption(1)">Mercy</button>
+          <button class="quiz-option" onclick="selectQuizOption(2)">Prayer</button>
+          <button class="quiz-option" onclick="selectQuizOption(3)">Patience</button>
+        </div>
+      </div>
+        <div class="quiz-correct-answer" id="quiz-correct-answer"></div>
+
+
+      <!-- Quiz Game Over -->
+      <div class="quiz-gameover" id="quiz-gameover">
+        <div class="quiz-gameover-icon" id="quiz-gameover-icon">🎯</div>
+        <div class="quiz-gameover-title" id="quiz-gameover-title">Game Over</div>
+        <div class="quiz-gameover-score" id="quiz-gameover-score">0</div>
+        <div class="quiz-gameover-label" id="quiz-gameover-label">words answered correctly</div>
+        <div class="quiz-gameover-actions">
+          <button class="btn btn-primary" onclick="startQuiz()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            Play Again
+          </button>
+          <button class="btn btn-glass" onclick="shareQuizScore()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share Score
           </button>
         </div>
       </div>
@@ -2427,52 +2892,40 @@
     // ========== SCROLL ==========
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Show the explore section again if it was hidden by bookmarks
+      // Show the explore section again if it was hidden by bookmarks/quiz
+      document.getElementById('hero').style.display = '';
       document.getElementById('repository').style.display = '';
       document.getElementById('bookmarks-section').style.display = 'none';
-      document.getElementById('nav-daily').classList.add('active');
-      document.getElementById('nav-explore').classList.remove('active');
-      document.getElementById('nav-bookmarks').classList.remove('active');
-      // Sync mobile menu active states
-      const dailyMobile = document.getElementById('nav-daily-mobile');
-      const exploreMobile = document.getElementById('nav-explore-mobile');
-      const bookmarksMobile = document.getElementById('nav-bookmarks-mobile');
-      if (dailyMobile) dailyMobile.classList.add('active');
-      if (exploreMobile) exploreMobile.classList.remove('active');
-      if (bookmarksMobile) bookmarksMobile.classList.remove('active');
+      document.getElementById('quiz-section').classList.remove('active');
+      quizState.active = false;
+      const shortcutHintTop = document.querySelector('.shortcut-hint');
+      if (shortcutHintTop) shortcutHintTop.style.display = '';
+      setActiveNav('nav-daily');
     }
 
     function scrollToRepository() {
+      document.getElementById('hero').style.display = '';
       document.getElementById('bookmarks-section').style.display = 'none';
       document.getElementById('repository').style.display = '';
+      document.getElementById('quiz-section').classList.remove('active');
+      quizState.active = false;
+      const shortcutHintRepo = document.querySelector('.shortcut-hint');
+      if (shortcutHintRepo) shortcutHintRepo.style.display = '';
       document.getElementById('repository').scrollIntoView({ behavior: 'smooth' });
-      document.getElementById('nav-explore').classList.add('active');
-      document.getElementById('nav-daily').classList.remove('active');
-      document.getElementById('nav-bookmarks').classList.remove('active');
-      // Sync mobile menu active states
-      const exploreMobile = document.getElementById('nav-explore-mobile');
-      const dailyMobile = document.getElementById('nav-daily-mobile');
-      const bookmarksMobile = document.getElementById('nav-bookmarks-mobile');
-      if (exploreMobile) exploreMobile.classList.add('active');
-      if (dailyMobile) dailyMobile.classList.remove('active');
-      if (bookmarksMobile) bookmarksMobile.classList.remove('active');
+      setActiveNav('nav-explore');
     }
 
     function scrollToBookmarks() {
+      document.getElementById('hero').style.display = '';
       document.getElementById('repository').style.display = 'none';
       document.getElementById('bookmarks-section').style.display = '';
+      document.getElementById('quiz-section').classList.remove('active');
+      quizState.active = false;
+      const shortcutHintBm = document.querySelector('.shortcut-hint');
+      if (shortcutHintBm) shortcutHintBm.style.display = '';
       renderBookmarksGrid();
       document.getElementById('bookmarks-section').scrollIntoView({ behavior: 'smooth' });
-      document.getElementById('nav-bookmarks').classList.add('active');
-      document.getElementById('nav-daily').classList.remove('active');
-      document.getElementById('nav-explore').classList.remove('active');
-      // Sync mobile menu active states
-      const bookmarksMobile = document.getElementById('nav-bookmarks-mobile');
-      const dailyMobile = document.getElementById('nav-daily-mobile');
-      const exploreMobile = document.getElementById('nav-explore-mobile');
-      if (bookmarksMobile) bookmarksMobile.classList.add('active');
-      if (dailyMobile) dailyMobile.classList.remove('active');
-      if (exploreMobile) exploreMobile.classList.remove('active');
+      setActiveNav('nav-bookmarks');
     }
 
     function renderBookmarksGrid() {
@@ -2563,6 +3016,7 @@
 
       if (e.code === 'Space') {
         e.preventDefault();
+        if (quizState.active) return;
         showNewWord();
       }
     });
@@ -2595,8 +3049,323 @@
       document.body.style.overflow = '';
     }
 
+    // ========== QUIZ MODE ==========
+    const quizState = {
+      active: false,
+      score: 0,
+      streak: 0,
+      lives: 5,
+      maxLives: 5,
+      currentWord: null,
+      currentOptions: [],
+      correctIndex: -1,
+      answered: false,
+      usedWordIds: new Set(),
+      totalAnswered: 0
+    };
+
+    function scrollToQuiz() {
+      document.getElementById('hero').style.display = 'none';
+      document.getElementById('repository').style.display = 'none';
+      document.getElementById('bookmarks-section').style.display = 'none';
+      document.getElementById('quiz-section').classList.add('active');
+      quizState.active = true;
+      const shortcutHint = document.querySelector('.shortcut-hint');
+      if (shortcutHint) shortcutHint.style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setActiveNav('nav-quiz');
+      const gameOver = document.getElementById('quiz-gameover');
+      if (gameOver.classList.contains('active')) {
+        resetQuizUI();
+      }
+    }
+
+    function setActiveNav(activeId) {
+      const desktopIds = ['nav-daily', 'nav-explore', 'nav-quiz', 'nav-bookmarks'];
+      const mobileIds = ['nav-daily-mobile', 'nav-explore-mobile', 'nav-quiz-mobile', 'nav-bookmarks-mobile'];
+      desktopIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('active', id === activeId);
+      });
+      mobileIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('active', id === activeId);
+      });
+    }
+
+    function exitQuiz() {
+      quizState.active = false;
+      document.getElementById('quiz-section').classList.remove('active');
+      document.getElementById('hero').style.display = '';
+      document.getElementById('repository').style.display = '';
+      scrollToTop();
+    }
+
+    function resetQuizUI() {
+      document.getElementById('quiz-start').classList.add('active');
+      document.getElementById('quiz-play').style.display = 'none';
+      document.getElementById('quiz-gameover').classList.remove('active');
+    }
+
+    function startQuiz() {
+      quizState.score = 0;
+      quizState.streak = 0;
+      quizState.lives = quizState.maxLives;
+      quizState.answered = false;
+      quizState.usedWordIds = new Set();
+      quizState.totalAnswered = 0;
+
+      document.getElementById('quiz-start').classList.remove('active');
+      document.getElementById('quiz-play').style.display = 'block';
+      document.getElementById('quiz-gameover').classList.remove('active');
+
+      updateQuizHearts();
+      updateQuizScore();
+      nextQuizQuestion();
+    }
+
+    function generateQuizOptions(correctWord) {
+      const options = [correctWord.meaning];
+      const used = new Set([correctWord.meaning]);
+
+      // Try to pick wrong options from similar frequency range for plausibility
+      const similarFreq = quranVocabulary.filter(w =>
+        Math.abs(w.frequency - correctWord.frequency) < correctWord.frequency * 0.5 &&
+        !used.has(w.meaning)
+      );
+
+      // Pick up to 2 from similar frequency
+      const shuffledSimilar = similarFreq.sort(() => Math.random() - 0.5);
+      for (let i = 0; i < Math.min(2, shuffledSimilar.length); i++) {
+        if (!used.has(shuffledSimilar[i].meaning)) {
+          options.push(shuffledSimilar[i].meaning);
+          used.add(shuffledSimilar[i].meaning);
+        }
+      }
+
+      // Fill remaining with random meanings
+      const allMeanings = quranVocabulary.map(w => w.meaning);
+      const shuffledAll = allMeanings.sort(() => Math.random() - 0.5);
+      for (const m of shuffledAll) {
+        if (options.length >= 4) break;
+        if (!used.has(m)) {
+          options.push(m);
+          used.add(m);
+        }
+      }
+
+      // Shuffle the options
+      const correct = options[0];
+      for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+      }
+
+      return {
+        options: options.slice(0, 4),
+        correctIndex: options.indexOf(correct)
+      };
+    }
+
+    function nextQuizQuestion() {
+      let available = quranVocabulary.filter(w => !quizState.usedWordIds.has(w.id));
+      if (available.length === 0) {
+        endQuiz(true);
+        return;
+      }
+
+      const word = available[Math.floor(Math.random() * available.length)];
+      quizState.currentWord = word;
+      quizState.usedWordIds.add(word.id);
+      quizState.answered = false;
+      document.getElementById('quiz-correct-answer').classList.remove('visible');
+
+      const { options, correctIndex } = generateQuizOptions(word);
+      quizState.currentOptions = options;
+      quizState.correctIndex = correctIndex;
+
+      // Render the question
+      document.getElementById('quiz-word-arabic').textContent = displayArabic(word);
+      const translitEl = document.getElementById('quiz-word-transliteration');
+      translitEl.textContent = word.transliteration;
+      translitEl.classList.remove('revealed');
+
+      // Render options
+      const optionsContainer = document.getElementById('quiz-options');
+      optionsContainer.innerHTML = options.map((opt, i) =>
+        `<button class="quiz-option" onclick="selectQuizOption(${i})">${opt}</button>`
+      ).join('');
+    }
+
+    function selectQuizOption(index) {
+      if (quizState.answered) return;
+      quizState.answered = true;
+      quizState.totalAnswered++;
+
+      const options = document.querySelectorAll('#quiz-options .quiz-option');
+      const isCorrect = index === quizState.correctIndex;
+
+      // Disable all options
+      options.forEach(opt => opt.classList.add('disabled'));
+
+      // Mark correct and wrong
+      options[quizState.correctIndex].classList.add('correct');
+      if (!isCorrect) {
+        options[index].classList.add('wrong');
+        // Show the correct answer
+        const correctAnswer = options[quizState.correctIndex].textContent;
+        const revealEl = document.getElementById('quiz-correct-answer');
+        revealEl.innerHTML = '✅ Correct answer: <strong>' + correctAnswer + '</strong>';
+        revealEl.classList.add('visible');
+      }
+
+      // Reveal transliteration on answer
+      document.getElementById('quiz-word-transliteration').classList.add('revealed');
+
+      if (isCorrect) {
+        showToast('✅ Correct!');
+        quizState.score++;
+        quizState.streak++;
+        updateQuizScore();
+        // Quick advance on correct answer
+        setTimeout(() => nextQuizQuestion(), 1000);
+      } else {
+        showToast('❌ Wrong!');
+        quizState.streak = 0;
+        quizState.lives--;
+        updateQuizHearts();
+        updateQuizScore();
+
+        if (quizState.lives <= 0) {
+          setTimeout(() => endQuiz(false), 1200);
+          return;
+        }
+        // Longer advance on wrong answer so user can read the correct answer
+        setTimeout(() => nextQuizQuestion(), 2200);
+      }
+    }
+
+    function updateQuizHearts() {
+      const hearts = document.querySelectorAll('#quiz-hearts .quiz-heart');
+      hearts.forEach((heart, i) => {
+        if (i >= quizState.lives) {
+          if (!heart.classList.contains('lost')) {
+            heart.classList.add('breaking');
+            setTimeout(() => {
+              heart.classList.remove('breaking');
+              heart.classList.add('lost');
+            }, 500);
+          }
+        } else {
+          heart.classList.remove('lost', 'breaking');
+        }
+      });
+    }
+
+    function updateQuizScore() {
+      document.getElementById('quiz-score').textContent = quizState.score;
+      document.getElementById('quiz-streak').textContent = quizState.streak;
+    }
+
+    function endQuiz(perfect) {
+      document.getElementById('quiz-play').style.display = 'none';
+      const gameOverEl = document.getElementById('quiz-gameover');
+      gameOverEl.classList.add('active');
+
+      const iconEl = document.getElementById('quiz-gameover-icon');
+      const titleEl = document.getElementById('quiz-gameover-title');
+      const scoreEl = document.getElementById('quiz-gameover-score');
+      const labelEl = document.getElementById('quiz-gameover-label');
+
+      if (perfect || quizState.score >= 20) {
+        iconEl.textContent = '🏆';
+        titleEl.textContent = 'Amazing!';
+        titleEl.className = 'quiz-gameover-title perfect';
+      } else if (quizState.score >= 10) {
+        iconEl.textContent = '🌟';
+        titleEl.textContent = 'Great Job!';
+        titleEl.className = 'quiz-gameover-title';
+      } else if (quizState.score >= 5) {
+        iconEl.textContent = '👏';
+        titleEl.textContent = 'Good Effort!';
+        titleEl.className = 'quiz-gameover-title';
+      } else {
+        iconEl.textContent = '🎯';
+        titleEl.textContent = 'Keep Practicing!';
+        titleEl.className = 'quiz-gameover-title';
+      }
+
+      scoreEl.textContent = quizState.score;
+      labelEl.textContent = `out of ${quizState.totalAnswered} questions answered correctly`;
+    }
+
+    function shareQuizScore() {
+      const text = `🎯 I scored ${quizState.score}/${quizState.totalAnswered} on the LearnQuranwords Quiz!\n\nTest your Quranic Arabic knowledge at learnquranwords.com/#quiz`;
+      const url = 'https://learnquranwords.com/#quiz';
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'LearnQuranwords Quiz',
+          text: text,
+          url: url
+        }).catch(() => {});
+      } else {
+        const fullText = text + '\n' + url;
+        navigator.clipboard.writeText(fullText).then(() => {
+          showToast('📋 Score copied to clipboard!');
+        }).catch(() => {
+          prompt('Copy this:', fullText);
+        });
+      }
+    }
+
+    // Simple toast notification
+    function showToast(message) {
+      let toast = document.getElementById('quiz-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'quiz-toast';
+        toast.style.cssText = `
+          position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
+          padding: 12px 24px; border-radius: 12px;
+          background: rgba(18,42,30,0.95); border: 1px solid var(--glass-border);
+          backdrop-filter: blur(20px); color: var(--text-primary);
+          font-size: 14px; font-weight: 500; z-index: 300;
+          opacity: 0; transition: opacity 0.3s, transform 0.3s;
+          pointer-events: none;
+        `;
+        document.body.appendChild(toast);
+      }
+      toast.textContent = message;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(20px)';
+      }, 2500);
+    }
+
     // ========== INIT ==========
     function init() {
+      // Check for deep link hash
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'quiz') {
+        // Initialize normally first, then switch to quiz
+        state.currentIndex = Math.floor(Math.random() * quranVocabulary.length);
+        const word = quranVocabulary[state.currentIndex];
+        state.viewedWords.add(word.id);
+        renderWordCard(word, false);
+        updateCounter();
+        updateStats();
+        updateBookmarkButton();
+        persistState();
+        renderCategoryFilters();
+        renderWordGrid();
+        // Switch to quiz view
+        setTimeout(() => scrollToQuiz(), 100);
+        return;
+      }
+
       // Pick a random starting word
       state.currentIndex = Math.floor(Math.random() * quranVocabulary.length);
       const word = quranVocabulary[state.currentIndex];
@@ -2610,6 +3379,14 @@
       renderCategoryFilters();
       renderWordGrid();
     }
+
+    // Handle hash changes (e.g., shared quiz link)
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'quiz' && !quizState.active) {
+        scrollToQuiz();
+      }
+    });
 
     init();
   </script>

@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Similar Sounding Quran Words — LearnQuranwords</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a6b4a'/%3E%3Cpath d='M6 7.5C6 6.7 6.7 6 7.5 6H15C15.6 6 16 6.4 16 7V24.5C15.5 24 14.8 23.5 14 23.5H7.5C6.7 23.5 6 22.8 6 22V7.5Z' fill='white'/%3E%3Cpath d='M16 7C16 6.4 16.4 6 17 6H24.5C25.3 6 26 6.7 26 7.5V22C26 22.8 25.3 23.5 24.5 23.5H18C17.2 23.5 16.5 24 16 24.5V7Z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Easily confused Quranic Arabic words that sound similar but have different meanings. A helpful reference for Quran students and learners." />
+  <meta name="author" content="Umar Shareef" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1a6b4a" />
+  <link rel="canonical" href="https://learnquranwords.com/similar" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://learnquranwords.com/similar" />
+  <meta property="og:title" content="Similar Sounding Quran Words — LearnQuranwords" />
+  <meta property="og:description" content="Easily confused Quranic Arabic words that sound similar but have different meanings." />
+  <meta property="og:site_name" content="LearnQuranwords" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://learnquranwords.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="LearnQuranwords — Similar Sounding Quran Words" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Similar Sounding Quran Words — LearnQuranwords" />
+  <meta name="twitter:description" content="Easily confused Quranic Arabic words that sound similar but have different meanings." />
+  <meta name="twitter:image" content="https://learnquranwords.com/og-image.png" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Similar Sounding Quran Words",
+    "url": "https://learnquranwords.com/similar",
+    "description": "Easily confused Quranic Arabic words that sound similar but have different meanings.",
+    "isPartOf": {
+      "@type": "WebApplication",
+      "name": "LearnQuranwords",
+      "url": "https://learnquranwords.com"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Umar Shareef",
+      "url": "https://umarshareef.framer.website"
+    }
+  }, {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://learnquranwords.com/"
+    }, {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Similar Sounding Words",
+      "item": "https://learnquranwords.com/similar"
+    }]
+  }]
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #1a6b4a;
+      --primary-light: #42cc88;
+      --accent: #c9a84c;
+      --bg-dark: #0c1a14;
+      --bg-mid: #122a1e;
+      --bg-card: rgba(18, 42, 30, 0.55);
+      --glass: rgba(255, 255, 255, 0.06);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #e8f0ec;
+      --text-secondary: #9bb8a8;
+      --text-muted: #8bb8a5;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ========== BACKGROUND ========== */
+    .bg-layer {
+      position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+    }
+    .bg-gradient {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(26, 107, 74, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 90%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(12, 26, 20, 1) 0%, rgba(18, 42, 30, 0.8) 100%);
+    }
+    .bg-pattern {
+      position: absolute; inset: 0; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .floating-orb {
+      position: absolute; border-radius: 50%; filter: blur(80px); animation: float 20s ease-in-out infinite;
+    }
+    .floating-orb:nth-child(3) { width: 400px; height: 400px; background: rgba(26, 107, 74, 0.12); top: -100px; left: -100px; animation-duration: 25s; }
+    .floating-orb:nth-child(4) { width: 300px; height: 300px; background: rgba(201, 168, 76, 0.06); bottom: -80px; right: -80px; animation-duration: 30s; animation-delay: -5s; }
+    .floating-orb:nth-child(5) { width: 250px; height: 250px; background: rgba(45, 157, 111, 0.08); top: 40%; right: 20%; animation-duration: 22s; animation-delay: -10s; }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -40px) scale(1.05); }
+      50% { transform: translate(-20px, 20px) scale(0.95); }
+      75% { transform: translate(40px, 30px) scale(1.02); }
+    }
+
+    /* ========== LAYOUT ========== */
+    .app-container {
+      position: relative; z-index: 1; min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+
+    /* ========== NAVBAR ========== */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 24px;
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      background: rgba(12, 26, 20, 0.7);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .navbar-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--text-primary);
+    }
+    .nav-brand-icon {
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; line-height: 1;
+    }
+    .nav-brand-text { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
+    .nav-brand-text span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-link {
+      padding: 10px 16px; border-radius: var(--radius-sm);
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 14px; font-weight: 500;
+      transition: var(--transition-fast); cursor: pointer;
+      border: none; background: none; font-family: inherit;
+    }
+    .nav-link:hover { color: var(--text-primary); background: var(--glass); }
+    .nav-link.active { color: var(--accent); background: rgba(201, 168, 76, 0.1); }
+
+    /* ========== HAMBURGER MENU ========== */
+    .nav-hamburger {
+      display: none;
+      width: 40px; height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--glass); border: 1px solid var(--glass-border);
+      color: var(--text-secondary); cursor: pointer;
+      flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 0;
+      transition: var(--transition-fast);
+    }
+    .nav-hamburger:hover { background: var(--glass-hover); color: var(--text-primary); }
+    .nav-hamburger span {
+      display: block; width: 20px; height: 2px; background: currentColor;
+      border-radius: 1px; transition: var(--transition-fast);
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile-menu {
+      display: none; position: fixed; top: 56px; left: 0; right: 0; bottom: 0; z-index: 99;
+      background: rgba(12, 26, 20, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      padding: 24px; flex-direction: column; gap: 8px;
+      opacity: 0; visibility: hidden; transition: var(--transition-smooth);
+    }
+    .nav-mobile-menu.open { opacity: 1; visibility: visible; }
+    .nav-mobile-menu .nav-link {
+      display: block; width: 100%; text-align: left; padding: 14px 20px;
+      font-size: 16px; border-radius: var(--radius-md);
+    }
+
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex; }
+      .nav-links { display: none; }
+      .nav-mobile-menu { display: flex; }
+    }
+    @media (min-width: 769px) {
+      .nav-mobile-menu { display: none !important; }
+    }
+
+    /* ========== CONTENT ========== */
+    .similar-section {
+      max-width: 920px; margin: 0 auto; padding: 60px 24px 40px; width: 100%;
+    }
+
+    .similar-hero {
+      text-align: center; margin-bottom: 48px;
+    }
+    .similar-hero-icon {
+      font-size: 48px; margin-bottom: 16px; display: block;
+    }
+    .similar-hero h1 {
+      font-size: clamp(28px, 5vw, 42px); font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.2;
+    }
+    .similar-hero h1 span {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .similar-hero p {
+      font-size: 17px; color: var(--text-secondary); max-width: 640px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* Category filter */
+    .category-filters {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 32px;
+    }
+    .category-chip {
+      padding: 8px 18px; border-radius: 20px;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      color: var(--text-muted); font-size: 14px; font-weight: 500;
+      cursor: pointer; transition: var(--transition-fast); font-family: 'Inter', sans-serif;
+    }
+    .category-chip:hover { background: var(--glass-hover); color: var(--text-secondary); }
+    .category-chip.active {
+      background: rgba(201, 168, 76, 0.15); border-color: rgba(201, 168, 76, 0.3); color: var(--accent);
+    }
+
+    /* Pair count */
+    .pair-count {
+      text-align: center; color: var(--text-muted); font-size: 14px; margin-bottom: 28px;
+    }
+
+    /* ========== PAIR CARDS ========== */
+    .pair-grid {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+
+    .pair-card {
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(40px) saturate(1.2);
+      -webkit-backdrop-filter: blur(40px) saturate(1.2);
+      padding: 28px 32px;
+      position: relative; overflow: hidden;
+      transition: var(--transition-fast);
+    }
+    .pair-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 40%, transparent 60%, rgba(201,168,76,0.02) 100%);
+      pointer-events: none;
+    }
+    .pair-card:hover {
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .pair-card-inner { position: relative; z-index: 1; }
+
+    .pair-category-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: 12px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    .pair-category-badge.swap {
+      background: rgba(220, 60, 60, 0.1); border: 1px solid rgba(220, 60, 60, 0.2); color: #e87070;
+    }
+    .pair-category-badge.vowel {
+      background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.2); color: var(--accent);
+    }
+    .pair-category-badge.added {
+      background: rgba(45, 157, 111, 0.1); border: 1px solid rgba(45, 157, 111, 0.2); color: var(--primary-light);
+    }
+
+    .pair-words {
+      display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center;
+    }
+
+    .pair-word {
+      text-align: center; padding: 12px;
+    }
+
+    .pair-word-arabic {
+      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-size: clamp(32px, 6vw, 48px); font-weight: 700;
+      color: var(--text-primary); direction: rtl; line-height: 1.4;
+      margin-bottom: 4px;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "mark" 1, "mkmk" 1;
+      letter-spacing: normal;
+    }
+
+    .pair-word-translit {
+      font-size: 17px; font-weight: 600; color: var(--accent);
+      font-style: italic; margin-bottom: 4px;
+    }
+
+    .pair-word-meaning {
+      font-size: 15px; color: var(--text-secondary); margin-bottom: 6px;
+    }
+
+    .pair-word-freq {
+      font-size: 12px; color: var(--text-muted); opacity: 0.8;
+    }
+
+    .pair-vs {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      color: var(--text-muted); font-size: 13px; font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ========== TIP CARD ========== */
+    .tip-card {
+      border-radius: var(--radius-xl);
+      background: rgba(26, 107, 74, 0.08);
+      border: 1px solid rgba(26, 107, 74, 0.2);
+      padding: 28px 32px;
+      margin-top: 40px; margin-bottom: 20px;
+      position: relative;
+    }
+    .tip-card h2 {
+      font-size: 20px; font-weight: 700; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .tip-card h2 .card-icon { font-size: 24px; flex-shrink: 0; }
+    .tip-card p { color: var(--text-secondary); font-size: 15px; margin-bottom: 10px; line-height: 1.75; }
+    .tip-card p:last-child { margin-bottom: 0; }
+
+    /* ========== CTA ========== */
+    .about-cta {
+      text-align: center; padding: 48px 24px; margin-top: 16px;
+    }
+    .about-cta h2 {
+      font-size: clamp(22px, 3.5vw, 30px); font-weight: 700; margin-bottom: 12px;
+    }
+    .about-cta h2 span {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .about-cta p { color: var(--text-muted); font-size: 15px; margin-bottom: 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: var(--radius-md);
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+      cursor: pointer; border: none; transition: var(--transition-fast);
+      text-decoration: none; position: relative; overflow: hidden;
+    }
+    .btn::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+      pointer-events: none; opacity: 0; transition: opacity var(--transition-fast);
+    }
+    .btn:hover::after { opacity: 1; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; box-shadow: 0 4px 16px rgba(26, 107, 74, 0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(26, 107, 74, 0.4); }
+    .btn svg { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+
+    /* Initiative credit */
+    .initiative-credit {
+      text-align: center; padding: 40px 24px 20px; border-top: 1px solid var(--glass-border);
+    }
+    .initiative-credit p {
+      font-size: 15px; color: var(--text-muted); line-height: 1.7;
+    }
+    .initiative-credit a {
+      color: var(--accent); text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; font-weight: 500;
+      transition: var(--transition-fast);
+    }
+    .initiative-credit a:hover { text-decoration-style: solid; color: #e0c878; }
+    .initiative-name {
+      font-size: 16px; font-weight: 600; color: var(--text-primary);
+      margin-bottom: 6px; display: block;
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      text-align: center; padding: 32px 24px; color: var(--text-muted); font-size: 14px;
+      border-top: 1px solid var(--glass-border);
+    }
+    .footer a { color: var(--accent); text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; }
+    .footer a:hover { text-decoration-style: solid; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .navbar-inner { height: 56px; }
+      .nav-brand-text { font-size: 16px; }
+      .nav-link { padding: 8px 12px; font-size: 13px; }
+      .nav-hamburger { display: flex; }
+      .nav-links { display: none; }
+      .similar-section { padding: 40px 16px 24px; }
+      .pair-card { padding: 20px 16px; border-radius: var(--radius-lg); }
+      .pair-words { grid-template-columns: 1fr auto 1fr; gap: 12px; }
+      .pair-word-arabic { font-size: clamp(26px, 5vw, 38px); }
+      .pair-word { padding: 8px; }
+    }
+    @media (max-width: 480px) {
+      .pair-words {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .pair-word {
+        padding: 12px 0;
+      }
+      .pair-vs {
+        margin: 4px auto;
+        width: 32px; height: 32px; font-size: 12px;
+      }
+      .pair-card { padding: 18px 14px; }
+      .category-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .category-chip { flex-shrink: 0; }
+    }
+
+    /* ========== FOCUS VISIBLE ========== */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .nav-link:focus-visible,
+    .btn:focus-visible,
+    .nav-hamburger:focus-visible,
+    .category-chip:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    :focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    /* ========== REDUCED MOTION ========== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+      .floating-orb { animation: none; }
+      .pair-card { transition: none; }
+    }
+
+    /* ========== SKIP NAV ========== */
+    .skip-nav {
+      position: absolute; top: -100%; left: 16px; z-index: 1000;
+      padding: 12px 20px; background: var(--primary); color: white;
+      font-size: 14px; font-weight: 600; border-radius: var(--radius-sm);
+      text-decoration: none; transition: top 0.2s;
+    }
+    .skip-nav:focus { top: 8px; outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* ========== NO RESULTS ========== */
+    .no-results {
+      text-align: center; padding: 48px 24px; color: var(--text-muted);
+    }
+    .no-results-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+    .no-results-text { font-size: 16px; color: var(--text-secondary); }
+
+    /* ========== LOAD MORE ========== */
+    .load-more-container {
+      display: flex; justify-content: center; padding: 24px 0 8px;
+    }
+    .load-more-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px; border-radius: var(--radius-md);
+      background: var(--glass); border: 1px solid var(--glass-border);
+      color: var(--text-secondary); font-size: 14px; font-weight: 600;
+      font-family: 'Inter', sans-serif; cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .load-more-btn:hover {
+      background: var(--glass-hover); color: var(--text-primary);
+      border-color: rgba(255,255,255,0.15); transform: translateY(-1px);
+    }
+    .load-more-btn:active { transform: translateY(0); }
+    .load-more-btn svg { transition: transform var(--transition-fast); }
+    .load-more-btn:hover svg { transform: translateY(2px); }
+  </style>
+</head>
+<body>
+  <!-- Skip Navigation -->
+  <a href="#similar-content" class="skip-nav">Skip to main content</a>
+
+  <!-- Animated Background -->
+  <div class="bg-layer">
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+    <div class="floating-orb"></div>
+    <div class="floating-orb"></div>
+    <div class="floating-orb"></div>
+  </div>
+
+  <!-- App Container -->
+  <div class="app-container">
+  <main id="main-content">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="navbar-inner">
+        <a href="index.html" class="nav-brand">
+          <div class="nav-brand-icon">📖</div>
+          <div class="nav-brand-text">LearnQuran<span>words</span></div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Daily Word</a>
+          <a href="index.html#repository" class="nav-link">Explore</a>
+          <a href="similar.html" class="nav-link active">Similar Words</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
+        </div>
+        <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="nav-mobile-menu" id="nav-mobile-menu">
+      <a href="index.html" class="nav-link">Daily Word</a>
+      <a href="index.html#repository" class="nav-link">Explore</a>
+      <a href="similar.html" class="nav-link active">Similar Words</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
+    </div>
+
+    <!-- Similar Words Content -->
+    <section class="similar-section" id="similar-content">
+      <!-- Hero -->
+      <div class="similar-hero">
+        <span class="similar-hero-icon">🔀</span>
+        <h1>Similar Sounding <span>Quran Words</span></h1>
+        <p>These Quranic Arabic words sound almost identical but have completely different meanings. Learning to distinguish them will sharpen your understanding and help you avoid common mistakes.</p>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="category-filters" id="category-filters">
+        <button class="category-chip active" onclick="filterCategory('all')" data-cat="all">All Pairs</button>
+        <button class="category-chip" onclick="filterCategory('One-Letter Swap')" data-cat="One-Letter Swap">🔤 One-Letter Swap</button>
+        <button class="category-chip" onclick="filterCategory('Vowel Shift')" data-cat="Vowel Shift">🔄 Vowel Shift</button>
+        <button class="category-chip" onclick="filterCategory('Letter Added/Removed')" data-cat="Letter Added/Removed">➕ Letter Added/Removed</button>
+      </div>
+
+      <div class="pair-count" id="pair-count">Showing 223 confusable pairs</div>
+
+      <!-- Pair Cards -->
+      <div class="pair-grid" id="pair-grid"></div>
+
+      <!-- Load More -->
+      <div class="load-more-container" id="load-more-container" style="display:none">
+        <button class="load-more-btn" id="load-more-btn" onclick="loadMore()">
+          <span id="load-more-text">Load more pairs</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
+
+      <!-- No results -->
+      <div class="no-results" id="no-results" style="display:none">
+        <div class="no-results-icon">🔍</div>
+        <div class="no-results-text">No pairs in this category</div>
+      </div>
+
+      <!-- Study Tips -->
+      <div class="tip-card">
+        <h2><span class="card-icon">💡</span> How to Tell Them Apart</h2>
+        <p><strong>Listen for the vowel:</strong> Many pairs differ only by a single vowel (e.g., <em>Qalb</em> vs <em>Kalb</em>). Pay attention to the short <strong>a</strong>, <strong>i</strong>, or <strong>u</strong> sounds — they completely change the meaning.</p>
+        <p><strong>Watch the diacritics:</strong> In voweled Quranic text, the harakat (fatḥah, ḍammah, kasrah) make the difference obvious. Learn to read with vowel marks and the confusion disappears.</p>
+        <p><strong>Use context:</strong> When you hear "Salaah" (Prayer) vs "Salaam" (Peace) in a verse, the surrounding words always make the intended meaning clear.</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="about-cta">
+        <h2>Test Yourself with the <span>Quiz</span></h2>
+        <p>Now that you know these tricky pairs, try the quiz mode to see if you can tell them apart under pressure!</p>
+        <a href="index.html#quiz" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Start Quiz
+        </a>
+      </div>
+    </section>
+
+    </main>
+    <!-- Initiative Credit -->
+    <div class="initiative-credit">
+      <span class="initiative-name">An Initiative by Umar Shareef</span>
+      <p>Visit my portfolio at <a href="https://umarshareef.framer.website" target="_blank" rel="noopener">umarshareef.framer.website</a></p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>LearnQuranwords — Learn Quranic Arabic with 600 essential Quran words</p>
+      <p style="margin-top:6px;">An initiative by <a href="https://umarshareef.framer.website" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 500;">Umar Shareef</a> · <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Feedback</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // ========== SIMILAR-SOUNDING PAIRS DATA ==========
+    const SIMILAR_PAIRS = [
+      {arabic1:"يوم",translit1:"Yawm",meaning1:"Day",freq1:475,arabic2:"نوم",translit2:"Nawm",meaning2:"Sleep",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"ناس",translit1:"Naas",meaning1:"Mankind / people",freq1:124,arabic2:"نفس",translit2:"Nafs",meaning2:"Soul",freq2:295,category:"One-Letter Swap"},
+      {arabic1:"نفس",translit1:"Nafs",meaning1:"Soul",freq1:295,arabic2:"نفع",translit2:"Naf'",meaning2:"Benefit",freq2:31,category:"Letter Added/Removed"},
+      {arabic1:"عبد",translit1:"Abd",meaning1:"Servant / slave",freq1:135,arabic2:"أب",translit2:"Ab",meaning2:"Father",freq2:117,category:"Letter Added/Removed"},
+      {arabic1:"أرض",translit1:"Ard",meaning1:"Earth",freq1:81,arabic2:"عبد",translit2:"Abd",meaning2:"Servant / slave",freq2:135,category:"One-Letter Swap"},
+      {arabic1:"جاء",translit1:"Jaa'a",meaning1:"He came",freq1:105,arabic2:"جعل",translit2:"Ja'ala",meaning2:"He made / appointed",freq2:92,category:"Letter Added/Removed"},
+      {arabic1:"بل",translit1:"Bal",meaning1:"Rather / but",freq1:128,arabic2:"بعض",translit2:"Ba'd",meaning2:"Some / part",freq2:52,category:"One-Letter Swap"},
+      {arabic1:"ناس",translit1:"Naas",meaning1:"Mankind / people",freq1:124,arabic2:"نار",translit2:"Naar",meaning2:"Fire / Hellfire",freq2:52,category:"One-Letter Swap"},
+      {arabic1:"عقل",translit1:"Aql",meaning1:"Intellect",freq1:49,arabic2:"أهل",translit2:"Ahl",meaning2:"People / Family",freq2:127,category:"One-Letter Swap"},
+      {arabic1:"بعض",translit1:"Ba'd",meaning1:"Some / part",freq1:52,arabic2:"يد",translit2:"Yad",meaning2:"Hand",freq2:120,category:"One-Letter Swap"},
+      {arabic1:"عبد",translit1:"Abd",meaning1:"Servant / slave",freq1:135,arabic2:"عهد",translit2:"Ahd",meaning2:"Covenant",freq2:29,category:"One-Letter Swap"},
+      {arabic1:"عبد",translit1:"Abd",meaning1:"Servant / slave",freq1:135,arabic2:"أبد",translit2:"Abad",meaning2:"Forever",freq2:28,category:"Letter Added/Removed"},
+      {arabic1:"بين",translit1:"Bayn",meaning1:"Between",freq1:92,arabic2:"بيت",translit2:"Bayt",meaning2:"House",freq2:64,category:"One-Letter Swap"},
+      {arabic1:"عهد",translit1:"Ahd",meaning1:"Covenant",freq1:29,arabic2:"أهل",translit2:"Ahl",meaning2:"People / Family",freq2:127,category:"One-Letter Swap"},
+      {arabic1:"بل",translit1:"Bal",meaning1:"Rather / but",freq1:128,arabic2:"آل",translit2:"Aal",meaning2:"Family",freq2:26,category:"One-Letter Swap"},
+      {arabic1:"آل",translit1:"Aal",meaning1:"Family",freq1:26,arabic2:"أهل",translit2:"Ahl",meaning2:"People / Family",freq2:127,category:"One-Letter Swap"},
+      {arabic1:"جهل",translit1:"Jahl",meaning1:"Ignorance",freq1:24,arabic2:"أهل",translit2:"Ahl",meaning2:"People / Family",freq2:127,category:"Letter Added/Removed"},
+      {arabic1:"بل",translit1:"Bal",meaning1:"Rather / but",freq1:128,arabic2:"بأس",translit2:"Ba's",meaning2:"Might / Hardship",freq2:18,category:"One-Letter Swap"},
+      {arabic1:"عدل",translit1:"Adl",meaning1:"Justice",freq1:14,arabic2:"أهل",translit2:"Ahl",meaning2:"People / Family",freq2:127,category:"One-Letter Swap"},
+      {arabic1:"بين",translit1:"Bayn",meaning1:"Between",freq1:92,arabic2:"عين",translit2:"Ayn",meaning2:"Eye / Spring",freq2:47,category:"Letter Added/Removed"},
+      {arabic1:"قلب",translit1:"Qalb",meaning1:"Heart",freq1:132,arabic2:"كلب",translit2:"Kalb",meaning2:"Dog",freq2:5,category:"One-Letter Swap"},
+      {arabic1:"بل",translit1:"Bal",meaning1:"Rather / but",freq1:128,arabic2:"بيع",translit2:"Bay'",meaning2:"Trade / Selling",freq2:7,category:"One-Letter Swap"},
+      {arabic1:"صلاة",translit1:"Salaah",meaning1:"Prayer",freq1:83,arabic2:"ساعة",translit2:"Saa'ah",meaning2:"Hour",freq2:48,category:"Letter Added/Removed"},
+      {arabic1:"قول",translit1:"Qawl",meaning1:"Saying / word / statement",freq1:75,arabic2:"قتل",translit2:"Qatl",meaning2:"Killing / Murder",freq2:53,category:"One-Letter Swap"},
+      {arabic1:"نحل",translit1:"Nahl",meaning1:"Bee",freq1:1,arabic2:"أهل",translit2:"Ahl",meaning2:"People / Family",freq2:127,category:"Letter Added/Removed"},
+      {arabic1:"حين",translit1:"Heen",meaning1:"Time / Moment",freq1:34,arabic2:"دين",translit2:"Deen",meaning2:"Religion / Judgment",freq2:92,category:"One-Letter Swap"},
+      {arabic1:"جاء",translit1:"Jaa'a",meaning1:"He came",freq1:105,arabic2:"جمع",translit2:"Jama'a",meaning2:"He gathered",freq2:20,category:"Letter Added/Removed"},
+      {arabic1:"ملك",translit1:"Malak",meaning1:"Angel / king",freq1:95,arabic2:"ملإ",translit2:"Mala'",meaning2:"Chiefs / Assembly",freq2:30,category:"Letter Added/Removed"},
+      {arabic1:"يد",translit1:"Yad",meaning1:"Hand",freq1:120,arabic2:"رعد",translit2:"Ra'd",meaning2:"Thunder",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"أمر",translit1:"Amr",meaning1:"Command / matter",freq1:88,arabic2:"أجر",translit2:"Ajr",meaning2:"Reward / wage",freq2:32,category:"One-Letter Swap"},
+      {arabic1:"سلام",translit1:"Salaam",meaning1:"Peace",freq1:36,arabic2:"صلاة",translit2:"Salaah",meaning2:"Prayer",freq2:83,category:"One-Letter Swap"},
+      {arabic1:"أب",translit1:"Ab",meaning1:"Father",freq1:117,arabic2:"كعب",translit2:"Ka'b",meaning2:"Ankle",freq2:1,category:"Letter Added/Removed"},
+      {arabic1:"بين",translit1:"Bayn",meaning1:"Between",freq1:92,arabic2:"بطن",translit2:"Batn",meaning2:"Belly / Womb",freq2:21,category:"One-Letter Swap"},
+      {arabic1:"ولد",translit1:"Walad",meaning1:"Child / Boy",freq1:102,arabic2:"واد",translit2:"Waad",meaning2:"Valley",freq2:9,category:"Letter Added/Removed"},
+      {arabic1:"أرض",translit1:"Ard",meaning1:"Earth",freq1:81,arabic2:"عهد",translit2:"Ahd",meaning2:"Covenant",freq2:29,category:"One-Letter Swap"},
+      {arabic1:"جاء",translit1:"Jaa'a",meaning1:"He came",freq1:105,arabic2:"جار",translit2:"Jaar",meaning2:"Neighbor",freq2:3,category:"One-Letter Swap"},
+      {arabic1:"أمر",translit1:"Amr",meaning1:"Command / matter",freq1:88,arabic2:"أمن",translit2:"Amn",meaning2:"Safety / Security",freq2:19,category:"One-Letter Swap"},
+      {arabic1:"ولد",translit1:"Walad",meaning1:"Child / Boy",freq1:102,arabic2:"وتد",translit2:"Watad",meaning2:"Peg / Stake",freq2:3,category:"One-Letter Swap"},
+      {arabic1:"طين",translit1:"Teen",meaning1:"Clay",freq1:12,arabic2:"دين",translit2:"Deen",meaning2:"Religion / Judgment",freq2:92,category:"One-Letter Swap"},
+      {arabic1:"نار",translit1:"Naar",meaning1:"Fire / Hellfire",freq1:52,arabic2:"دار",translit2:"Daar",meaning2:"Home / Abode",freq2:48,category:"One-Letter Swap"},
+      {arabic1:"بين",translit1:"Bayn",meaning1:"Between",freq1:92,arabic2:"بيع",translit2:"Bay'",meaning2:"Trade / Selling",freq2:7,category:"Letter Added/Removed"},
+      {arabic1:"أمر",translit1:"Amr",meaning1:"Command / matter",freq1:88,arabic2:"عم",translit2:"Amm",meaning2:"Uncle (paternal)",freq2:5,category:"One-Letter Swap"},
+      {arabic1:"ماء",translit1:"Maa'",meaning1:"Water",freq1:63,arabic2:"ملإ",translit2:"Mala'",meaning2:"Chiefs / Assembly",freq2:30,category:"Letter Added/Removed"},
+      {arabic1:"أمر",translit1:"Amr",meaning1:"Command / matter",freq1:88,arabic2:"عصر",translit2:"Asr",meaning2:"Afternoon / Time",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"دليل",translit1:"Daleel",meaning1:"Proof / guide",freq1:9,arabic2:"قليل",translit2:"Qaleel",meaning2:"Little / Few",freq2:76,category:"One-Letter Swap"},
+      {arabic1:"خير",translit1:"Khayr",meaning1:"Good / better",freq1:78,arabic2:"خمر",translit2:"Khamr",meaning2:"Wine / Intoxicants",freq2:6,category:"One-Letter Swap"},
+      {arabic1:"صلاة",translit1:"Salaah",meaning1:"Prayer",freq1:83,arabic2:"فلاح",translit2:"Falaah",meaning2:"Success",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"خير",translit1:"Khayr",meaning1:"Good / better",freq1:78,arabic2:"خيل",translit2:"Khayl",meaning2:"Horses",freq2:5,category:"One-Letter Swap"},
+      {arabic1:"بعض",translit1:"Ba'd",meaning1:"Some / part",freq1:52,arabic2:"أبد",translit2:"Abad",meaning2:"Forever",freq2:28,category:"Letter Added/Removed"},
+      {arabic1:"صبر",translit1:"Sabr",meaning1:"Patience / steadfastness",freq1:33,arabic2:"صدر",translit2:"Sadr",meaning2:"Chest",freq2:44,category:"One-Letter Swap"},
+      {arabic1:"عقل",translit1:"Aql",meaning1:"Intellect",freq1:49,arabic2:"آل",translit2:"Aal",meaning2:"Family",freq2:26,category:"One-Letter Swap"},
+      {arabic1:"بشر",translit1:"Bashar",meaning1:"Human being / mankind",freq1:37,arabic2:"بصر",translit2:"Basar",meaning2:"Sight",freq2:37,category:"Letter Added/Removed"},
+      {arabic1:"سبعة",translit1:"Sab'ah",meaning1:"Seven",freq1:24,arabic2:"ساعة",translit2:"Saa'ah",meaning2:"Hour",freq2:48,category:"One-Letter Swap"},
+      {arabic1:"بيع",translit1:"Bay'",meaning1:"Trade / Selling",freq1:7,arabic2:"بيت",translit2:"Bayt",meaning2:"House",freq2:64,category:"Letter Added/Removed"},
+      {arabic1:"بعض",translit1:"Ba'd",meaning1:"Some / part",freq1:52,arabic2:"بأس",translit2:"Ba's",meaning2:"Might / Hardship",freq2:18,category:"One-Letter Swap"},
+      {arabic1:"عجب",translit1:"Ajab",meaning1:"Wonder / Astonishment",freq1:27,arabic2:"أجل",translit2:"Ajal",meaning2:"Term / Deadline",freq2:43,category:"One-Letter Swap"},
+      {arabic1:"أجل",translit1:"Ajal",meaning1:"Term / Deadline",freq1:43,arabic2:"آل",translit2:"Aal",meaning2:"Family",freq2:26,category:"Letter Added/Removed"},
+      {arabic1:"ماء",translit1:"Maa'",meaning1:"Water",freq1:63,arabic2:"عمى",translit2:"Amaa",meaning2:"Blindness",freq2:4,category:"Letter Added/Removed"},
+      {arabic1:"فوز",translit1:"Fawz",meaning1:"Triumph",freq1:16,arabic2:"فوق",translit2:"Fawq",meaning2:"Above / Over",freq2:51,category:"One-Letter Swap"},
+      {arabic1:"ساعة",translit1:"Saa'ah",meaning1:"Hour",freq1:48,arabic2:"سنة",translit2:"Sanah",meaning2:"Year",freq2:19,category:"One-Letter Swap"},
+      {arabic1:"قدر",translit1:"Qadr",meaning1:"Decree / power / destiny",freq1:22,arabic2:"صدر",translit2:"Sadr",meaning2:"Chest",freq2:44,category:"One-Letter Swap"},
+      {arabic1:"عين",translit1:"Ayn",meaning1:"Eye / Spring",freq1:47,arabic2:"أمن",translit2:"Amn",meaning2:"Safety / Security",freq2:19,category:"One-Letter Swap"},
+      {arabic1:"بصير",translit1:"Baseer",meaning1:"All-Seeing / seeing",freq1:45,arabic2:"مصير",translit2:"Maseer",meaning2:"Destination / return",freq2:18,category:"One-Letter Swap"},
+      {arabic1:"طاعة",translit1:"Taa'ah",meaning1:"Obedience",freq1:15,arabic2:"ساعة",translit2:"Saa'ah",meaning2:"Hour",freq2:48,category:"One-Letter Swap"},
+      {arabic1:"طاعة",translit1:"Taa'ah",meaning1:"Obedience",freq1:15,arabic2:"طعام",translit2:"Ta'aam",meaning2:"Food",freq2:48,category:"One-Letter Swap"},
+      {arabic1:"عدل",translit1:"Adl",meaning1:"Justice",freq1:14,arabic2:"عقل",translit2:"Aql",meaning2:"Intellect",freq2:49,category:"One-Letter Swap"},
+      {arabic1:"شر",translit1:"Sharr",meaning1:"Evil / harm",freq1:41,arabic2:"شهر",translit2:"Shahr",meaning2:"Month",freq2:21,category:"One-Letter Swap"},
+      {arabic1:"دعوا",translit1:"Da'aw",meaning1:"They called / invited",freq1:14,arabic2:"دار",translit2:"Daar",meaning2:"Home / Abode",freq2:48,category:"One-Letter Swap"},
+      {arabic1:"سلام",translit1:"Salaam",meaning1:"Peace",freq1:36,arabic2:"ظلام",translit2:"Zalaam",meaning2:"Darkness",freq2:23,category:"One-Letter Swap"},
+      {arabic1:"بعض",translit1:"Ba'd",meaning1:"Some / part",freq1:52,arabic2:"بيع",translit2:"Bay'",meaning2:"Trade / Selling",freq2:7,category:"One-Letter Swap"},
+      {arabic1:"شر",translit1:"Sharr",meaning1:"Evil / harm",freq1:41,arabic2:"شرق",translit2:"Sharq",meaning2:"East",freq2:17,category:"One-Letter Swap"},
+      {arabic1:"بصير",translit1:"Baseer",meaning1:"All-Seeing / seeing",freq1:45,arabic2:"بشير",translit2:"Basheer",meaning2:"Bringer of glad tidings",freq2:12,category:"Letter Added/Removed"},
+      {arabic1:"بعض",translit1:"Ba'd",meaning1:"Some / part",freq1:52,arabic2:"بعل",translit2:"Ba'l",meaning2:"Husband",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"سمع",translit1:"Sam'",meaning1:"Hearing",freq1:42,arabic2:"سعي",translit2:"Sa'y",meaning2:"Effort / Pursuit",freq2:14,category:"One-Letter Swap"},
+      {arabic1:"نار",translit1:"Naar",meaning1:"Fire / Hellfire",freq1:52,arabic2:"جار",translit2:"Jaar",meaning2:"Neighbor",freq2:3,category:"One-Letter Swap"},
+      {arabic1:"بعض",translit1:"Ba'd",meaning1:"Some / part",freq1:52,arabic2:"رعد",translit2:"Ra'd",meaning2:"Thunder",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"نور",translit1:"Noor",meaning1:"Light",freq1:49,arabic2:"حور",translit2:"Hoor",meaning2:"Houris (Fair companions)",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"دم",translit1:"Dam",meaning1:"Blood",freq1:10,arabic2:"سمع",translit2:"Sam'",meaning2:"Hearing",freq2:42,category:"One-Letter Swap"},
+      {arabic1:"أمة",translit1:"Ummah",meaning1:"Community / nation",freq1:48,arabic2:"عمرة",translit2:"Umrah",meaning2:"Lesser Pilgrimage",freq2:3,category:"One-Letter Swap"},
+      {arabic1:"أمة",translit1:"Ummah",meaning1:"Community / nation",freq1:48,arabic2:"عمة",translit2:"Ammah",meaning2:"Aunt (paternal)",freq2:3,category:"Vowel Shift"},
+      {arabic1:"سمع",translit1:"Sam'",meaning1:"Hearing",freq1:42,arabic2:"عام",translit2:"Aam",meaning2:"Year",freq2:9,category:"One-Letter Swap"},
+      {arabic1:"جار",translit1:"Jaar",meaning1:"Neighbor",freq1:3,arabic2:"دار",translit2:"Daar",meaning2:"Home / Abode",freq2:48,category:"One-Letter Swap"},
+      {arabic1:"دهر",translit1:"Dahr",meaning1:"Time / Eternity",freq1:2,arabic2:"دار",translit2:"Daar",meaning2:"Home / Abode",freq2:48,category:"One-Letter Swap"},
+      {arabic1:"بعث",translit1:"Ba'th",meaning1:"He sent / resurrection",freq1:28,arabic2:"بطن",translit2:"Batn",meaning2:"Belly / Womb",freq2:21,category:"One-Letter Swap"},
+      {arabic1:"صراط",translit1:"Siraat",meaning1:"Path",freq1:45,arabic2:"سراج",translit2:"Siraaj",meaning2:"Lamp",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"حياة",translit1:"Hayaat",meaning1:"Life",freq1:46,arabic2:"حياء",translit2:"Hayaa'",meaning2:"Shyness / Modesty",freq2:1,category:"Letter Added/Removed"},
+      {arabic1:"يقين",translit1:"Yaqeen",meaning1:"Certainty",freq1:8,arabic2:"يمين",translit2:"Yameen",meaning2:"Right hand / Right",freq2:39,category:"One-Letter Swap"},
+      {arabic1:"بحر",translit1:"Bahr",meaning1:"Sea / ocean",freq1:33,arabic2:"ظهر",translit2:"Zahr",meaning2:"Back",freq2:14,category:"One-Letter Swap"},
+      {arabic1:"بحر",translit1:"Bahr",meaning1:"Sea / ocean",freq1:33,arabic2:"جهر",translit2:"Jahr",meaning2:"Public / Loud",freq2:14,category:"One-Letter Swap"},
+      {arabic1:"طين",translit1:"Teen",meaning1:"Clay",freq1:12,arabic2:"حين",translit2:"Heen",meaning2:"Time / Moment",freq2:34,category:"One-Letter Swap"},
+      {arabic1:"صدر",translit1:"Sadr",meaning1:"Chest",freq1:44,arabic2:"سدر",translit2:"Sidr",meaning2:"Lote tree",freq2:2,category:"Vowel Shift"},
+      {arabic1:"سوق",translit1:"Sooq",meaning1:"Market",freq1:3,arabic2:"سوء",translit2:"Soo'",meaning2:"Evil / Harm",freq2:43,category:"Letter Added/Removed"},
+      {arabic1:"شر",translit1:"Sharr",meaning1:"Evil / harm",freq1:41,arabic2:"ذرة",translit2:"Dharr",meaning2:"Atom / Speck",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"أمل",translit1:"Amal",meaning1:"Hope",freq1:2,arabic2:"أجل",translit2:"Ajal",meaning2:"Term / Deadline",freq2:43,category:"One-Letter Swap"},
+      {arabic1:"حمد",translit1:"Hamd",meaning1:"Praise",freq1:43,arabic2:"حوض",translit2:"Hawd",meaning2:"Pool / Basin",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"شر",translit1:"Sharr",meaning1:"Evil / harm",freq1:41,arabic2:"حر",translit2:"Harr",meaning2:"Heat",freq2:3,category:"Letter Added/Removed"},
+      {arabic1:"عسل",translit1:"Asal",meaning1:"Honey",freq1:1,arabic2:"أجل",translit2:"Ajal",meaning2:"Term / Deadline",freq2:43,category:"One-Letter Swap"},
+      {arabic1:"حكيم",translit1:"Hakeem",meaning1:"All-Wise / wise",freq1:38,arabic2:"حميم",translit2:"Hameem",meaning2:"Scalding water",freq2:5,category:"One-Letter Swap"},
+      {arabic1:"شر",translit1:"Sharr",meaning1:"Evil / harm",freq1:41,arabic2:"شعر",translit2:"Sha'r",meaning2:"Hair",freq2:2,category:"Letter Added/Removed"},
+      {arabic1:"موت",translit1:"Mawt",meaning1:"Death",freq1:42,arabic2:"سوط",translit2:"Sawt",meaning2:"Whip / Scourge",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"سبعة",translit1:"Sab'ah",meaning1:"Seven",freq1:24,arabic2:"سنة",translit2:"Sanah",meaning2:"Year",freq2:19,category:"One-Letter Swap"},
+      {arabic1:"تحت",translit1:"Taht",meaning1:"Beneath / Under",freq1:40,arabic2:"رهط",translit2:"Raht",meaning2:"Group of men",freq2:3,category:"One-Letter Swap"},
+      {arabic1:"مطر",translit1:"Matar",meaning1:"Rain",freq1:9,arabic2:"متاع",translit2:"Mataa'",meaning2:"Provision / Equipment",freq2:33,category:"One-Letter Swap"},
+      {arabic1:"شجر",translit1:"Shajar",meaning1:"Tree",freq1:26,arabic2:"حجر",translit2:"Hajar",meaning2:"Stone",freq2:14,category:"Letter Added/Removed"},
+      {arabic1:"عدل",translit1:"Adl",meaning1:"Justice",freq1:14,arabic2:"آل",translit2:"Aal",meaning2:"Family",freq2:26,category:"One-Letter Swap"},
+      {arabic1:"أم",translit1:"Umm",meaning1:"Mother",freq1:35,arabic2:"عم",translit2:"Amm",meaning2:"Uncle (paternal)",freq2:5,category:"Vowel Shift"},
+      {arabic1:"رضا",translit1:"Ridaa",meaning1:"Pleasure / satisfaction",freq1:31,arabic2:"ربا",translit2:"Ribaa",meaning2:"Usury / Interest",freq2:8,category:"One-Letter Swap"},
+      {arabic1:"فضل",translit1:"Fadl",meaning1:"Bounty / grace",freq1:25,arabic2:"عدل",translit2:"Adl",meaning2:"Justice",freq2:14,category:"Letter Added/Removed"},
+      {arabic1:"ليلة",translit1:"Layl",meaning1:"Night",freq1:28,arabic2:"ويل",translit2:"Wayl",meaning2:"Woe / ruin",freq2:11,category:"One-Letter Swap"},
+      {arabic1:"فجر",translit1:"Fajr",meaning1:"Dawn / daybreak",freq1:6,arabic2:"أجر",translit2:"Ajr",meaning2:"Reward / wage",freq2:32,category:"Letter Added/Removed"},
+      {arabic1:"بصر",translit1:"Basar",meaning1:"Sight",freq1:37,arabic2:"بصل",translit2:"Basal",meaning2:"Onion",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"جهر",translit1:"Jahr",meaning1:"Public / Loud",freq1:14,arabic2:"جهل",translit2:"Jahl",meaning2:"Ignorance",freq2:24,category:"One-Letter Swap"},
+      {arabic1:"ليلة",translit1:"Layl",meaning1:"Night",freq1:28,arabic2:"كيل",translit2:"Kayl",meaning2:"Measure",freq2:9,category:"One-Letter Swap"},
+      {arabic1:"ضعف",translit1:"Da'f",meaning1:"Weakness",freq1:6,arabic2:"نفع",translit2:"Naf'",meaning2:"Benefit",freq2:31,category:"One-Letter Swap"},
+      {arabic1:"وضع",translit1:"Wada'a",meaning1:"He placed / put down",freq1:12,arabic2:"وراء",translit2:"Waraa'",meaning2:"Behind / Beyond",freq2:24,category:"One-Letter Swap"},
+      {arabic1:"بحر",translit1:"Bahr",meaning1:"Sea / ocean",freq1:33,arabic2:"دهر",translit2:"Dahr",meaning2:"Time / Eternity",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"عام",translit1:"Aam",meaning1:"Year",freq1:9,arabic2:"آل",translit2:"Aal",meaning2:"Family",freq2:26,category:"One-Letter Swap"},
+      {arabic1:"أبد",translit1:"Abad",meaning1:"Forever",freq1:28,arabic2:"أبيض",translit2:"Abyad",meaning2:"White",freq2:7,category:"Letter Added/Removed"},
+      {arabic1:"رأس",translit1:"Ra's",meaning1:"Head",freq1:17,arabic2:"بأس",translit2:"Ba's",meaning2:"Might / Hardship",freq2:18,category:"One-Letter Swap"},
+      {arabic1:"بعث",translit1:"Ba'th",meaning1:"He sent / resurrection",freq1:28,arabic2:"فتح",translit2:"Fath",meaning2:"Victory / conquest",freq2:6,category:"One-Letter Swap"},
+      {arabic1:"دعاء",translit1:"Du'aa",meaning1:"Supplication / prayer",freq1:28,arabic2:"ضحى",translit2:"Duhaa",meaning2:"Morning brightness",freq2:6,category:"Letter Added/Removed"},
+      {arabic1:"أجر",translit1:"Ajr",meaning1:"Reward / wage",freq1:32,arabic2:"عصر",translit2:"Asr",meaning2:"Afternoon / Time",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"عهد",translit1:"Ahd",meaning1:"Covenant",freq1:29,arabic2:"مهد",translit2:"Mahd",meaning2:"Cradle",freq2:4,category:"Letter Added/Removed"},
+      {arabic1:"غيب",translit1:"Ghayb",meaning1:"The unseen",freq1:15,arabic2:"غرب",translit2:"Gharb",meaning2:"West",freq2:17,category:"One-Letter Swap"},
+      {arabic1:"طريق",translit1:"Tareeq",meaning1:"Way / path",freq1:26,arabic2:"حريق",translit2:"Hareeq",meaning2:"Burning fire",freq2:5,category:"One-Letter Swap"},
+      {arabic1:"صدق",translit1:"Sidq",meaning1:"Truth / sincerity",freq1:28,arabic2:"سدر",translit2:"Sidr",meaning2:"Lote tree",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"أبد",translit1:"Abad",meaning1:"Forever",freq1:28,arabic2:"عمد",translit2:"Amad",meaning2:"Pillars",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"بعل",translit1:"Ba'l",meaning1:"Husband",freq1:4,arabic2:"آل",translit2:"Aal",meaning2:"Family",freq2:26,category:"One-Letter Swap"},
+      {arabic1:"أبد",translit1:"Abad",meaning1:"Forever",freq1:28,arabic2:"كبد",translit2:"Kabad",meaning2:"Hardship",freq2:1,category:"Letter Added/Removed"},
+      {arabic1:"ظهر",translit1:"Zahr",meaning1:"Back",freq1:14,arabic2:"جهر",translit2:"Jahr",meaning2:"Public / Loud",freq2:14,category:"One-Letter Swap"},
+      {arabic1:"ظهر",translit1:"Zahr",meaning1:"Back",freq1:14,arabic2:"زرع",translit2:"Zar'",meaning2:"Crop / Seed",freq2:14,category:"Letter Added/Removed"},
+      {arabic1:"أمل",translit1:"Amal",meaning1:"Hope",freq1:2,arabic2:"آل",translit2:"Aal",meaning2:"Family",freq2:26,category:"Letter Added/Removed"},
+      {arabic1:"ثمار",translit1:"Thimaar",meaning1:"Fruits",freq1:22,arabic2:"حمار",translit2:"Himaar",meaning2:"Donkey",freq2:5,category:"Letter Added/Removed"},
+      {arabic1:"وراء",translit1:"Waraa'",meaning1:"Behind / Beyond",freq1:24,arabic2:"ورق",translit2:"Waraq",meaning2:"Leaf",freq2:3,category:"One-Letter Swap"},
+      {arabic1:"عسل",translit1:"Asal",meaning1:"Honey",freq1:1,arabic2:"آل",translit2:"Aal",meaning2:"Family",freq2:26,category:"Letter Added/Removed"},
+      {arabic1:"جمع",translit1:"Jama'a",meaning1:"He gathered",freq1:20,arabic2:"جمال",translit2:"Jamaal",meaning2:"Beauty",freq2:5,category:"Letter Added/Removed"},
+      {arabic1:"وضع",translit1:"Wada'a",meaning1:"He placed / put down",freq1:12,arabic2:"أعداء",translit2:"A'daa'",meaning2:"Enemies",freq2:13,category:"Letter Added/Removed"},
+      {arabic1:"نحل",translit1:"Nahl",meaning1:"Bee",freq1:1,arabic2:"جهل",translit2:"Jahl",meaning2:"Ignorance",freq2:24,category:"One-Letter Swap"},
+      {arabic1:"أكواب",translit1:"Akwaab",meaning1:"Cups",freq1:4,arabic2:"أبواب",translit2:"Abwaab",meaning2:"Doors / Gates",freq2:21,category:"One-Letter Swap"},
+      {arabic1:"بيع",translit1:"Bay'",meaning1:"Trade / Selling",freq1:7,arabic2:"بأس",translit2:"Ba's",meaning2:"Might / Hardship",freq2:18,category:"One-Letter Swap"},
+      {arabic1:"أعداء",translit1:"A'daa'",meaning1:"Enemies",freq1:13,arabic2:"عصا",translit2:"Asaa",meaning2:"Staff",freq2:12,category:"One-Letter Swap"},
+      {arabic1:"جمع",translit1:"Jama'a",meaning1:"He gathered",freq1:20,arabic2:"عمى",translit2:"Amaa",meaning2:"Blindness",freq2:4,category:"Letter Added/Removed"},
+      {arabic1:"لعنة",translit1:"La'nah",meaning1:"Curse / condemnation",freq1:5,arabic2:"سنة",translit2:"Sanah",meaning2:"Year",freq2:19,category:"One-Letter Swap"},
+      {arabic1:"كأس",translit1:"Ka's",meaning1:"Cup / Goblet",freq1:6,arabic2:"بأس",translit2:"Ba's",meaning2:"Might / Hardship",freq2:18,category:"One-Letter Swap"},
+      {arabic1:"أمن",translit1:"Amn",meaning1:"Safety / Security",freq1:19,arabic2:"عم",translit2:"Amm",meaning2:"Uncle (paternal)",freq2:5,category:"One-Letter Swap"},
+      {arabic1:"عظم",translit1:"Azm",meaning1:"Bone",freq1:14,arabic2:"عام",translit2:"Aam",meaning2:"Year",freq2:9,category:"One-Letter Swap"},
+      {arabic1:"شهر",translit1:"Shahr",meaning1:"Month",freq1:21,arabic2:"شعر",translit2:"Sha'r",meaning2:"Hair",freq2:2,category:"Letter Added/Removed"},
+      {arabic1:"كأس",translit1:"Ka's",meaning1:"Cup / Goblet",freq1:6,arabic2:"رأس",translit2:"Ra's",meaning2:"Head",freq2:17,category:"One-Letter Swap"},
+      {arabic1:"سر",translit1:"Sirr",meaning1:"Secret",freq1:21,arabic2:"سدر",translit2:"Sidr",meaning2:"Lote tree",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"سر",translit1:"Sirr",meaning1:"Secret",freq1:21,arabic2:"صهر",translit2:"Sihr",meaning2:"Marriage relationship / In-law",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"بأس",translit1:"Ba's",meaning1:"Might / Hardship",freq1:18,arabic2:"بعل",translit2:"Ba'l",meaning2:"Husband",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"نخل",translit1:"Nakhl",meaning1:"Date palm",freq1:20,arabic2:"نحل",translit2:"Nahl",meaning2:"Bee",freq2:1,category:"Letter Added/Removed"},
+      {arabic1:"بيع",translit1:"Bay'",meaning1:"Trade / Selling",freq1:7,arabic2:"سعي",translit2:"Sa'y",meaning2:"Effort / Pursuit",freq2:14,category:"One-Letter Swap"},
+      {arabic1:"ويل",translit1:"Wayl",meaning1:"Woe / ruin",freq1:11,arabic2:"كيل",translit2:"Kayl",meaning2:"Measure",freq2:9,category:"One-Letter Swap"},
+      {arabic1:"سعير",translit1:"Sa'eer",meaning1:"Blaze",freq1:16,arabic2:"صعيد",translit2:"Sa'eed",meaning2:"Earth / Soil",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"قرين",translit1:"Qareen",meaning1:"Companion / associate",freq1:3,arabic2:"قريب",translit2:"Qareeb",meaning2:"Near / Close",freq2:16,category:"One-Letter Swap"},
+      {arabic1:"دم",translit1:"Dam",meaning1:"Blood",freq1:10,arabic2:"عام",translit2:"Aam",meaning2:"Year",freq2:9,category:"One-Letter Swap"},
+      {arabic1:"عظم",translit1:"Azm",meaning1:"Bone",freq1:14,arabic2:"عم",translit2:"Amm",meaning2:"Uncle (paternal)",freq2:5,category:"One-Letter Swap"},
+      {arabic1:"شرق",translit1:"Sharq",meaning1:"East",freq1:17,arabic2:"شعر",translit2:"Sha'r",meaning2:"Hair",freq2:2,category:"Letter Added/Removed"},
+      {arabic1:"رأس",translit1:"Ra's",meaning1:"Head",freq1:17,arabic2:"رعد",translit2:"Ra'd",meaning2:"Thunder",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"تبارك",translit1:"Tabaarak",meaning1:"Blessed / exalted",freq1:12,arabic2:"تبار",translit2:"Tabaara",meaning2:"Perished / destroyed",freq2:6,category:"Letter Added/Removed"},
+      {arabic1:"يسر",translit1:"Yusr",meaning1:"Ease",freq1:6,arabic2:"عسر",translit2:"Usr",meaning2:"Hardship",freq2:12,category:"Letter Added/Removed"},
+      {arabic1:"نجم",translit1:"Najm",meaning1:"Star",freq1:13,arabic2:"نوم",translit2:"Nawm",meaning2:"Sleep",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"عمى",translit1:"Amaa",meaning1:"Blindness",freq1:4,arabic2:"أعداء",translit2:"A'daa'",meaning2:"Enemies",freq2:13,category:"One-Letter Swap"},
+      {arabic1:"مائة",translit1:"Mi'ah",meaning1:"Hundred",freq1:6,arabic2:"فئة",translit2:"Fi'ah",meaning2:"Group / Company",freq2:11,category:"One-Letter Swap"},
+      {arabic1:"ذراع",translit1:"Dhiraa'",meaning1:"Arm / Cubit",freq1:3,arabic2:"ذكرى",translit2:"Dhikraa",meaning2:"Reminder / Remembrance",freq2:14,category:"Letter Added/Removed"},
+      {arabic1:"جهر",translit1:"Jahr",meaning1:"Public / Loud",freq1:14,arabic2:"جار",translit2:"Jaar",meaning2:"Neighbor",freq2:3,category:"One-Letter Swap"},
+      {arabic1:"فاتحة",translit1:"Faatihah",meaning1:"The Opening",freq1:2,arabic2:"فاكهة",translit2:"Faakihah",meaning2:"Fruit",freq2:14,category:"One-Letter Swap"},
+      {arabic1:"ضعف",translit1:"Da'f",meaning1:"Weakness",freq1:6,arabic2:"دم",translit2:"Dam",meaning2:"Blood",freq2:10,category:"One-Letter Swap"},
+      {arabic1:"عمى",translit1:"Amaa",meaning1:"Blindness",freq1:4,arabic2:"عصا",translit2:"Asaa",meaning2:"Staff",freq2:12,category:"One-Letter Swap"},
+      {arabic1:"ظهر",translit1:"Zahr",meaning1:"Back",freq1:14,arabic2:"دهر",translit2:"Dahr",meaning2:"Time / Eternity",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"دهر",translit1:"Dahr",meaning1:"Time / Eternity",freq1:2,arabic2:"جهر",translit2:"Jahr",meaning2:"Public / Loud",freq2:14,category:"One-Letter Swap"},
+      {arabic1:"بعيد",translit1:"Ba'eed",meaning1:"Far / Distant",freq1:12,arabic2:"وعيد",translit2:"Wa'eed",meaning2:"Threat / Warning",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"بعيد",translit1:"Ba'eed",meaning1:"Far / Distant",freq1:12,arabic2:"صعيد",translit2:"Sa'eed",meaning2:"Earth / Soil",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"سعي",translit1:"Sa'y",meaning1:"Effort / Pursuit",freq1:14,arabic2:"فيء",translit2:"Fay'",meaning2:"Shadow / Shade",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"مقامع",translit1:"Maqaami'",meaning1:"Iron maces",freq1:1,arabic2:"مقام",translit2:"Maqaam",meaning2:"Station / Place",freq2:15,category:"Letter Added/Removed"},
+      {arabic1:"صيف",translit1:"Sayf",meaning1:"Summer",freq1:1,arabic2:"سعي",translit2:"Sa'y",meaning2:"Effort / Pursuit",freq2:14,category:"Letter Added/Removed"},
+      {arabic1:"عام",translit1:"Aam",meaning1:"Year",freq1:9,arabic2:"عم",translit2:"Amm",meaning2:"Uncle (paternal)",freq2:5,category:"One-Letter Swap"},
+      {arabic1:"عدس",translit1:"Adas",meaning1:"Lentils",freq1:1,arabic2:"أعداء",translit2:"A'daa'",meaning2:"Enemies",freq2:13,category:"One-Letter Swap"},
+      {arabic1:"خيل",translit1:"Khayl",meaning1:"Horses",freq1:5,arabic2:"كيل",translit2:"Kayl",meaning2:"Measure",freq2:9,category:"Letter Added/Removed"},
+      {arabic1:"حلال",translit1:"Halaal",meaning1:"Permissible / lawful",freq1:12,arabic2:"هلاك",translit2:"Halaak",meaning2:"Destruction",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"حلال",translit1:"Halaal",meaning1:"Permissible / lawful",freq1:12,arabic2:"هلال",translit2:"Hilaal",meaning2:"Crescent",freq2:1,category:"Vowel Shift"},
+      {arabic1:"لحم",translit1:"Lahm",meaning1:"Flesh / Meat",freq1:12,arabic2:"فهم",translit2:"Fahm",meaning2:"Understanding",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"عصر",translit1:"Asr",meaning1:"Afternoon / Time",freq1:1,arabic2:"عسر",translit2:"Usr",meaning2:"Hardship",freq2:12,category:"Vowel Shift"},
+      {arabic1:"عسل",translit1:"Asal",meaning1:"Honey",freq1:1,arabic2:"عصا",translit2:"Asaa",meaning2:"Staff",freq2:12,category:"One-Letter Swap"},
+      {arabic1:"شراب",translit1:"Sharaab",meaning1:"Drink",freq1:11,arabic2:"سراب",translit2:"Saraab",meaning2:"Mirage",freq2:2,category:"Letter Added/Removed"},
+      {arabic1:"لوح",translit1:"Lawh",meaning1:"Tablet",freq1:5,arabic2:"لون",translit2:"Lawn",meaning2:"Color",freq2:7,category:"One-Letter Swap"},
+      {arabic1:"واد",translit1:"Waad",meaning1:"Valley",freq1:9,arabic2:"وتد",translit2:"Watad",meaning2:"Peg / Stake",freq2:3,category:"Letter Added/Removed"},
+      {arabic1:"ضعف",translit1:"Da'f",meaning1:"Weakness",freq1:6,arabic2:"ضيف",translit2:"Dayf",meaning2:"Guest",freq2:5,category:"Letter Added/Removed"},
+      {arabic1:"سحاب",translit1:"Sahaab",meaning1:"Cloud",freq1:9,arabic2:"سراب",translit2:"Saraab",meaning2:"Mirage",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"بيع",translit1:"Bay'",meaning1:"Trade / Selling",freq1:7,arabic2:"بعل",translit2:"Ba'l",meaning2:"Husband",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"سكينة",translit1:"Sakeenah",meaning1:"Peace / Reassurance",freq1:6,arabic2:"سفينة",translit2:"Safeenah",meaning2:"Ship",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"بيع",translit1:"Bay'",meaning1:"Trade / Selling",freq1:7,arabic2:"فيء",translit2:"Fay'",meaning2:"Shadow / Shade",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"خيل",translit1:"Khayl",meaning1:"Horses",freq1:5,arabic2:"خال",translit2:"Khaal",meaning2:"Uncle (maternal)",freq2:3,category:"One-Letter Swap"},
+      {arabic1:"حوت",translit1:"Hoot",meaning1:"Whale / Fish",freq1:4,arabic2:"حور",translit2:"Hoor",meaning2:"Houris (Fair companions)",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"حرير",translit1:"Hareer",meaning1:"Silk",freq1:3,arabic2:"حريق",translit2:"Hareeq",meaning2:"Burning fire",freq2:5,category:"One-Letter Swap"},
+      {arabic1:"وعيد",translit1:"Wa'eed",meaning1:"Threat / Warning",freq1:4,arabic2:"صعيد",translit2:"Sa'eed",meaning2:"Earth / Soil",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"فجر",translit1:"Fajr",meaning1:"Dawn / daybreak",freq1:6,arabic2:"فقر",translit2:"Faqr",meaning2:"Poverty",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"حديد",translit1:"Hadeed",meaning1:"Iron",freq1:6,arabic2:"صديد",translit2:"Sadeed",meaning2:"Pus",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"كأس",translit1:"Ka's",meaning1:"Cup / Goblet",freq1:6,arabic2:"كعب",translit2:"Ka'b",meaning2:"Ankle",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"حر",translit1:"Harr",meaning1:"Heat",freq1:3,arabic2:"ذرة",translit2:"Dharr",meaning2:"Atom / Speck",freq2:4,category:"Letter Added/Removed"},
+      {arabic1:"عمى",translit1:"Amaa",meaning1:"Blindness",freq1:4,arabic2:"أمل",translit2:"Amal",meaning2:"Hope",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"عمى",translit1:"Amaa",meaning1:"Blindness",freq1:4,arabic2:"عمد",translit2:"Amad",meaning2:"Pillars",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"صيف",translit1:"Sayf",meaning1:"Summer",freq1:1,arabic2:"ضيف",translit2:"Dayf",meaning2:"Guest",freq2:5,category:"One-Letter Swap"},
+      {arabic1:"كلب",translit1:"Kalb",meaning1:"Dog",freq1:5,arabic2:"كعب",translit2:"Ka'b",meaning2:"Ankle",freq2:1,category:"Letter Added/Removed"},
+      {arabic1:"زنا",translit1:"Zinaa",meaning1:"Adultery / Fornication",freq1:2,arabic2:"بناء",translit2:"Binaa'",meaning2:"Building / Canopy",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"مجد",translit1:"Majd",meaning1:"Glory",freq1:1,arabic2:"مهد",translit2:"Mahd",meaning2:"Cradle",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"عمى",translit1:"Amaa",meaning1:"Blindness",freq1:4,arabic2:"أمام",translit2:"Amaam",meaning2:"Front / Before",freq2:1,category:"Letter Added/Removed"},
+      {arabic1:"صيف",translit1:"Sayf",meaning1:"Summer",freq1:1,arabic2:"سقف",translit2:"Saqf",meaning2:"Roof / Ceiling",freq2:4,category:"One-Letter Swap"},
+      {arabic1:"صعيد",translit1:"Sa'eed",meaning1:"Earth / Soil",freq1:4,arabic2:"صديد",translit2:"Sadeed",meaning2:"Pus",freq2:1,category:"Letter Added/Removed"},
+      {arabic1:"نجاة",translit1:"Najaah",meaning1:"Salvation",freq1:1,arabic2:"نعجة",translit2:"Na'jah",meaning2:"Ewe (female sheep)",freq2:3,category:"Letter Added/Removed"},
+      {arabic1:"معاد",translit1:"Ma'aad",meaning1:"Return",freq1:1,arabic2:"مقعد",translit2:"Maq'ad",meaning2:"Seat",freq2:3,category:"One-Letter Swap"},
+      {arabic1:"نحل",translit1:"Nahl",meaning1:"Bee",freq1:1,arabic2:"نمل",translit2:"Naml",meaning2:"Ant",freq2:3,category:"One-Letter Swap"},
+      {arabic1:"رعد",translit1:"Ra'd",meaning1:"Thunder",freq1:2,arabic2:"روض",translit2:"Rawd",meaning2:"Meadows",freq2:2,category:"Letter Added/Removed"},
+      {arabic1:"أمل",translit1:"Amal",meaning1:"Hope",freq1:2,arabic2:"عمد",translit2:"Amad",meaning2:"Pillars",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"حر",translit1:"Harr",meaning1:"Heat",freq1:3,arabic2:"حرف",translit2:"Harf",meaning2:"Edge / Letter",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"عاقر",translit1:"Aaqir",meaning1:"Barren (woman)",freq1:3,arabic2:"عابر",translit2:"Aabir",meaning2:"Passerby",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"حوض",translit1:"Hawd",meaning1:"Pool / Basin",freq1:1,arabic2:"روض",translit2:"Rawd",meaning2:"Meadows",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"عسل",translit1:"Asal",meaning1:"Honey",freq1:1,arabic2:"أمل",translit2:"Amal",meaning2:"Hope",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"شعر",translit1:"Sha'r",meaning1:"Hair",freq1:2,arabic2:"شعب",translit2:"Sha'b",meaning2:"People / Nation",freq2:1,category:"One-Letter Swap"},
+      {arabic1:"حياء",translit1:"Hayaa'",meaning1:"Shyness / Modesty",freq1:1,arabic2:"هباء",translit2:"Habaa'",meaning2:"Dust",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"صهر",translit1:"Sihr",meaning1:"Marriage relationship / In-law",freq1:1,arabic2:"سدر",translit2:"Sidr",meaning2:"Lote tree",freq2:2,category:"One-Letter Swap"},
+      {arabic1:"عسل",translit1:"Asal",meaning1:"Honey",freq1:1,arabic2:"بصل",translit2:"Basal",meaning2:"Onion",freq2:1,category:"Letter Added/Removed"}
+    ];
+
+    const PAIRS_PER_PAGE = 40;
+    let activeFilter = 'all';
+    let visibleCount = PAIRS_PER_PAGE;
+
+    function filterCategory(cat) {
+      activeFilter = cat;
+      visibleCount = PAIRS_PER_PAGE; // reset pagination on filter change
+      document.querySelectorAll('.category-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.getAttribute('data-cat') === cat);
+      });
+      renderPairs();
+      window.scrollTo({ top: document.getElementById('category-filters').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function loadMore() {
+      const prevCount = visibleCount;
+      visibleCount += PAIRS_PER_PAGE;
+      renderPairs();
+      // Scroll to the first newly loaded card
+      const cards = document.querySelectorAll('.pair-card');
+      if (cards[prevCount]) {
+        cards[prevCount].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function renderPairs() {
+      const grid = document.getElementById('pair-grid');
+      const noResults = document.getElementById('no-results');
+      const countEl = document.getElementById('pair-count');
+      const loadMoreContainer = document.getElementById('load-more-container');
+      const loadMoreText = document.getElementById('load-more-text');
+
+      const filtered = activeFilter === 'all'
+        ? SIMILAR_PAIRS
+        : SIMILAR_PAIRS.filter(p => p.category === activeFilter);
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noResults.style.display = '';
+        loadMoreContainer.style.display = 'none';
+        countEl.textContent = 'No pairs found';
+        return;
+      }
+
+      noResults.style.display = 'none';
+      const showing = Math.min(visibleCount, filtered.length);
+      countEl.textContent = `Showing ${showing} of ${filtered.length} confusable pair${filtered.length !== 1 ? 's' : ''}`;
+
+      grid.innerHTML = filtered.slice(0, visibleCount).map((p, i) => {
+        const badgeClass = p.category === 'One-Letter Swap' ? 'swap' : p.category === 'Vowel Shift' ? 'vowel' : 'added';
+        const badgeIcon = p.category === 'One-Letter Swap' ? '🔤' : p.category === 'Vowel Shift' ? '🔄' : '➕';
+        return `
+          <div class="pair-card">
+            <div class="pair-card-inner">
+              <div class="pair-category-badge ${badgeClass}">${badgeIcon} ${p.category}</div>
+              <div class="pair-words">
+                <div class="pair-word">
+                  <div class="pair-word-arabic" lang="ar" dir="rtl">${p.arabic1}</div>
+                  <div class="pair-word-translit">${p.translit1}</div>
+                  <div class="pair-word-meaning">${p.meaning1}</div>
+                  <div class="pair-word-freq">~${p.freq1}× in Quran</div>
+                </div>
+                <div class="pair-vs">vs</div>
+                <div class="pair-word">
+                  <div class="pair-word-arabic" lang="ar" dir="rtl">${p.arabic2}</div>
+                  <div class="pair-word-translit">${p.translit2}</div>
+                  <div class="pair-word-meaning">${p.meaning2}</div>
+                  <div class="pair-word-freq">~${p.freq2}× in Quran</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Show/hide load more button
+      if (visibleCount < filtered.length) {
+        loadMoreContainer.style.display = 'flex';
+        const remaining = filtered.length - visibleCount;
+        loadMoreText.textContent = `Load ${Math.min(PAIRS_PER_PAGE, remaining)} more (${remaining} remaining)`;
+      } else {
+        loadMoreContainer.style.display = 'none';
+      }
+    }
+
+    // ========== INIT ==========
+    renderPairs();
+
+    // ========== MOBILE MENU ==========
+    function toggleMobileMenu() {
+      const menu = document.getElementById('nav-mobile-menu');
+      const hamburger = document.getElementById('nav-hamburger');
+      const isOpen = menu.classList.contains('open');
+      menu.classList.toggle('open');
+      hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', !isOpen);
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    }
+  </script>
+</body>
+</html>
