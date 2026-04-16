@@ -281,6 +281,28 @@
       background: rgba(201, 168, 76, 0.1);
     }
 
+    .saved-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 9px;
+      background: rgba(201, 168, 76, 0.2);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+      margin-left: 4px;
+      transition: var(--transition-fast);
+    }
+
+    .saved-count:empty,
+    .saved-count[data-count="0"] {
+      display: none;
+    }
+
     /* ========== HAMBURGER MENU ========== */
     .nav-hamburger {
       display: none;
@@ -493,9 +515,9 @@
       font-family: 'Scheherazade New', 'Amiri', serif;
       font-size: clamp(48px, 9vw, 80px);
       font-weight: 700;
-      line-height: 1.2;
+      line-height: 1.4;
       color: var(--text-primary);
-      margin-bottom: 4px;
+      margin-bottom: 12px;
       direction: rtl;
       text-shadow: 0 0 60px rgba(201, 168, 76, 0.15);
       transition: opacity 0.3s ease, transform 0.3s ease;
@@ -508,7 +530,7 @@
       font-size: clamp(16px, 2.5vw, 22px);
       font-weight: 300;
       color: var(--accent);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       letter-spacing: 0.02em;
       font-style: italic;
       transition: opacity 0.3s ease, transform 0.3s ease;
@@ -518,7 +540,7 @@
       font-size: clamp(15px, 2vw, 18px);
       font-weight: 500;
       color: var(--text-secondary);
-      margin-bottom: 16px;
+      margin-bottom: 24px;
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
@@ -526,7 +548,7 @@
       width: 32px;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      margin: 0 auto 14px;
+      margin: 0 auto 24px;
       border-radius: 1px;
     }
 
@@ -558,13 +580,13 @@
     }
 
     .full-verse-label {
-      display: inline-block;
+      display: block;
       font-size: 12px;
       color: var(--primary-light);
       opacity: 1;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       font-weight: 600;
     }
 
@@ -1378,7 +1400,7 @@
       }
 
       .word-arabic {
-        margin-bottom: 4px;
+        margin-bottom: 8px;
       }
 
       .action-row {
@@ -1614,7 +1636,7 @@
           <button class="nav-link active" onclick="scrollToTop()" id="nav-daily">Daily Word</button>
           <button class="nav-link" onclick="scrollToRepository()" id="nav-explore">Explore</button>
           <a href="about.html" class="nav-link" id="nav-about">About</a>
-          <button class="nav-link" onclick="scrollToBookmarks()" id="nav-bookmarks">🔖 Saved</button>
+          <button class="nav-link" onclick="scrollToBookmarks()" id="nav-bookmarks">🔖 Saved <span class="saved-count" id="saved-count" data-count="0">0</span></button>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link" id="nav-feedback">Feedback</a>
           <div class="nav-progress">
             <div class="progress-bar-mini">
@@ -1636,7 +1658,7 @@
       <button class="nav-link active" onclick="scrollToTop(); closeMobileMenu()" id="nav-daily-mobile">Daily Word</button>
       <button class="nav-link" onclick="scrollToRepository(); closeMobileMenu()" id="nav-explore-mobile">Explore</button>
       <a href="about.html" class="nav-link">About</a>
-      <button class="nav-link" onclick="scrollToBookmarks(); closeMobileMenu()" id="nav-bookmarks-mobile">🔖 Saved</button>
+      <button class="nav-link" onclick="scrollToBookmarks(); closeMobileMenu()" id="nav-bookmarks-mobile">🔖 Saved <span class="saved-count" id="saved-count-mobile" data-count="0">0</span></button>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
       <div class="nav-progress">
         <div class="progress-bar-mini">
@@ -2128,6 +2150,22 @@
       const mobileText = document.getElementById('progress-text-mobile');
       if (mobileFill) mobileFill.style.width = pct + '%';
       if (mobileText) mobileText.textContent = `${state.viewedWords.size} viewed`;
+      // Update saved count badge in navbar
+      updateSavedCount();
+    }
+
+    function updateSavedCount() {
+      const count = state.bookmarkedWords.size;
+      const countEl = document.getElementById('saved-count');
+      const countMobileEl = document.getElementById('saved-count-mobile');
+      if (countEl) {
+        countEl.textContent = count;
+        countEl.setAttribute('data-count', count);
+      }
+      if (countMobileEl) {
+        countMobileEl.textContent = count;
+        countMobileEl.setAttribute('data-count', count);
+      }
     }
 
     // ========== CATEGORY FILTERS ==========
@@ -2465,12 +2503,15 @@
       state.bookmarkedWords.delete(wordId);
       persistState();
       renderBookmarksGrid();
+      updateSavedCount();
       // Also update the grid item in the explore section if visible
       const gridItem = document.querySelector(`.word-grid-item[data-word-id="${wordId}"]`);
       if (gridItem) gridItem.classList.remove('marked');
       // Update hero bookmark button if this is the current word
       const currentWord = quranVocabulary[state.currentIndex];
       if (currentWord && currentWord.id === wordId) updateBookmarkButton();
+      // Update modal bookmark button if this word is in the modal
+      if (state.modalWordId === wordId) updateModalBookmarkButton();
     }
 
     // Throttled scroll handler
