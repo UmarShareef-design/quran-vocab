@@ -303,6 +303,17 @@
       display: none;
     }
 
+    @keyframes saved-badge-pop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.35); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+
+    .saved-count.pop {
+      animation: saved-badge-pop 0.35s ease-out;
+    }
+
     /* ========== HAMBURGER MENU ========== */
     .nav-hamburger {
       display: none;
@@ -2158,14 +2169,18 @@
       const count = state.bookmarkedWords.size;
       const countEl = document.getElementById('saved-count');
       const countMobileEl = document.getElementById('saved-count-mobile');
-      if (countEl) {
-        countEl.textContent = count;
-        countEl.setAttribute('data-count', count);
-      }
-      if (countMobileEl) {
-        countMobileEl.textContent = count;
-        countMobileEl.setAttribute('data-count', count);
-      }
+      [countEl, countMobileEl].forEach(el => {
+        if (!el) return;
+        const prev = parseInt(el.getAttribute('data-count') || '0', 10);
+        el.textContent = count;
+        el.setAttribute('data-count', count);
+        if (count !== prev) {
+          // Trigger pop animation on change
+          el.classList.remove('pop');
+          void el.offsetWidth; // force reflow to restart animation
+          el.classList.add('pop');
+        }
+      });
     }
 
     // ========== CATEGORY FILTERS ==========
