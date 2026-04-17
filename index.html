@@ -1689,13 +1689,10 @@
       color: var(--accent);
       font-style: italic;
       margin-bottom: 4px;
-      opacity: 0;
+      opacity: 1;
       transition: opacity 0.3s ease;
     }
 
-    .quiz-word-transliteration.revealed {
-      opacity: 1;
-    }
 
     .quiz-options {
       display: grid;
@@ -2037,7 +2034,7 @@
       <div class="quiz-start active" id="quiz-start">
         <div class="quiz-start-icon">🕌</div>
         <div class="quiz-start-title">Ready to test yourself?</div>
-        <div class="quiz-start-desc">You'll see an Arabic word and pick the correct meaning from 4 options. You have 5 lives — how far can you go?</div>
+        <div class="quiz-start-desc">You'll see an Arabic word and pick the correct meaning from 4 options. You have 5 lives and 200 words — how far can you go?</div>
         <button class="btn btn-primary" onclick="startQuiz()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Start Quiz
@@ -2105,7 +2102,7 @@
     <section class="repository-section" id="repository">
       <div class="section-header">
         <h2 class="section-title">Explore more words of the Holy <span>Quran</span></h2>
-        <p class="section-subtitle">Browse all 100 words alphabetically — click any word for details</p>
+        <p class="section-subtitle">Browse all 600 words alphabetically — click any word for details</p>
       </div>
 
       <!-- Search -->
@@ -2139,6 +2136,8 @@
     <footer class="footer">
       <p>LearnQuranwords — Learn Quranic Arabic with 600 essential Quran words</p>
       <p style="margin-top:6px;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Feedback</a></p>
+
+      <p>Made with ❤️ by <a href="https://umarshareef.framer.website" target="_blank" rel="noopener">Umar Shareef</a></p>
     </footer>
   </div>
 
@@ -2864,7 +2863,8 @@
       correctIndex: -1,
       answered: false,
       usedWordIds: new Set(),
-      totalAnswered: 0
+      totalAnswered: 0,
+      maxQuestions: 200
     };
 
     function scrollToQuiz() {
@@ -2916,6 +2916,8 @@
       quizState.answered = false;
       quizState.usedWordIds = new Set();
       quizState.totalAnswered = 0;
+
+      quizState.maxQuestions = 200;
 
       document.getElementById('quiz-start').classList.remove('active');
       document.getElementById('quiz-play').style.display = 'block';
@@ -2971,7 +2973,7 @@
 
     function nextQuizQuestion() {
       let available = quranVocabulary.filter(w => !quizState.usedWordIds.has(w.id));
-      if (available.length === 0) {
+      if (available.length === 0 || quizState.totalAnswered >= quizState.maxQuestions) {
         endQuiz(true);
         return;
       }
@@ -2990,7 +2992,7 @@
       document.getElementById('quiz-word-arabic').textContent = displayArabic(word);
       const translitEl = document.getElementById('quiz-word-transliteration');
       translitEl.textContent = word.transliteration;
-      translitEl.classList.remove('revealed');
+
 
       // Render options
       const optionsContainer = document.getElementById('quiz-options');
@@ -3022,17 +3024,16 @@
       }
 
       // Reveal transliteration on answer
-      document.getElementById('quiz-word-transliteration').classList.add('revealed');
 
       if (isCorrect) {
-        showToast('✅ Correct!');
+
         quizState.score++;
         quizState.streak++;
         updateQuizScore();
         // Quick advance on correct answer
         setTimeout(() => nextQuizQuestion(), 1000);
       } else {
-        showToast('❌ Wrong!');
+
         quizState.streak = 0;
         quizState.lives--;
         updateQuizHearts();
