@@ -1226,27 +1226,7 @@
 
 
     /* ========== SAVE/REMOVE BUTTON ========== */
-    .btn-bookmark-remove {
-      flex-shrink: 0;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(201, 168, 76, 0.1);
-      border: 1px solid rgba(201, 168, 76, 0.2);
-      color: var(--accent);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition-fast);
-      padding: 0;
-    }
 
-    .btn-bookmark-remove:hover {
-      background: rgba(201, 168, 76, 0.2);
-      border-color: rgba(201, 168, 76, 0.35);
-      transform: scale(1.1);
-    }
 
     /* ========== FOOTER ========== */
     .footer {
@@ -1486,7 +1466,6 @@
     .sort-chip:focus-visible,
     .word-grid-item:focus-visible,
     .modal-close:focus-visible,
-    .btn-bookmark-remove:focus-visible,
     .scroll-top:focus-visible,
     .search-input:focus-visible,
     .nav-hamburger:focus-visible {
@@ -1986,7 +1965,7 @@
           <button class="nav-link" onclick="scrollToQuiz()" id="nav-quiz">🎯 Quiz</button>
           <a href="similar.html" class="nav-link" id="nav-similar">🔀 Similar</a>
           <a href="about.html" class="nav-link" id="nav-about">About</a>
-          <button class="nav-link" onclick="scrollToBookmarks()" id="nav-bookmarks">🔖 Saved <span class="saved-count" id="saved-count" data-count="0">0</span></button>
+          <a href="saved.html" class="nav-link" id="nav-bookmarks">🔖 Saved <span class="saved-count" id="saved-count" data-count="0">0</span></a>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link" id="nav-feedback">Feedback</a>
             </div>
         <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu" aria-expanded="false">
@@ -2004,7 +1983,7 @@
       <button class="nav-link" onclick="scrollToQuiz(); closeMobileMenu()" id="nav-quiz-mobile">🎯 Quiz</button>
       <a href="similar.html" class="nav-link">🔀 Similar</a>
       <a href="about.html" class="nav-link">About</a>
-      <button class="nav-link" onclick="scrollToBookmarks(); closeMobileMenu()" id="nav-bookmarks-mobile">🔖 Saved <span class="saved-count" id="saved-count-mobile" data-count="0">0</span></button>
+      <a href="saved.html" class="nav-link" id="nav-bookmarks-mobile">🔖 Saved <span class="saved-count" id="saved-count-mobile" data-count="0">0</span></a>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
     </div>
 
@@ -2120,20 +2099,6 @@
             Share Score
           </button>
         </div>
-      </div>
-    </section>
-
-    <!-- Saved Words Section -->
-    <section class="repository-section" id="bookmarks-section" style="display:none">
-      <div class="section-header">
-        <h2 class="section-title">🔖 <span>Saved Words</span></h2>
-        <p class="section-subtitle">Your saved words — stored locally so you can review anytime</p>
-      </div>
-      <div class="word-grid" id="bookmarks-grid"></div>
-      <div class="no-results" id="bookmarks-empty" style="display:none">
-        <div class="no-results-icon">🔖</div>
-        <div class="no-results-text">No saved words yet</div>
-        <div class="no-results-sub">Click the save icon on any word to save it here</div>
       </div>
     </section>
 
@@ -2804,7 +2769,6 @@
       // Show the explore section again if it was hidden by bookmarks/quiz
       document.getElementById('hero').style.display = '';
       document.getElementById('repository').style.display = '';
-      document.getElementById('bookmarks-section').style.display = 'none';
       document.getElementById('quiz-section').classList.remove('active');
       quizState.active = false;
       const shortcutHintTop = document.querySelector('.shortcut-hint');
@@ -2814,7 +2778,6 @@
 
     function scrollToRepository() {
       document.getElementById('hero').style.display = '';
-      document.getElementById('bookmarks-section').style.display = 'none';
       document.getElementById('repository').style.display = '';
       document.getElementById('quiz-section').classList.remove('active');
       quizState.active = false;
@@ -2824,71 +2787,7 @@
       setActiveNav('nav-explore');
     }
 
-    function scrollToBookmarks() {
-      document.getElementById('hero').style.display = '';
-      document.getElementById('repository').style.display = 'none';
-      document.getElementById('bookmarks-section').style.display = '';
-      document.getElementById('quiz-section').classList.remove('active');
-      quizState.active = false;
-      const shortcutHintBm = document.querySelector('.shortcut-hint');
-      if (shortcutHintBm) shortcutHintBm.style.display = '';
-      renderBookmarksGrid();
-      document.getElementById('bookmarks-section').scrollIntoView({ behavior: 'smooth' });
-      setActiveNav('nav-bookmarks');
-    }
 
-    function renderBookmarksGrid() {
-      const container = document.getElementById('bookmarks-grid');
-      const emptyMsg = document.getElementById('bookmarks-empty');
-      const bookmarkedWords = quranVocabulary.filter(w => state.bookmarkedWords.has(w.id));
-
-      if (bookmarkedWords.length === 0) {
-        container.innerHTML = '';
-        container.style.display = 'none';
-        emptyMsg.style.display = '';
-        return;
-      }
-
-      container.style.display = '';
-      emptyMsg.style.display = 'none';
-
-      container.innerHTML = bookmarkedWords.map(word => {
-        return `
-          <div class="word-grid-item marked" 
-               data-word-id="${word.id}"
-               onclick="openModal(${word.id})" 
-               tabindex="0"
-               role="button"
-               aria-label="${word.transliteration}, ${word.meaning}">
-            <div class="mark-dot"></div>
-            <div class="grid-item-arabic" lang="ar" dir="rtl">${displayArabic(word)}</div>
-            <div class="grid-item-info">
-              <div class="grid-item-transliteration">${word.transliteration}</div>
-              <div class="grid-item-meaning">${word.meaning}</div>
-              <div class="grid-item-verse">${formatVerseRefShort(word.verse)}</div>
-            </div>
-            <button class="btn-bookmark-remove" onclick="event.stopPropagation(); removeBookmark(${word.id})" title="Remove from saved">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-            </button>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function removeBookmark(wordId) {
-      state.bookmarkedWords.delete(wordId);
-      persistState();
-      updateSavedCount();
-      renderBookmarksGrid();
-      // Also update the grid item in the explore section if visible
-      const gridItem = document.querySelector(`.word-grid-item[data-word-id="${wordId}"]`);
-      if (gridItem) gridItem.classList.remove('marked');
-      // Update hero bookmark button if this is the current word
-      const currentWord = quranVocabulary[state.currentIndex];
-      if (currentWord && currentWord.id === wordId) updateBookmarkButton();
-      // Update modal bookmark button if this word is in the modal
-      if (state.modalWordId === wordId) updateModalBookmarkButton();
-    }
 
     // Throttled scroll handler
     let scrollTicking = false;
@@ -2901,12 +2800,8 @@
 
         const repoTop = document.getElementById('repository').getBoundingClientRect().top;
         const exploreActive = repoTop < window.innerHeight / 2;
-        const bookmarksSection = document.getElementById('bookmarks-section');
-        const bookmarksVisible = bookmarksSection.style.display !== 'none';
-        if (!bookmarksVisible) {
-          document.getElementById('nav-explore').classList.toggle('active', exploreActive);
-          document.getElementById('nav-daily').classList.toggle('active', !exploreActive);
-        }
+        document.getElementById('nav-explore').classList.toggle('active', exploreActive);
+        document.getElementById('nav-daily').classList.toggle('active', !exploreActive);
         scrollTicking = false;
       });
     }
@@ -2976,7 +2871,6 @@
     function scrollToQuiz() {
       document.getElementById('hero').style.display = 'none';
       document.getElementById('repository').style.display = 'none';
-      document.getElementById('bookmarks-section').style.display = 'none';
       document.getElementById('quiz-section').classList.add('active');
       quizState.active = true;
       const shortcutHint = document.querySelector('.shortcut-hint');
@@ -2990,8 +2884,8 @@
     }
 
     function setActiveNav(activeId) {
-      const desktopIds = ['nav-daily', 'nav-explore', 'nav-quiz', 'nav-bookmarks'];
-      const mobileIds = ['nav-daily-mobile', 'nav-explore-mobile', 'nav-quiz-mobile', 'nav-bookmarks-mobile'];
+      const desktopIds = ['nav-daily', 'nav-explore', 'nav-quiz'];
+      const mobileIds = ['nav-daily-mobile', 'nav-explore-mobile', 'nav-quiz-mobile'];
       desktopIds.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.toggle('active', id === activeId);
@@ -3256,6 +3150,26 @@
 
     // ========== INIT ==========
     function init() {
+      // Check for ?word= query parameter (deep link from saved.html)
+      const params = new URLSearchParams(window.location.search);
+      const wordParam = params.get('word');
+
+      if (wordParam) {
+        const foundWord = quranVocabulary.find(w => String(w.id) === String(wordParam));
+        if (foundWord) {
+          const idx = quranVocabulary.indexOf(foundWord);
+          state.currentIndex = idx;
+          renderWordCard(foundWord, false);
+          updateBookmarkButton();
+          persistState();
+          renderCategoryFilters();
+          renderWordGrid();
+          // Clean the URL without reloading
+          window.history.replaceState({}, '', window.location.pathname + window.location.hash);
+          return;
+        }
+      }
+
       // Check for deep link hash
       const hash = window.location.hash.replace('#', '');
       if (hash === 'quiz') {
