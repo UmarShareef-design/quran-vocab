@@ -485,6 +485,30 @@
       opacity: 1;
     }
 
+    .pair-source {
+      position: absolute;
+      top: 6px;
+      left: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 2px 7px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      background: rgba(45, 157, 111, 0.1);
+      border: 1px solid rgba(45, 157, 111, 0.18);
+      color: var(--primary-light);
+    }
+
+    .word-grid-item.from-pair {
+      border-color: rgba(45, 157, 111, 0.15);
+    }
+    .word-grid-item.from-pair:hover {
+      border-color: rgba(45, 157, 111, 0.3);
+    }
+
     /* ========== SAVE/REMOVE BUTTON ========== */
     .btn-bookmark-remove {
       flex-shrink: 0;
@@ -986,7 +1010,7 @@
       <div class="saved-hero">
         <span class="saved-hero-icon">🔖</span>
         <h1>Your <span>Saved Words</span></h1>
-        <p>Words you've bookmarked — stored locally so you can review anytime. Click any word to open it on the main page.</p>
+        <p>Words you've bookmarked from the Explore and Similar Words pages — stored locally so you can review anytime. Click any word to open it on the main page.</p>
       </div>
 
       <!-- Sort Controls -->
@@ -1017,7 +1041,7 @@
       <div class="no-results" id="bookmarks-empty" style="display:none">
         <div class="no-results-icon">🔖</div>
         <div class="no-results-text">No saved words yet</div>
-        <div class="no-results-sub">Click the save icon on any word to bookmark it here</div>
+        <div class="no-results-sub">Bookmark words from the Explore page or save pairs from the Similar Words page</div>
       </div>
 
       <!-- CTA -->
@@ -1073,7 +1097,8 @@
     <!-- Footer -->
     <footer class="footer">
       <p>LearnQuranwords — Learn Quranic Arabic with 600 essential Quran words</p>
-      <p style="margin-top:6px;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Feedback</a></p>
+      <p style="margin-top:6px;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Feedback</a></p>
+
       <p>Made with ❤️ by <a href="https://umarshareef.framer.website" target="_blank" rel="noopener">Umar Shareef</a></p>
     </footer>
   </div>
@@ -1084,8 +1109,8 @@
   </button>
 
   <!-- Data & App Logic -->
-  <script src="data.js"></script>
-  <script src="similar-data.js"></script>
+  <script src="data.js" defer></script>
+  <script src="similar-data.js" defer></script>
   <script>
     // ========== STATE ==========
     const SURAH_NAMES = {
@@ -1168,7 +1193,7 @@
       persistState();
       updateSavedCount();
       renderBookmarksGrid();
-    renderSavedPairs();
+      renderSavedPairs();
     }
 
     // ========== CLEAR ALL ==========
@@ -1189,15 +1214,105 @@
       renderBookmarksGrid();
     }
 
+    // ========== SAVED PAIRS STATE ==========
+    let savedPairs = new Set(JSON.parse(localStorage.getItem('qv_saved_pairs') || '[]'));
+
+    function persistPairs() {
+      try {
+        localStorage.setItem('qv_saved_pairs', JSON.stringify([...savedPairs]));
+      } catch(e) {}
+    }
+
+    // ========== PAIR WORD HELPERS ==========
+    function getArabicToWordMap() {
+      const map = {};
+      quranVocabulary.forEach(function(w) {
+        if (!map[w.arabic]) map[w.arabic] = w;
+      });
+      return map;
+    }
+
+    function getPairWords() {
+      if (typeof SIMILAR_PAIRS === 'undefined') return [];
+      const arabicMap = getArabicToWordMap();
+      const result = [];
+      const seenIds = new Set();
+      const seenArabic = new Set();
+
+      SIMILAR_PAIRS.forEach(function(p) {
+        var key = p.arabic1 + '|' + p.arabic2;
+        if (!savedPairs.has(key)) return;
+
+        [p.arabic1, p.arabic2].forEach(function(arabic, idx) {
+          var translit = idx === 0 ? p.translit1 : p.translit2;
+          var meaning = idx === 0 ? p.meaning1 : p.meaning2;
+          var freq = idx === 0 ? p.freq1 : p.freq2;
+          var pairKey = key;
+
+          // Skip if already bookmarked from Explore page
+          var vocabWord = arabicMap[arabic];
+          if (vocabWord && bookmarkedWords.has(vocabWord.id)) return;
+
+          // Skip duplicates (same arabic from different pairs)
+          if (seenArabic.has(arabic)) return;
+          seenArabic.add(arabic);
+
+          if (vocabWord) {
+            // Word exists in main vocabulary — use full data
+            if (seenIds.has(vocabWord.id)) return;
+            seenIds.add(vocabWord.id);
+            result.push({
+              word: vocabWord,
+              fromPair: true,
+              pairKey: pairKey
+            });
+          } else {
+            // Word only in pairs — create a pseudo-word object
+            result.push({
+              word: {
+                id: 'pair-' + arabic,
+                arabic: arabic,
+                transliteration: translit,
+                meaning: meaning,
+                frequency: freq,
+                verse: '',
+                example: ''
+              },
+              fromPair: true,
+              pairKey: pairKey
+            });
+          }
+        });
+      });
+      return result;
+    }
+
+    // ========== REMOVE PAIR WORD ==========
+    function removePairWord(pairKey) {
+      savedPairs.delete(pairKey);
+      persistPairs();
+      renderBookmarksGrid();
+      renderSavedPairs();
+    }
+
     // ========== RENDER ==========
     function renderBookmarksGrid() {
       const container = document.getElementById('bookmarks-grid');
       const emptyMsg = document.getElementById('bookmarks-empty');
       const clearAllContainer = document.getElementById('clear-all-container');
       const cta = document.getElementById('about-cta');
-      const words = quranVocabulary.filter(w => bookmarkedWords.has(w.id));
 
-      if (words.length === 0) {
+      // Collect bookmarked words from Explore page
+      const bookmarkedItems = quranVocabulary
+        .filter(w => bookmarkedWords.has(w.id))
+        .map(w => ({ word: w, fromPair: false, pairKey: null }));
+
+      // Collect words from saved similar pairs (not already bookmarked)
+      const pairItems = getPairWords();
+
+      const allItems = bookmarkedItems.concat(pairItems);
+
+      if (allItems.length === 0) {
         container.innerHTML = '';
         container.style.display = 'none';
         emptyMsg.style.display = '';
@@ -1215,31 +1330,47 @@
 
       // Sort
       if (sortBy === 'frequency') {
-        words.sort((a, b) => b.frequency - a.frequency);
+        allItems.sort((a, b) => b.word.frequency - a.word.frequency);
       } else {
-        words.sort((a, b) => {
-          const la = getMeaningLetter(a), lb = getMeaningLetter(b);
+        allItems.sort((a, b) => {
+          const la = getMeaningLetter(a.word), lb = getMeaningLetter(b.word);
           if (la !== lb) return la.localeCompare(lb);
-          return a.meaning.localeCompare(b.meaning);
+          return a.word.meaning.localeCompare(b.word.meaning);
         });
       }
 
-      container.innerHTML = words.map(word => {
+      container.innerHTML = allItems.map(item => {
+        const word = item.word;
+        const fromPair = item.fromPair;
+        const pairKey = item.pairKey;
+        const isBookmarked = bookmarkedWords.has(word.id);
+        const wordIdNum = typeof word.id === 'number' ? word.id : 0;
+        const clickHandler = wordIdNum ? `onclick="openWord(${wordIdNum})"` : '';
+        const removeHandler = isBookmarked
+          ? `onclick="event.stopPropagation(); removeBookmark(${word.id})"`
+          : pairKey
+            ? `onclick="event.stopPropagation(); removePairWord('${pairKey.replace(/'/g, "\\'")}')"`
+            : '';
+        const verseHtml = word.verse ? `<div class="grid-item-verse">${formatVerseRefShort(word.verse)}</div>` : '';
+        const pairBadge = fromPair ? '<span class="pair-source">🔗 Pair</span>' : '';
+        const itemClass = fromPair ? 'word-grid-item from-pair' : 'word-grid-item';
+
         return `
-          <div class="word-grid-item"
+          <div class="${itemClass}"
                data-word-id="${word.id}"
-               onclick="openWord(${word.id})"
+               ${clickHandler}
                tabindex="0"
                role="button"
                aria-label="${word.transliteration}, ${word.meaning}">
+            ${pairBadge}
             <div class="mark-dot"></div>
             <div class="grid-item-arabic" lang="ar" dir="rtl">${displayArabic(word)}</div>
             <div class="grid-item-info">
               <div class="grid-item-transliteration">${word.transliteration}</div>
               <div class="grid-item-meaning">${word.meaning}</div>
-              <div class="grid-item-verse">${formatVerseRefShort(word.verse)}</div>
+              ${verseHtml}
             </div>
-            <button class="btn-bookmark-remove" onclick="event.stopPropagation(); removeBookmark(${word.id})" title="Remove from saved" aria-label="Remove ${word.transliteration} from saved">
+            <button class="btn-bookmark-remove" ${removeHandler} title="Remove from saved" aria-label="Remove ${word.transliteration} from saved">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
             </button>
           </div>
@@ -1282,19 +1413,11 @@
     }
 
 
-    // ========== SAVED PAIRS STATE ==========
-    let savedPairs = new Set(JSON.parse(localStorage.getItem('qv_saved_pairs') || '[]'));
-
-    function persistPairs() {
-      try {
-        localStorage.setItem('qv_saved_pairs', JSON.stringify([...savedPairs]));
-      } catch(e) {}
-    }
-
     function removePair(key) {
       savedPairs.delete(key);
       persistPairs();
       renderSavedPairs();
+      renderBookmarksGrid();
     }
 
     function clearAllPairs() {
@@ -1302,6 +1425,7 @@
       savedPairs.clear();
       persistPairs();
       renderSavedPairs();
+      renderBookmarksGrid();
     }
 
     function renderSavedPairs() {
@@ -1361,11 +1485,14 @@
     }
 
     // ========== INIT ==========
-    updateSavedCount();
-    // Set sort chip state
-    document.getElementById('sort-alpha').classList.toggle('active', sortBy === 'alpha');
-    document.getElementById('sort-frequency').classList.toggle('active', sortBy === 'frequency');
-    renderBookmarksGrid();
+    document.addEventListener('DOMContentLoaded', function() {
+      updateSavedCount();
+      // Set sort chip state
+      document.getElementById('sort-alpha').classList.toggle('active', sortBy === 'alpha');
+      document.getElementById('sort-frequency').classList.toggle('active', sortBy === 'frequency');
+      renderBookmarksGrid();
+      renderSavedPairs();
+    });
   </script>
 </body>
 </html>
