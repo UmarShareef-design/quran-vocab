@@ -1,13 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#1a6b4a"/>
-  <path d="M6 7.5C6 6.7 6.7 6 7.5 6H15C15.6 6 16 6.4 16 7V24.5C15.5 24 14.8 23.5 14 23.5H7.5C6.7 23.5 6 22.8 6 22V7.5Z" fill="white"/>
-  <path d="M16 7C16 6.4 16.4 6 17 6H24.5C25.3 6 26 6.7 26 7.5V22C26 22.8 25.3 23.5 24.5 23.5H18C17.2 23.5 16.5 24 16 24.5V7Z" fill="white"/>
-  <line x1="8.5" y1="10" x2="13.5" y2="10" stroke="#1a6b4a" stroke-width="0.8" opacity="0.35"/>
-  <line x1="8.5" y1="13" x2="13.5" y2="13" stroke="#1a6b4a" stroke-width="0.8" opacity="0.35"/>
-  <line x1="8.5" y1="16" x2="13.5" y2="16" stroke="#1a6b4a" stroke-width="0.8" opacity="0.35"/>
-  <line x1="8.5" y1="19" x2="11.5" y2="19" stroke="#1a6b4a" stroke-width="0.8" opacity="0.35"/>
-  <line x1="18.5" y1="10" x2="23.5" y2="10" stroke="#1a6b4a" stroke-width="0.8" opacity="0.35"/>
-  <line x1="18.5" y1="13" x2="23.5" y2="13" stroke="#1a6b4a" stroke-width="0.8" opacity="0.35"/>
-  <line x1="18.5" y1="16" x2="23.5" y2="16" stroke="#1a6b4a" stroke-width="0.8" opacity="0.35"/>
-  <line x1="18.5" y1="19" x2="21.5" y2="19" stroke="#1a6b4a" stroke-width="0.8" opacity="0.35"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg9"
+   sodipodi:docname="favicon.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs9" />
+  <sodipodi:namedview
+     id="namedview9"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="24.15625"
+     inkscape:cx="13.888745"
+     inkscape:cy="16.331177"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg9" />
+  <rect
+     width="32"
+     height="32"
+     rx="6"
+     fill="#1a6b4a"
+     id="rect1"
+     style="fill:#401a6b;fill-opacity:1" />
+  <text
+     xml:space="preserve"
+     style="font-size:29.668px;writing-mode:lr-tb;direction:ltr;fill:#401a6b;fill-opacity:1;stroke-width:2.47233"
+     x="-0.57977527"
+     y="22.035513"
+     id="text9"><tspan
+       sodipodi:role="line"
+       id="tspan9"
+       x="-0.57977527"
+       y="22.035513"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Gabriola;-inkscape-font-specification:'Gabriola Italic';fill:#ffffff;fill-opacity:1;stroke-width:2.47233">lqw</tspan></text>
 </svg>
