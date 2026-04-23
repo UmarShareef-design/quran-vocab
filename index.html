@@ -1285,6 +1285,19 @@
         grid-template-columns: 1fr;
       }
       .quiz-option { padding: 14px 18px; }
+      .category-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .category-filters::-webkit-scrollbar { display: none; }
+      .category-chip {
+        flex-shrink: 0;
+      }
     }
 
     /* Quiz focus visible */
@@ -1437,9 +1450,8 @@
           <button class="quiz-option" onclick="selectQuizOption(2)">Prayer</button>
           <button class="quiz-option" onclick="selectQuizOption(3)">Patience</button>
         </div>
-      </div>
         <div class="quiz-correct-answer" id="quiz-correct-answer"></div>
-
+      </div>
 
       <!-- Quiz Game Over -->
       <div class="quiz-gameover" id="quiz-gameover">
@@ -2328,6 +2340,7 @@
 
     function endQuiz(perfect) {
       document.getElementById('quiz-play').style.display = 'none';
+      document.getElementById('quiz-correct-answer').classList.remove('visible');
       const gameOverEl = document.getElementById('quiz-gameover');
       gameOverEl.classList.add('active');
 
