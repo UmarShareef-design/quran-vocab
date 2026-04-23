@@ -71,6 +71,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://api.alquran.cloud" />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
@@ -227,7 +228,7 @@
     }
 
     .pair-word-freq {
-      font-size: 12px; color: var(--text-muted); opacity: 0.8;
+      font-size: 13px; color: var(--text-muted); opacity: 0.8;
     }
 
     .pair-vs {
@@ -403,9 +404,7 @@
     <!-- Initiative Credit -->
     <!-- Footer -->
     <footer class="footer">
-      <p>LearnQuranwords — Learn Quranic Arabic with 600 essential Quran words</p>
-      <p style="margin-top:6px;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Feedback</a></p>
-
+      <p>LearnQuranwords — Learn Quranic Arabic with 600 essential Quran words · <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Feedback</a></p>
       <p>Made with ❤️ by <a href="https://umarshareef.framer.website" target="_blank" rel="noopener">Umar Shareef</a></p>
     </footer>
   </div>
@@ -415,17 +414,10 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
 
+  <script src="shared.js" defer></script>
   <script src="similar-data.js" defer></script>
 <script>
-    // ========== SCROLL TO TOP LOGIC ==========
-    window.addEventListener('scroll', function() {
-      const btn = document.getElementById('scroll-top');
-      if (window.scrollY > 400) {
-        btn.classList.add('visible');
-      } else {
-        btn.classList.remove('visible');
-      }
-    });
+    // Scroll to top — handled by initScrollToTop() in shared.js
 
 
     const PAIRS_PER_PAGE = 10;
@@ -538,32 +530,12 @@
       }
     }
 
-    // ========== MOBILE MENU ==========
-    function toggleMobileMenu() {
-      const menu = document.getElementById('nav-mobile-menu');
-      const hamburger = document.getElementById('nav-hamburger');
-      const isOpen = menu.classList.contains('open');
-      menu.classList.toggle('open');
-      hamburger.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', !isOpen);
-      document.body.style.overflow = isOpen ? '' : 'hidden';
-    }
-      // ========== SAVED COUNT SYNC ==========
-    (function syncSavedCount() {
-      try {
-        const bookmarked = JSON.parse(localStorage.getItem('qv_bookmarked') || '[]');
-        const count = bookmarked.length;
-        ['saved-count', 'saved-count-mobile'].forEach(id => {
-          const el = document.getElementById(id);
-          if (el) {
-            el.textContent = count;
-            el.dataset.count = count;
-          }
-        });
-      } catch(e) {}
-    })();
+    // toggleMobileMenu — now in shared.js
+    // syncSavedCount — now in shared.js
 
     document.addEventListener('DOMContentLoaded', function() {
+      initScrollToTop();
+      syncSavedCount();
       renderPairs();
     });
   </script>

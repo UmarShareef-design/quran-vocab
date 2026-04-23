@@ -7,7 +7,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="alternate icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a6b4a'/%3E%3Cpath d='M6 7.5C6 6.7 6.7 6 7.5 6H15C15.6 6 16 6.4 16 7V24.5C15.5 24 14.8 23.5 14 23.5H7.5C6.7 23.5 6 22.8 6 22V7.5Z' fill='white'/%3E%3Cpath d='M16 7C16 6.4 16.4 6 17 6H24.5C25.3 6 26 6.7 26 7.5V22C26 22.8 25.3 23.5 24.5 23.5H18C17.2 23.5 16.5 24 16 24.5V7Z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="alternate icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%235b21b6'/%3E%3Cpath d='M6 7.5C6 6.7 6.7 6 7.5 6H15C15.6 6 16 6.4 16 7V24.5C15.5 24 14.8 23.5 14 23.5H7.5C6.7 23.5 6 22.8 6 22V7.5Z' fill='white'/%3E%3Cpath d='M16 7C16 6.4 16.4 6 17 6H24.5C25.3 6 26 6.7 26 7.5V22C26 22.8 25.3 23.5 24.5 23.5H18C17.2 23.5 16.5 24 16 24.5V7Z' fill='white'/%3E%3C/svg%3E" />
   <link rel="manifest" href="manifest.json" />
 
   <!-- SEO Meta Tags -->
@@ -69,21 +69,28 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://api.alquran.cloud" />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* ========== PAGE-SPECIFIC STYLES ========== */
     .hero-section {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
-      padding: 32px 24px;
+      padding: 32px 24px 48px;
+      min-height: calc(100vh - 80px);
     }
 
     .hero-content {
       max-width: 680px;
       width: 100%;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
     }
 
 
@@ -134,25 +141,25 @@
 
     .word-card-category {
       display: inline-block;
-      padding: 4px 12px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       color: var(--accent);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
     }
 
     .word-arabic {
       font-family: 'Scheherazade New', 'Amiri', serif;
       font-size: clamp(48px, 9vw, 80px);
       font-weight: 700;
-      line-height: 1.4;
+      line-height: 1.3;
       color: var(--text-primary);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       direction: rtl;
       text-shadow: 0 0 60px rgba(255, 255, 255, 0.15);
       transition: opacity 0.3s ease, transform 0.3s ease;
@@ -165,7 +172,7 @@
       font-size: clamp(16px, 2.5vw, 22px);
       font-weight: 300;
       color: var(--accent);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       letter-spacing: 0.02em;
       font-style: italic;
       transition: opacity 0.3s ease, transform 0.3s ease;
@@ -175,34 +182,39 @@
       font-size: clamp(15px, 2vw, 18px);
       font-weight: 500;
       color: var(--text-secondary);
-      margin-bottom: 24px;
+      margin-bottom: 28px;
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .word-divider {
-      width: 32px;
+      width: 48px;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
       margin: 0 auto 24px;
       border-radius: 1px;
+      opacity: 0.6;
     }
 
     .word-example {
       font-size: clamp(14px, 2vw, 16px);
-      color: white;
-      line-height: 1.5;
+      color: var(--text-secondary);
+      line-height: 1.7;
       max-width: 520px;
       margin: 0 auto;
       transition: opacity 0.3s ease, transform 0.3s ease;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .word-example .arabic-part {
       font-family: 'Scheherazade New', 'Amiri', serif;
       font-size: 1.1em;
-      color: white;
+      color: var(--text-primary);
       direction: rtl;
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
       text-rendering: optimizeLegibility;
       font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "mark" 1, "mkmk" 1;
       letter-spacing: normal;
@@ -216,18 +228,19 @@
 
     .full-verse-label {
       display: block;
-      font-size: 12px;
+      font-size: 14px;
       color: var(--primary-light);
       opacity: 1;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 8px;
       font-weight: 600;
+      line-height: 1.4;
     }
 
     /* ========== VERSE REFERENCE ========== */
     .word-verse {
-      margin-top: 16px;
+      margin-top: 20px;
       display: flex;
       justify-content: center;
       transition: opacity 0.3s ease, transform 0.3s ease;
@@ -562,18 +575,19 @@
     }
 
     .grid-item-meaning {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-muted);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      line-height: 1.4;
     }
 
     .grid-item-verse {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--primary-light);
       opacity: 1;
-      margin-top: 1px;
+      margin-top: 3px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -860,7 +874,7 @@
     .modal-example {
       font-size: 15px;
       color: white;
-      line-height: 1.5;
+      line-height: 1.65;
     }
 
     .modal-example .arabic-part {
@@ -1009,7 +1023,7 @@
     }
 
     .quiz-question-label {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -1482,9 +1496,7 @@
     </main>
     <!-- Footer -->
     <footer class="footer">
-      <p>LearnQuranwords — Learn Quranic Arabic with 600 essential Quran words</p>
-      <p style="margin-top:6px;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Feedback</a></p>
-
+      <p>LearnQuranwords — Learn Quranic Arabic with 600 essential Quran words · <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Feedback</a></p>
       <p>Made with ❤️ by <a href="https://umarshareef.framer.website" target="_blank" rel="noopener">Umar Shareef</a></p>
     </footer>
   </div>
@@ -1567,7 +1579,8 @@
   </noscript>
 
   <!-- Data & App Logic -->
-  <script src="data.js"></script>
+  <script src="shared.js" defer></script>
+  <script src="data.js" defer></script>
   <script>
     // ========== APP STATE ==========
     const state = {
@@ -1616,58 +1629,9 @@
       return newIndex;
     }
 
-    function parseExample(example) {
-      const parts = example.split(' — ');
-      if (parts.length === 2) {
-        return { arabic: parts[0], english: parts[1] };
-      }
-      return { arabic: '', english: example };
-    }
+    // parseExample — now in shared.js
 
-    // Surah name lookup (1–114)
-    const SURAH_NAMES = {
-      1:'Al-Fatihah',2:'Al-Baqarah',3:'Ali \'Imran',4:'An-Nisa',5:'Al-Ma\'idah',
-      6:'Al-An\'am',7:'Al-A\'raf',8:'Al-Anfal',9:'At-Tawbah',10:'Yunus',
-      11:'Hud',12:'Yusuf',13:'Ar-Ra\'d',14:'Ibrahim',15:'Al-Hijr',
-      16:'An-Nahl',17:'Al-Isra',18:'Al-Kahf',19:'Maryam',20:'Taha',
-      21:'Al-Anbya',22:'Al-Hajj',23:'Al-Mu\'minun',24:'An-Nur',25:'Al-Furqan',
-      26:'Ash-Shu\'ara',27:'An-Naml',28:'Al-Qasas',29:'Al-\'Ankabut',30:'Ar-Rum',
-      31:'Luqman',32:'As-Sajdah',33:'Al-Ahzab',34:'Saba',35:'Fatir',
-      36:'Ya-Sin',37:'As-Saffat',38:'Sad',39:'Az-Zumar',40:'Ghafir',
-      41:'Fussilat',42:'Ash-Shuraa',43:'Az-Zukhruf',44:'Ad-Dukhan',45:'Al-Jathiyah',
-      46:'Al-Ahqaf',47:'Muhammad',48:'Al-Fath',49:'Al-Hujurat',50:'Qaf',
-      51:'Adh-Dhariyat',52:'At-Tur',53:'An-Najm',54:'Al-Qamar',55:'Ar-Rahman',
-      56:'Al-Waqi\'ah',57:'Al-Hadid',58:'Al-Mujadila',59:'Al-Hashr',60:'Al-Mumtahanah',
-      61:'As-Saf',62:'Al-Jumu\'ah',63:'Al-Munafiqun',64:'At-Taghabun',65:'At-Talaq',
-      66:'At-Tahrim',67:'Al-Mulk',68:'Al-Qalam',69:'Al-Haqqah',70:'Al-Ma\'arij',
-      71:'Nuh',72:'Al-Jinn',73:'Al-Muzzammil',74:'Al-Muddaththir',75:'Al-Qiyamah',
-      76:'Al-Insan',77:'Al-Mursalat',78:'An-Naba',79:'An-Nazi\'at',80:'\'Abasa',
-      81:'At-Takwir',82:'Al-Infitar',83:'Al-Mutaffifin',84:'Al-Inshiqaq',85:'Al-Buruj',
-      86:'At-Tariq',87:'Al-A\'la',88:'Al-Ghashiyah',89:'Al-Fajr',90:'Al-Balad',
-      91:'Ash-Shams',92:'Al-Layl',93:'Ad-Duhaa',94:'Ash-Sharh',95:'At-Tin',
-      96:'Al-\'Alaq',97:'Al-Qadr',98:'Al-Bayyinah',99:'Az-Zalzalah',100:'Al-\'Adiyat',
-      101:'Al-Qari\'ah',102:'At-Takathur',103:'Al-\'Asr',104:'Al-Humazah',105:'Al-Fil',
-      106:'Quraysh',107:'Al-Ma\'un',108:'Al-Kawthar',109:'Al-Kafirun',110:'An-Nasr',
-      111:'Al-Masad',112:'Al-Ikhlas',113:'Al-Falaq',114:'An-Nas'
-    };
-
-    function formatVerseRef(verse) {
-      const [surah, ayah] = verse.split(':');
-      const name = SURAH_NAMES[parseInt(surah)] || `Surah ${surah}`;
-      return `Surah ${name}, Verse ${ayah}`;
-    }
-
-    // Short format for compact grid items (drops "Surah" prefix and "Verse" label)
-    function formatVerseRefShort(verse) {
-      const [surah, ayah] = verse.split(':');
-      const name = SURAH_NAMES[parseInt(surah)] || `Surah ${surah}`;
-      return `${name}, ${ayah}`;
-    }
-
-    function verseLink(verse) {
-      const [surah, ayah] = verse.split(':');
-      return `https://quran.com/${surah}/${ayah}`;
-    }
+    // SURAH_NAMES, formatVerseRef, formatVerseRefShort, verseLink — now in shared.js
 
     // ========== FULL VERSE API ==========
     const VERSE_CACHE_KEY = 'qv_verses';
@@ -1724,25 +1688,9 @@
       });
     }
 
-    // ========== DISPLAY ARABIC WITH HARAKAAT ==========
-    // Returns the fully voweled form for display, falls back to bare arabic
-    function displayArabic(word) {
-      return VOCALIZED[word.id] || word.arabic;
-    }
+    // displayArabic — now in shared.js
 
-    // Get the grouping letter from a word's English meaning
-    // Ignores leading articles/stop-words (The, A, An, He, etc.) for better grouping
-    const STOP_WORDS = ['the', 'a', 'an', 'he', 'she', 'they', 'you', 'his', 'her', 'its', 'and', 'or', 'from', 'in', 'of', 'to', 'is', 'was', 'were', 'most', 'very', 'that', 'this', 'those', 'these'];
-
-    function getMeaningLetter(word) {
-      let text = word.meaning.toLowerCase().replace(/[^a-z ]/g, '').trim();
-      // Skip leading stop words
-      const words = text.split(/\s+/);
-      let i = 0;
-      while (i < words.length && STOP_WORDS.includes(words[i])) i++;
-      const key = words[i] || words[0] || ' ';
-      return key.charAt(0).toUpperCase();
-    }
+    // STOP_WORDS, getMeaningLetter — now in shared.js
 
     function getCategories() {
       const cats = new Set(quranVocabulary.map(w => getMeaningLetter(w)));
@@ -2170,33 +2118,9 @@
       }
     });
 
-    // Enter/Space on grid items
-    document.addEventListener('keydown', (e) => {
-      if ((e.code === 'Enter' || e.code === 'Space') && e.target.classList.contains('word-grid-item')) {
-        e.preventDefault();
-        e.target.click();
-      }
-    });
+    // Grid keyboard nav — now via initGridKeyboardNav() in shared.js
 
-    // ========== MOBILE MENU ==========
-    function toggleMobileMenu() {
-      const menu = document.getElementById('nav-mobile-menu');
-      const hamburger = document.getElementById('nav-hamburger');
-      const isOpen = menu.classList.contains('open');
-      menu.classList.toggle('open');
-      hamburger.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', !isOpen);
-      document.body.style.overflow = isOpen ? '' : 'hidden';
-    }
-
-    function closeMobileMenu() {
-      const menu = document.getElementById('nav-mobile-menu');
-      const hamburger = document.getElementById('nav-hamburger');
-      menu.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
+    // toggleMobileMenu, closeMobileMenu — now in shared.js
 
     // ========== QUIZ MODE ==========
     const quizState = {
@@ -2552,7 +2476,11 @@
       }
     });
 
-    init();
+    // With defer on data.js, wait for DOMContentLoaded to ensure data is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      initGridKeyboardNav();
+      init();
+    });
   </script>
 </body>
 </html>

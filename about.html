@@ -104,6 +104,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://api.alquran.cloud" />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
@@ -357,48 +358,19 @@
     <!-- Initiative Credit -->
     <!-- Footer -->
     <footer class="footer">
-      <p>LearnQuranwords — Learn Quranic Arabic with 600 essential Quran words</p>
-      <p style="margin-top:6px;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Feedback</a></p>
-
+      <p>LearnQuranwords — Learn Quranic Arabic with 600 essential Quran words · <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Feedback</a></p>
       <p>Made with ❤️ by <a href="https://umarshareef.framer.website" target="_blank" rel="noopener">Umar Shareef</a></p>
     </footer>
   </div>
 
+  <script src="shared.js" defer></script>
   <script>
-    function toggleMobileMenu() {
-      const menu = document.getElementById('nav-mobile-menu');
-      const hamburger = document.getElementById('nav-hamburger');
-      const isOpen = menu.classList.contains('open');
-      menu.classList.toggle('open');
-      hamburger.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', !isOpen);
-      document.body.style.overflow = isOpen ? '' : 'hidden';
-    }
+    // toggleMobileMenu, scroll-to-top, syncSavedCount — now in shared.js
 
-  
-    // Scroll to top visibility
-    (function() {
-      var btn = document.getElementById('scroll-top');
-      if (!btn) return;
-      window.addEventListener('scroll', function() {
-        btn.classList.toggle('visible', window.scrollY > 400);
-      });
-    })();
-      // ========== SAVED COUNT SYNC ==========
-    (function syncSavedCount() {
-      try {
-        const bookmarked = JSON.parse(localStorage.getItem('qv_bookmarked') || '[]');
-        const count = bookmarked.length;
-        ['saved-count', 'saved-count-mobile'].forEach(id => {
-          const el = document.getElementById(id);
-          if (el) {
-            el.textContent = count;
-            el.dataset.count = count;
-          }
-        });
-      } catch(e) {}
-    })();
-
+    document.addEventListener('DOMContentLoaded', function() {
+      initScrollToTop();
+      syncSavedCount();
+    });
   </script>
   <!-- Scroll to top -->
   <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
