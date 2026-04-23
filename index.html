@@ -1601,23 +1601,8 @@
     }
 
     function updateSavedCount() {
-      const count = state.bookmarkedWords.size;
-      const el = document.getElementById('saved-count');
-      const mobileEl = document.getElementById('saved-count-mobile');
-      if (el) {
-        const prev = el.dataset.count;
-        el.textContent = count;
-        el.dataset.count = count;
-        if (prev !== String(count)) {
-          el.classList.remove('pop');
-          void el.offsetWidth; // reflow
-          el.classList.add('pop');
-        }
-      }
-      if (mobileEl) {
-        mobileEl.textContent = count;
-        mobileEl.dataset.count = count;
-      }
+      // Delegate to shared.js which counts both individual bookmarks AND pair-saved words
+      syncSavedCount();
     }
 
     // ========== UTILITY ==========

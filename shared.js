@@ -76,17 +76,47 @@ function parseExample(example) {
 }
 
 // ========== SAVED COUNT SYNC ==========
+// Counts: individual bookmarked words + unique words from saved similar pairs
 function syncSavedCount() {
   try {
     const bookmarked = JSON.parse(localStorage.getItem('qv_bookmarked') || '[]');
-    const count = bookmarked.length;
+    const savedPairs = JSON.parse(localStorage.getItem('qv_saved_pairs') || '[]');
+    
+    // Count words from saved pairs (words derived from pair keys)
+    const pairWordIds = new Set();
+    if (savedPairs.length > 0 && typeof SIMILAR_PAIRS !== 'undefined') {
+      savedPairs.forEach(function(key) {
+        SIMILAR_PAIRS.forEach(function(p) {
+          const pairKey = p.arabic1 + '|' + p.arabic2;
+          if (pairKey === key) {
+            // Find word IDs for both words in the pair
+            if (typeof quranVocabulary !== 'undefined') {
+              quranVocabulary.forEach(function(w) {
+                if (w.arabic === p.arabic1 || w.arabic === p.arabic2) {
+                  pairWordIds.add(w.id);
+                }
+              });
+            }
+          }
+        });
+      });
+    }
+    
+    // Exclude pair words that are already individually bookmarked
+    const bookmarkedSet = new Set(bookmarked);
+    const uniquePairWordIds = [...pairWordIds].filter(function(id) {
+      return !bookmarkedSet.has(id);
+    });
+    
+    const totalCount = bookmarked.length + uniquePairWordIds.length;
+    
     ['saved-count', 'saved-count-mobile'].forEach(id => {
       const el = document.getElementById(id);
       if (el) {
         const prev = el.dataset.count;
-        el.textContent = count;
-        el.dataset.count = count;
-        if (prev !== String(count) && typeof el.offsetWidth !== 'undefined') {
+        el.textContent = totalCount;
+        el.dataset.count = totalCount;
+        if (prev !== String(totalCount) && typeof el.offsetWidth !== 'undefined') {
           el.classList.remove('pop');
           void el.offsetWidth; // reflow
           el.classList.add('pop');
