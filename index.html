@@ -774,12 +774,13 @@
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(8px);
       display: flex;
-      align-items: center;
+      align-items: safe center;
       justify-content: center;
       padding: 24px;
       opacity: 0;
       visibility: hidden;
       transition: var(--transition-smooth);
+      overflow-y: auto;
     }
 
     .modal-overlay.open {
@@ -794,9 +795,11 @@
       background: var(--bg-mid);
       border: 1px solid var(--glass-border);
       backdrop-filter: blur(40px);
-      overflow: hidden;
+      overflow-y: auto;
       transform: scale(0.9) translateY(20px);
       transition: var(--transition-smooth);
+      max-height: calc(100vh - 48px);
+      max-height: calc(100dvh - 48px);
     }
 
     .modal-overlay.open .modal {
@@ -808,6 +811,13 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: var(--bg-mid);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      padding-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
     .modal-close {
@@ -890,10 +900,16 @@
     }
 
     .modal-footer {
-      padding: 0 32px 24px;
+      padding: 12px 32px 24px;
       display: flex;
       justify-content: center;
       gap: 12px;
+      position: sticky;
+      bottom: 0;
+      z-index: 2;
+      background: var(--bg-mid);
+      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
     }
 
 
@@ -1266,6 +1282,26 @@
       max-width: 400px;
       margin: 0 auto 28px;
       line-height: 1.7;
+    }
+
+    /* Modal responsive */
+    @media (max-width: 768px) {
+      .modal-overlay { padding: 12px; align-items: flex-start; }
+      .modal { max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); border-radius: var(--radius-lg); }
+      .modal-header { padding: 20px 20px 8px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+      .modal-body { padding: 16px 20px 20px; }
+      .modal-footer { padding: 8px 20px 16px; }
+      .modal-arabic { font-size: 48px; }
+      .modal-close { width: 40px; height: 40px; font-size: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .modal-overlay { padding: 8px; align-items: flex-start; }
+      .modal { max-height: calc(100vh - 16px); max-height: calc(100dvh - 16px); }
+      .modal-header { padding: 16px 16px 6px; }
+      .modal-body { padding: 12px 16px 16px; }
+      .modal-footer { padding: 8px 16px 12px; flex-wrap: wrap; }
+      .modal-arabic { font-size: 40px; }
     }
 
     /* Quiz responsive */
@@ -2372,7 +2408,7 @@
     }
 
     function shareQuizScore() {
-      const text = `🎯 I scored ${quizState.score}/${quizState.totalAnswered} on the LearnQuranwords Quiz!\n\nTest your Quranic Arabic knowledge at learnquranwords.com/#quiz`;
+      const text = `🎯 I just scored ${quizState.score}/${quizState.totalAnswered} in the Quran words quiz app. Can you beat my score?\n\nBtw it's sadaqah jaariah to encourage such activities (In sha Allah) 🤲`;
       const url = 'https://learnquranwords.com/#quiz';
 
       if (navigator.share) {
