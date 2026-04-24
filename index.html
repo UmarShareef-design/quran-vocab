@@ -67,10 +67,19 @@
   }]
   </script>
 
+  <!-- Preconnect for faster connections -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="https://api.alquran.cloud" />
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <!-- Non-blocking font loading - prevents render blocking (2,280ms savings) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" /></noscript>
+  
+  <!-- Critical fallback fonts to prevent CLS during font load -->
+  <style>
+    body{font-family:system-ui,-apple-system,sans-serif}.word-arabic,.word-example .arabic-part,.modal-arabic,.modal-example .arabic-part,.pair-word-arabic,.grid-item-arabic,.word-verse a,.modal-verse a{font-family:Georgia,'Times New Roman',serif}
+  </style>
   <link rel="stylesheet" href="styles.css" />
   <style>
     /* ========== PAGE-SPECIFIC STYLES ========== */
@@ -85,6 +94,7 @@
     .hero-content {
       max-width: 680px;
       width: 100%;
+      min-height: 400px;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -764,6 +774,64 @@
       flex: 1;
       height: 1px;
       background: var(--glass-border);
+    }
+
+    /* Pagination for word grid */
+    .word-grid-container {
+      position: relative;
+    }
+
+    .word-grid-pagination {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .word-grid-pagination.visible {
+      display: flex;
+    }
+
+    .page-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .page-btn:hover {
+      background: var(--glass-hover);
+      color: var(--text-primary);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .page-btn.active {
+      background: rgba(167, 139, 250, 0.2);
+      border-color: rgba(167, 139, 250, 0.4);
+      color: var(--primary-light);
+    }
+
+    .page-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .page-info {
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 0 8px;
     }
 
     /* ========== MODAL ========== */
@@ -1538,7 +1606,10 @@
       </div>
 
       <!-- Word Grid -->
-      <div class="word-grid" id="word-grid"></div>
+      <div class="word-grid-container">
+        <div class="word-grid" id="word-grid"></div>
+        <div class="word-grid-pagination" id="word-grid-pagination"></div>
+      </div>
     </section>
 
     </main>
@@ -1639,6 +1710,8 @@
       searchQuery: '',
       modalWordId: null,
       isAnimating: false,
+      currentPage: 1,
+      wordsPerPage: 50, // Paginate to reduce DOM size from 5000+ elements
     };
 
     // ========== LOCALSTORAGE PERSISTENCE ==========
@@ -1870,6 +1943,7 @@
     // ========== WORD GRID ==========
     function renderWordGrid() {
       const container = document.getElementById('word-grid');
+      const paginationContainer = document.getElementById('word-grid-pagination');
       const words = getFilteredWords();
 
       if (words.length === 0) {
@@ -1880,24 +1954,33 @@
             <div class="no-results-sub">Try a different search or category</div>
           </div>
         `;
+        paginationContainer.classList.remove('visible');
         return;
       }
+
+      // Reset to page 1 when filter changes
+      state.currentPage = 1;
+
+      const totalPages = Math.ceil(words.length / state.wordsPerPage);
+      const startIndex = (state.currentPage - 1) * state.wordsPerPage;
+      const endIndex = Math.min(startIndex + state.wordsPerPage, words.length);
+      const pageWords = words.slice(startIndex, endIndex);
 
       let html = '';
 
       if (state.sortBy === 'frequency') {
         // Frequency-sorted: flat list with rank groups
-        const topTier = words.filter(w => w.frequency >= 100);
-        const midTier = words.filter(w => w.frequency >= 30 && w.frequency < 100);
-        const lowTier = words.filter(w => w.frequency < 30);
+        const topTier = pageWords.filter(w => w.frequency >= 100);
+        const midTier = pageWords.filter(w => w.frequency >= 30 && w.frequency < 100);
+        const lowTier = pageWords.filter(w => w.frequency < 30);
 
         const tiers = [
-          { label: 'High Frequency (100+)', tier: topTier, icon: '🔥' },
-          { label: 'Medium Frequency (30–99)', tier: midTier, icon: '📘' },
-          { label: 'Lower Frequency (<30)', tier: lowTier, icon: '📗' },
+          { label: 'High Frequency (100+)', tier: topTier },
+          { label: 'Medium Frequency (30–99)', tier: midTier },
+          { label: 'Lower Frequency (<30)', tier: lowTier },
         ];
 
-        tiers.forEach(({ label, tier, icon }) => {
+        tiers.forEach(({ label, tier }) => {
           if (tier.length === 0) return;
           html += `
             <div class="category-group-header">
@@ -1929,7 +2012,7 @@
       } else {
         // Alphabetical: group by category
         const groups = {};
-        words.forEach(w => {
+        pageWords.forEach(w => {
           const letter = getMeaningLetter(w);
           if (!groups[letter]) groups[letter] = [];
           groups[letter].push(w);
@@ -1938,11 +2021,9 @@
         const sortedCats = Object.keys(groups).sort();
 
         sortedCats.forEach(cat => {
-          // Count how many words in this group
           const count = groups[cat].length;
           html += `
             <div class="category-group-header">
-
               <div class="category-group-label">${cat} · ${count} word${count !== 1 ? 's' : ''}</div>
               <div class="category-group-line"></div>
             </div>
@@ -1971,6 +2052,62 @@
       }
 
       container.innerHTML = html;
+
+      // Render pagination
+      if (totalPages > 1) {
+        paginationContainer.classList.add('visible');
+        renderPagination(totalPages);
+      } else {
+        paginationContainer.classList.remove('visible');
+      }
+    }
+
+    function renderPagination(totalPages) {
+      const container = document.getElementById('word-grid-pagination');
+      let html = '';
+
+      // Previous button
+      html += `<button class="page-btn" onclick="goToPage(${state.currentPage - 1})" ${state.currentPage === 1 ? 'disabled' : ''}>‹</button>`;
+
+      // Page numbers
+      const maxVisible = 5;
+      let startPage = Math.max(1, state.currentPage - Math.floor(maxVisible / 2));
+      let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+      
+      if (endPage - startPage < maxVisible - 1) {
+        startPage = Math.max(1, endPage - maxVisible + 1);
+      }
+
+      if (startPage > 1) {
+        html += `<button class="page-btn" onclick="goToPage(1)">1</button>`;
+        if (startPage > 2) html += `<span class="page-info">...</span>`;
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        html += `<button class="page-btn ${i === state.currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+      }
+
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) html += `<span class="page-info">...</span>`;
+        html += `<button class="page-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
+      }
+
+      // Next button
+      html += `<button class="page-btn" onclick="goToPage(${state.currentPage + 1})" ${state.currentPage === totalPages ? 'disabled' : ''}>›</button>`;
+
+      container.innerHTML = html;
+    }
+
+    function goToPage(page) {
+      const words = getFilteredWords();
+      const totalPages = Math.ceil(words.length / state.wordsPerPage);
+      if (page < 1 || page > totalPages) return;
+      
+      state.currentPage = page;
+      renderWordGrid();
+      
+      // Scroll to grid
+      document.getElementById('word-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // ========== MODAL ==========

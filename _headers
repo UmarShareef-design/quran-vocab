@@ -1,0 +1,17 @@
+# GitHub Pages Custom Headers
+# https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages
+
+# Static assets - cache for 1 year (immutable for versioned files)
+/data.js
+  Cache-Control: max-age=31536000, immutable
+/styles.css
+  Cache-Control: max-age=31536000, immutable
+/shared.js
+  Cache-Control: max-age=31536000, immutable
+
+# HTML pages - shorter cache (can be updated)
+# No specific header needed - GitHub Pages default is fine for index.html
+
+# Google Fonts woff2 files - cache for 1 year (hash-versioned, immutable)
+/fonts.gstatic.com/*
+  Cache-Control: max-age=31536000, immutable
