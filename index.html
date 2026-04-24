@@ -778,8 +778,6 @@
     /* Pagination for word grid */
     .word-grid-container {
       position: relative;
-      content-visibility: auto;
-      contain-intrinsic-size: 1px 2000px;
     }
 
     .word-grid-pagination {
@@ -1470,6 +1468,7 @@
     <section class="hero-section" id="hero">
       <div class="hero-content">
 
+        <!-- Pre-rendered default word for fast LCP paint - JS updates dynamically -->
         <div class="word-card visible" id="word-card" aria-live="polite">
           <div class="word-card-inner">
             <div class="word-card-category" id="card-category">~2816× in Quran</div>
