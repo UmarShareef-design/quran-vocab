@@ -53,7 +53,7 @@
     },
     "author": {
       "@type": "Person",
-      "name": "Umar Shareef",
+      "name": "Umar Shareef"
     }
   }, {
     "@context": "https://schema.org",
@@ -1442,9 +1442,9 @@
           <button class="nav-link active" onclick="scrollToTop()" id="nav-daily">Daily Word</button>
           <button class="nav-link" onclick="scrollToRepository()" id="nav-explore">Explore</button>
           <button class="nav-link" onclick="scrollToQuiz()" id="nav-quiz">Take a Quiz</button>
-          <a href="similar.html" class="nav-link" id="nav-similar">Similar Words</a>
-          <a href="about.html" class="nav-link" id="nav-about">About</a>
-          <a href="saved.html" class="nav-link" id="nav-bookmarks">🔖 Saved <span class="saved-count" id="saved-count" data-count="0">0</span></a>
+          <a href="similar" class="nav-link" id="nav-similar">Similar Words</a>
+          <a href="about" class="nav-link" id="nav-about">About</a>
+          <a href="saved" class="nav-link" id="nav-bookmarks">🔖 Saved <span class="saved-count" id="saved-count" data-count="0">0</span></a>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link" id="nav-feedback">Feedback</a>
             </div>
         <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu" aria-expanded="false">
@@ -1460,9 +1460,9 @@
       <button class="nav-link active" onclick="scrollToTop(); closeMobileMenu()" id="nav-daily-mobile">Daily Word</button>
       <button class="nav-link" onclick="scrollToRepository(); closeMobileMenu()" id="nav-explore-mobile">Explore</button>
       <button class="nav-link" onclick="scrollToQuiz(); closeMobileMenu()" id="nav-quiz-mobile">Take a Quiz</button>
-      <a href="similar.html" class="nav-link">Similar Words</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="saved.html" class="nav-link" id="nav-bookmarks-mobile">🔖 Saved <span class="saved-count" id="saved-count-mobile" data-count="0">0</span></a>
+      <a href="similar" class="nav-link">Similar Words</a>
+      <a href="about" class="nav-link">About</a>
+      <a href="saved" class="nav-link" id="nav-bookmarks-mobile">🔖 Saved <span class="saved-count" id="saved-count-mobile" data-count="0">0</span></a>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
     </div>
 
@@ -1698,7 +1698,7 @@
         <li style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);"><span lang="ar" dir="rtl">مُؤْمِنٌ</span> (Mu'min) — Believer — Surah Al-Baqarah, Verse 25</li>
         <li style="padding:8px 0;"><span lang="ar" dir="rtl">مُسْتَقِيمٌ</span> (Mustaqeem) — Straight / upright — Surah Al-Fatihah, Verse 6</li>
       </ul>
-      <p style="margin-top:20px;"><a href="about.html" style="color:#7c3aed;">Learn more about LearnQuranwords</a> — Visit <a href="https://learnquranwords.com" style="color:#7c3aed;">learnquranwords.com</a> for the full interactive experience.</p>
+      <p style="margin-top:20px;"><a href="about" style="color:#7c3aed;">Learn more about LearnQuranwords</a> — Visit <a href="https://learnquranwords.com" style="color:#7c3aed;">learnquranwords.com</a> for the full interactive experience.</p>
     </section>
   </noscript>
 
@@ -1777,12 +1777,36 @@
     // (WeakMap avoids leaks — keys are DOM elements that get GC'd when removed)
     const verseRenderIds = new WeakMap();
 
+    function setVerseContent(containerEl, verseLabel, arabicText, englishText, isLoading) {
+      if (!containerEl) return;
+      containerEl.textContent = '';
+
+      const labelEl = document.createElement('span');
+      labelEl.className = 'full-verse-label';
+      labelEl.textContent = verseLabel;
+
+      const arabicEl = document.createElement('span');
+      arabicEl.className = isLoading ? 'arabic-part verse-loading' : 'arabic-part';
+      arabicEl.setAttribute('lang', 'ar');
+      arabicEl.setAttribute('dir', 'rtl');
+      arabicEl.textContent = arabicText || '';
+
+      containerEl.appendChild(labelEl);
+      containerEl.appendChild(arabicEl);
+      containerEl.appendChild(document.createTextNode(englishText || ''));
+    }
+
     function renderFullVerse(containerEl, word, fallbackParsed) {
       const myId = (verseRenderIds.get(containerEl) || 0) + 1;
       verseRenderIds.set(containerEl, myId);
       // Immediately show the partial excerpt
-      containerEl.innerHTML = `<span class="full-verse-label">${formatVerseRef(word.verse)}</span>` +
-        `<span class="arabic-part verse-loading" lang="ar" dir="rtl">${fallbackParsed.arabic}</span>${fallbackParsed.english}`;
+      setVerseContent(
+        containerEl,
+        formatVerseRef(word.verse),
+        fallbackParsed.arabic,
+        fallbackParsed.english,
+        true
+      );
       
       // Then fetch and render the full verse
       fetchFullVerse(word.verse).then(verse => {
@@ -1793,9 +1817,13 @@
           if (arabicPart) arabicPart.classList.remove('verse-loading');
           return;
         }
-        containerEl.innerHTML = 
-          `<span class="full-verse-label">${formatVerseRef(word.verse)}</span>` +
-          `<span class="arabic-part" lang="ar" dir="rtl">${verse.arabic}</span>${verse.english}`;
+        setVerseContent(
+          containerEl,
+          formatVerseRef(word.verse),
+          verse.arabic,
+          verse.english,
+          false
+        );
       });
     }
 
@@ -2241,6 +2269,7 @@
       document.getElementById('repository').style.display = '';
       document.getElementById('quiz-section').classList.remove('active');
       quizState.active = false;
+      setQuizMode(false);
       const shortcutHintTop = document.querySelector('.shortcut-hint');
       if (shortcutHintTop) shortcutHintTop.style.display = '';
       setActiveNav('nav-daily');
@@ -2251,6 +2280,7 @@
       document.getElementById('repository').style.display = '';
       document.getElementById('quiz-section').classList.remove('active');
       quizState.active = false;
+      setQuizMode(false);
       const shortcutHintRepo = document.querySelector('.shortcut-hint');
       if (shortcutHintRepo) shortcutHintRepo.style.display = '';
       document.getElementById('repository').scrollIntoView({ behavior: 'smooth' });
@@ -2606,7 +2636,7 @@
 
     // ========== INIT ==========
     function init() {
-      // Check for ?word= query parameter (deep link from saved.html)
+      // Check for ?word= query parameter (deep link from saved page)
       const params = new URLSearchParams(window.location.search);
       const wordParam = params.get('word');
 

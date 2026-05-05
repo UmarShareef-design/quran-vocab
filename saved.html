@@ -694,17 +694,17 @@
     <!-- Navigation -->
     <nav class="navbar">
       <div class="navbar-inner">
-        <a href="index.html" class="nav-brand">
+        <a href="./" class="nav-brand">
           <div class="nav-brand-icon">📖</div>
           <div class="nav-brand-text">LearnQuran<span>words</span></div>
         </a>
         <div class="nav-links">
-          <a href="index.html" class="nav-link">Daily Word</a>
-          <a href="index.html#repository" class="nav-link">Explore</a>
-          <a href="index.html#quiz" class="nav-link">Take a Quiz</a>
-          <a href="similar.html" class="nav-link">Similar Words</a>
-          <a href="about.html" class="nav-link">About</a>
-          <a href="saved.html" class="nav-link active">🔖 Saved <span class="saved-count" id="saved-count" data-count="0">0</span></a>
+          <a href="./" class="nav-link">Daily Word</a>
+          <a href="./#repository" class="nav-link">Explore</a>
+          <a href="./#quiz" class="nav-link">Take a Quiz</a>
+          <a href="similar" class="nav-link">Similar Words</a>
+          <a href="about" class="nav-link">About</a>
+          <a href="saved" class="nav-link active">🔖 Saved <span class="saved-count" id="saved-count" data-count="0">0</span></a>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
         </div>
         <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu" aria-expanded="false">
@@ -717,12 +717,12 @@
 
     <!-- Mobile Menu -->
     <div class="nav-mobile-menu" id="nav-mobile-menu">
-      <a href="index.html" class="nav-link">Daily Word</a>
-      <a href="index.html#repository" class="nav-link">Explore</a>
-      <a href="index.html#quiz" class="nav-link">Take a Quiz</a>
-      <a href="similar.html" class="nav-link">Similar Words</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="saved.html" class="nav-link active">🔖 Saved <span class="saved-count" id="saved-count-mobile" data-count="0">0</span></a>
+      <a href="./" class="nav-link">Daily Word</a>
+      <a href="./#repository" class="nav-link">Explore</a>
+      <a href="./#quiz" class="nav-link">Take a Quiz</a>
+      <a href="similar" class="nav-link">Similar Words</a>
+      <a href="about" class="nav-link">About</a>
+      <a href="saved" class="nav-link active">🔖 Saved <span class="saved-count" id="saved-count-mobile" data-count="0">0</span></a>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
     </div>
 
@@ -778,7 +778,7 @@
       <div class="about-cta" id="about-cta">
         <h2>Start Building Your <span>Vocabulary</span></h2>
         <p>Browse all 600 Quran words and save the ones you want to review later.</p>
-        <a href="index.html" class="btn btn-primary">
+        <a href="./" class="btn btn-primary">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
           Explore Words
         </a>
@@ -806,14 +806,14 @@
         <div class="pairs-empty" id="pairs-empty">
           <div class="pairs-empty-icon">🔗</div>
           <div class="pairs-empty-text">No saved pairs yet</div>
-          <div class="pairs-empty-sub">Tap the bookmark icon on any pair in <a href="similar.html">Similar Sounding Words</a> to save it here</div>
+          <div class="pairs-empty-sub">Tap the bookmark icon on any pair in <a href="similar">Similar Sounding Words</a> to save it here</div>
         </div>
 
         <!-- CTA -->
         <div class="about-cta" id="pairs-cta">
           <h2>Explore Similar <span>Pairs</span></h2>
           <p>Discover confusable Quran word pairs and bookmark the ones you want to review later.</p>
-          <a href="similar.html" class="btn btn-primary">
+          <a href="similar" class="btn btn-primary">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             Explore Similar Pairs
           </a>
@@ -992,7 +992,7 @@
 
     // ========== OPEN WORD ==========
     function openWord(wordId) {
-      window.location.href = 'index.html?word=' + wordId;
+      window.location.href = './?word=' + wordId;
     }
 
     // ========== RENDER SAVED PAIRS ==========
@@ -1068,4 +1068,4 @@
     });
   </script>
 </body>
-</html>
+</html>

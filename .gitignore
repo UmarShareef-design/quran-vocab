@@ -12,3 +12,9 @@ nul
 
 # Build artifacts
 lighthouse-audit.json
+lighthouse-reports/
+lighthouse-reportstmp/
+*.report.html
+
+# Dependencies
+node_modules/

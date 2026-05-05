@@ -3,6 +3,28 @@
    Extracted from inline scripts for reuse
    ============================================ */
 
+// ========== CLEAN URL NORMALIZATION ==========
+// Keep .html out of the address bar when pages are opened directly.
+function normalizeExtensionlessUrl() {
+  try {
+    if (window.location.protocol !== 'http:' && window.location.protocol !== 'https:') return;
+    const path = window.location.pathname;
+    if (!/\.html$/i.test(path)) return;
+
+    let cleanPath = path.replace(/index\.html$/i, '');
+    cleanPath = cleanPath.replace(/\.html$/i, '');
+    if (cleanPath === '') cleanPath = '/';
+
+    const current = path + window.location.search + window.location.hash;
+    const target = cleanPath + window.location.search + window.location.hash;
+    if (current !== target) {
+      window.history.replaceState({}, '', target);
+    }
+  } catch(e) {}
+}
+
+normalizeExtensionlessUrl();
+
 // ========== SURAH NAME LOOKUP (1–114) ==========
 const SURAH_NAMES = {
   1:'Al-Fatihah',2:'Al-Baqarah',3:'Ali \'Imran',4:'An-Nisa',5:'Al-Ma\'idah',
