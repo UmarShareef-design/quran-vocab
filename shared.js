@@ -26,8 +26,83 @@ function normalizeExtensionlessUrl() {
 normalizeExtensionlessUrl();
 
 // ========== GA4 EVENT TRACKING ==========
+const GA_MEASUREMENT_ID = 'G-7PB10R3FZK';
+const ANALYTICS_CONSENT_KEY = 'lqw_analytics_consent';
+let analyticsScriptLoaded = false;
+
+function getAnalyticsConsent() {
+  try {
+    return localStorage.getItem(ANALYTICS_CONSENT_KEY);
+  } catch(e) {
+    return null;
+  }
+}
+
+function hasAnalyticsConsent() {
+  return getAnalyticsConsent() === 'granted';
+}
+
+function loadGoogleAnalytics() {
+  if (analyticsScriptLoaded || !hasAnalyticsConsent()) return;
+  analyticsScriptLoaded = true;
+  window['ga-disable-' + GA_MEASUREMENT_ID] = false;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+  window.gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  window.gtag('js', new Date());
+  window.gtag('config', GA_MEASUREMENT_ID);
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_MEASUREMENT_ID);
+  document.head.appendChild(script);
+}
+
+function deleteAnalyticsCookies() {
+  const hostParts = window.location.hostname.split('.');
+  const domains = [window.location.hostname];
+  if (hostParts.length > 2) domains.push('.' + hostParts.slice(-2).join('.'));
+  if (hostParts.length > 1) domains.push('.' + window.location.hostname);
+
+  document.cookie.split(';').forEach(function(cookie) {
+    const name = cookie.split('=')[0].trim();
+    if (!/^_ga($|_)|^_gid$|^_gat/.test(name)) return;
+    document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
+    domains.forEach(function(domain) {
+      document.cookie = name + '=; Max-Age=0; path=/; domain=' + domain + '; SameSite=Lax';
+    });
+  });
+}
+
+function setAnalyticsConsent(status) {
+  try {
+    localStorage.setItem(ANALYTICS_CONSENT_KEY, status);
+  } catch(e) {}
+
+  if (status === 'granted') {
+    window['ga-disable-' + GA_MEASUREMENT_ID] = false;
+    loadGoogleAnalytics();
+    trackEvent('analytics_consent_update', { analytics_consent: 'granted' });
+  } else {
+    if (typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', { analytics_storage: 'denied' });
+    }
+    window['ga-disable-' + GA_MEASUREMENT_ID] = true;
+    deleteAnalyticsCookies();
+  }
+
+  renderConsentControls();
+}
+
 function trackEvent(eventName, params) {
   try {
+    if (!hasAnalyticsConsent()) return;
+    loadGoogleAnalytics();
     if (typeof window.gtag !== 'function') return;
     window.gtag('event', eventName, Object.assign({
       page_path: window.location.pathname
@@ -54,6 +129,9 @@ function getWordTrackingParams(word, extraParams) {
 }
 
 function initSharedAnalytics() {
+  if (hasAnalyticsConsent()) loadGoogleAnalytics();
+  renderConsentControls();
+
   document.addEventListener('click', function(event) {
     const link = event.target.closest('a');
     if (!link || !link.href) return;
@@ -82,6 +160,55 @@ function initSharedAnalytics() {
 }
 
 document.addEventListener('DOMContentLoaded', initSharedAnalytics);
+
+function renderConsentControls(forceOpen) {
+  let banner = document.getElementById('cookie-consent-banner');
+  let prefsButton = document.getElementById('cookie-preferences-button');
+  const consent = getAnalyticsConsent();
+  const shouldShowBanner = forceOpen || !consent;
+
+  if (!banner) {
+    banner = document.createElement('section');
+    banner.id = 'cookie-consent-banner';
+    banner.className = 'cookie-consent';
+    banner.setAttribute('aria-labelledby', 'cookie-consent-title');
+    banner.innerHTML = `
+      <div class="cookie-consent__content">
+        <div>
+          <h2 id="cookie-consent-title">Analytics preferences</h2>
+          <p>We use Google Analytics to understand which Quran vocabulary features help learners. Choose whether analytics data can be collected. Necessary site features still work either way.</p>
+        </div>
+        <div class="cookie-consent__actions">
+          <button type="button" class="cookie-consent__btn cookie-consent__btn--secondary" id="cookie-consent-reject">Reject analytics</button>
+          <button type="button" class="cookie-consent__btn cookie-consent__btn--primary" id="cookie-consent-accept">Accept analytics</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(banner);
+    document.getElementById('cookie-consent-reject').addEventListener('click', function() {
+      setAnalyticsConsent('denied');
+    });
+    document.getElementById('cookie-consent-accept').addEventListener('click', function() {
+      setAnalyticsConsent('granted');
+    });
+  }
+
+  if (!prefsButton) {
+    prefsButton = document.createElement('button');
+    prefsButton.type = 'button';
+    prefsButton.id = 'cookie-preferences-button';
+    prefsButton.className = 'cookie-preferences-button';
+    prefsButton.textContent = 'Privacy choices';
+    prefsButton.addEventListener('click', function() {
+      renderConsentControls(true);
+    });
+    document.body.appendChild(prefsButton);
+  }
+
+  banner.classList.toggle('visible', shouldShowBanner);
+  banner.setAttribute('aria-hidden', shouldShowBanner ? 'false' : 'true');
+  prefsButton.classList.toggle('visible', Boolean(consent) && !shouldShowBanner);
+}
 
 // ========== SURAH NAME LOOKUP (1–114) ==========
 const SURAH_NAMES = {
