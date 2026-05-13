@@ -518,7 +518,7 @@
       <div class="about-cta" id="about-cta">
         <h2>Start Building Your <span>Vocabulary</span></h2>
         <p>Browse all 600 Quran words and save the ones you want to review later.</p>
-        <a href="./" class="btn btn-primary">
+        <a href="./" class="btn btn-primary" onclick="trackEvent('saved_page_empty_cta_click')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
           Explore Words
         </a>
@@ -567,27 +567,42 @@
       var words = getBookmarkedWords();
       var idx = words.indexOf(wordId);
       if (idx > -1) {
+        var word = quranVocabulary.find(function(w) { return w.id === wordId; });
         words.splice(idx, 1);
         saveBookmarkedWords(words);
         updateSavedCount();
         renderBookmarksGrid();
+        trackEvent('bookmark_remove', getWordTrackingParams(word, {
+          source: 'saved_page',
+          total_saved: words.length
+        }));
       }
     }
 
     // ========== RESET ALL DATA ==========
     function resetAllData() {
       if (!confirm('This will remove all saved words. Continue?')) return;
+      var previousCount = getBookmarkedWords().length;
       saveBookmarkedWords([]);
       updateSavedCount();
       renderBookmarksGrid();
+      trackEvent('reset_saved_data', {
+        source: 'saved_page_reset',
+        previous_saved_count: previousCount
+      });
     }
 
     // ========== CLEAR ALL BOOKMARKS ==========
     function clearAllBookmarks() {
       if (!confirm('Remove all saved words? This cannot be undone.')) return;
+      var previousCount = getBookmarkedWords().length;
       saveBookmarkedWords([]);
       updateSavedCount();
       renderBookmarksGrid();
+      trackEvent('reset_saved_data', {
+        source: 'saved_page_clear_all',
+        previous_saved_count: previousCount
+      });
     }
 
     // ========== SORT ==========
@@ -597,6 +612,11 @@
       document.getElementById('sort-alpha').classList.toggle('active', mode === 'alpha');
       document.getElementById('sort-frequency').classList.toggle('active', mode === 'frequency');
       renderBookmarksGrid();
+      trackEvent('sort_select', {
+        sort_by: mode,
+        page: 'saved',
+        results_count: getBookmarkedWords().length
+      });
     }
 
     // ========== RENDER BOOKMARKS (Individual words only) ==========
@@ -659,6 +679,10 @@
 
     // ========== OPEN WORD ==========
     function openWord(wordId) {
+      var word = quranVocabulary.find(function(w) { return w.id === wordId; });
+      trackEvent('word_open', getWordTrackingParams(word, {
+        source: 'saved_page'
+      }));
       window.location.href = './?word=' + wordId;
     }
 

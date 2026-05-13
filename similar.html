@@ -448,7 +448,17 @@
       localStorage.setItem('qv_saved_pairs', JSON.stringify([...savedPairs]));
     }
 
+    function getFilteredPairs() {
+      return activeFilter === 'all'
+        ? SIMILAR_PAIRS
+        : activeFilter === 'saved'
+          ? SIMILAR_PAIRS.filter(p => savedPairs.has(p.arabic1+'|'+p.arabic2))
+          : SIMILAR_PAIRS.filter(p => p.category === activeFilter);
+    }
+
     function togglePairSave(key) {
+      const pair = SIMILAR_PAIRS.find(p => p.arabic1 + '|' + p.arabic2 === key);
+      const wasSaved = savedPairs.has(key);
       if (savedPairs.has(key)) {
         savedPairs.delete(key);
       } else {
@@ -457,6 +467,11 @@
       saveSavedPairs();
       renderPairs();
       syncSavedCount(); // Update the saved count badge across all pages
+      trackEvent(wasSaved ? 'similar_pair_remove' : 'similar_pair_save', {
+        pair_key: key,
+        category: pair ? pair.category : '',
+        total_saved_pairs: savedPairs.size
+      });
     }
 
     function filterCategory(cat) {
@@ -466,6 +481,10 @@
         chip.classList.toggle('active', chip.getAttribute('data-cat') === cat);
       });
       renderPairs();
+      trackEvent('similar_filter_select', {
+        category: cat,
+        results_count: getFilteredPairs().length
+      });
       window.scrollTo({ top: document.getElementById('category-filters').offsetTop - 80, behavior: 'smooth' });
     }
 
@@ -473,6 +492,11 @@
       const prevCount = visibleCount;
       visibleCount += PAIRS_PER_PAGE;
       renderPairs();
+      trackEvent('similar_load_more', {
+        category: activeFilter,
+        visible_count: Math.min(visibleCount, getFilteredPairs().length),
+        results_count: getFilteredPairs().length
+      });
       // Scroll to the first newly loaded card
       const cards = document.querySelectorAll('.pair-card');
       if (cards[prevCount]) {
@@ -487,11 +511,7 @@
       const loadMoreContainer = document.getElementById('load-more-container');
       const loadMoreText = document.getElementById('load-more-text');
 
-      const filtered = activeFilter === 'all'
-        ? SIMILAR_PAIRS
-        : activeFilter === 'saved'
-          ? SIMILAR_PAIRS.filter(p => savedPairs.has(p.arabic1+'|'+p.arabic2))
-          : SIMILAR_PAIRS.filter(p => p.category === activeFilter);
+      const filtered = getFilteredPairs();
 
       if (filtered.length === 0) {
         grid.innerHTML = '';

@@ -1899,6 +1899,11 @@
       document.getElementById('sort-alpha').classList.toggle('active', mode === 'alpha');
       document.getElementById('sort-frequency').classList.toggle('active', mode === 'frequency');
       renderWordGrid({ resetPage: true });
+      trackEvent('sort_select', {
+        sort_by: mode,
+        page: 'explore',
+        results_count: getFilteredWords().length
+      });
     }
 
     // ========== RENDER WORD CARD ==========
@@ -1951,11 +1956,15 @@
       persistState();
       renderWordCard(word, true);
       updateBookmarkButton();
+      trackEvent('word_view', getWordTrackingParams(word, {
+        source: 'new_word'
+      }));
     }
 
     // ========== BOOKMARK ==========
     function toggleBookmark() {
       const word = quranVocabulary[state.currentIndex];
+      const wasBookmarked = state.bookmarkedWords.has(word.id);
       if (state.bookmarkedWords.has(word.id)) {
         state.bookmarkedWords.delete(word.id);
       } else {
@@ -1969,6 +1978,10 @@
       if (gridItem) {
         gridItem.classList.toggle('marked', state.bookmarkedWords.has(word.id));
       }
+      trackEvent(wasBookmarked ? 'bookmark_remove' : 'bookmark_add', getWordTrackingParams(word, {
+        source: 'daily_card',
+        total_saved: state.bookmarkedWords.size
+      }));
     }
 
     function updateBookmarkButton() {
@@ -2001,6 +2014,11 @@
       state.activeCategory = cat;
       renderCategoryFilters();
       renderWordGrid({ resetPage: true });
+      trackEvent('filter_select', {
+        category: cat,
+        page: 'explore',
+        results_count: getFilteredWords().length
+      });
     }
 
     // ========== WORD GRID ==========
@@ -2056,9 +2074,9 @@
           tier.forEach(word => {
             const isBookmarked = state.bookmarkedWords.has(word.id);
             html += `
-              <div class="word-grid-item ${isBookmarked ? 'marked' : ''}" 
+              <div class="word-grid-item ${isBookmarked ? 'marked' : ''}"
                    data-word-id="${word.id}"
-                   onclick="openModal(${word.id})" 
+                   onclick="openModal(${word.id}, 'explore_grid')"
                    tabindex="0"
                    role="button"
                    aria-label="${word.transliteration}, ${word.meaning}">
@@ -2096,9 +2114,9 @@
           groups[cat].forEach(word => {
             const isBookmarked = state.bookmarkedWords.has(word.id);
             html += `
-              <div class="word-grid-item ${isBookmarked ? 'marked' : ''}" 
+              <div class="word-grid-item ${isBookmarked ? 'marked' : ''}"
                    data-word-id="${word.id}"
-                   onclick="openModal(${word.id})" 
+                   onclick="openModal(${word.id}, 'explore_grid')"
                    tabindex="0"
                    role="button"
                    aria-label="${word.transliteration}, ${word.meaning}">
@@ -2176,7 +2194,7 @@
     }
 
     // ========== MODAL ==========
-    function openModal(wordId) {
+    function openModal(wordId, source = 'explore_grid') {
       const word = quranVocabulary.find(w => w.id === wordId);
       if (!word) return;
 
@@ -2204,6 +2222,9 @@
 
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
+      trackEvent('word_open', getWordTrackingParams(word, {
+        source: source
+      }));
       // Focus trap: move focus into modal
       requestAnimationFrame(() => overlay.querySelector('.modal-close').focus());
     }
@@ -2243,12 +2264,13 @@
       const currentIdx = currentWord ? quranVocabulary.indexOf(currentWord) : 0;
       const nextIdx = (currentIdx + 1) % quranVocabulary.length;
       const nextWord = quranVocabulary[nextIdx];
-      openModal(nextWord.id);
+      openModal(nextWord.id, 'modal_next');
     }
 
     function toggleModalBookmark() {
       const word = quranVocabulary.find(w => w.id === state.modalWordId);
       if (!word) return;
+      const wasBookmarked = state.bookmarkedWords.has(word.id);
       if (state.bookmarkedWords.has(word.id)) {
         state.bookmarkedWords.delete(word.id);
       } else {
@@ -2261,6 +2283,10 @@
       // Toggle class on matching grid item
       const gridItem = document.querySelector(`.word-grid-item[data-word-id="${word.id}"]`);
       if (gridItem) gridItem.classList.toggle('marked', state.bookmarkedWords.has(word.id));
+      trackEvent(wasBookmarked ? 'bookmark_remove' : 'bookmark_add', getWordTrackingParams(word, {
+        source: 'modal',
+        total_saved: state.bookmarkedWords.size
+      }));
     }
 
     function updateModalBookmarkButton() {
@@ -2288,6 +2314,9 @@
       state.currentIndex = idx;
       renderWordCard(word, true);
       updateBookmarkButton();
+      trackEvent('word_view', getWordTrackingParams(word, {
+        source: 'modal_focus'
+      }));
       scrollToTop();
     }
 
@@ -2338,9 +2367,19 @@
     window.addEventListener('scroll', onScroll, { passive: true });
 
     // ========== SEARCH ==========
+    let searchTrackingTimer = null;
     document.getElementById('search-input').addEventListener('input', (e) => {
       state.searchQuery = e.target.value;
       renderWordGrid({ resetPage: true });
+      clearTimeout(searchTrackingTimer);
+      searchTrackingTimer = setTimeout(() => {
+        const query = state.searchQuery.trim();
+        if (!query) return;
+        trackEvent('search', {
+          search_term: query,
+          results_count: getFilteredWords().length
+        });
+      }, 600);
     });
 
     // ========== KEYBOARD SHORTCUTS ==========
@@ -2440,6 +2479,10 @@
 
       updateQuizHearts();
       updateQuizScore();
+      trackEvent('quiz_start', {
+        max_questions: quizState.maxQuestions,
+        max_lives: quizState.maxLives
+      });
       nextQuizQuestion();
     }
 
@@ -2616,6 +2659,12 @@
 
       scoreEl.textContent = quizState.score;
       labelEl.textContent = `out of ${quizState.totalAnswered} questions answered correctly`;
+      trackEvent('quiz_complete', {
+        score: quizState.score,
+        total_answered: quizState.totalAnswered,
+        accuracy: quizState.totalAnswered ? Math.round((quizState.score / quizState.totalAnswered) * 100) : 0,
+        perfect: Boolean(perfect)
+      });
     }
 
     function shareQuizScore() {
@@ -2623,6 +2672,12 @@
       const url = 'https://learnquranwords.com/#quiz';
 
       if (navigator.share) {
+        trackEvent('share', {
+          method: 'native_share',
+          content_type: 'quiz_score',
+          score: quizState.score,
+          total_answered: quizState.totalAnswered
+        });
         navigator.share({
           title: 'LearnQuranwords Quiz',
           text: text,
@@ -2631,8 +2686,20 @@
       } else {
         const fullText = text + '\n' + url;
         navigator.clipboard.writeText(fullText).then(() => {
+          trackEvent('share', {
+            method: 'clipboard',
+            content_type: 'quiz_score',
+            score: quizState.score,
+            total_answered: quizState.totalAnswered
+          });
           showToast('📋 Score copied to clipboard!');
         }).catch(() => {
+          trackEvent('share', {
+            method: 'prompt',
+            content_type: 'quiz_score',
+            score: quizState.score,
+            total_answered: quizState.totalAnswered
+          });
           prompt('Copy this:', fullText);
         });
       }
@@ -2680,6 +2747,9 @@
           persistState();
           renderCategoryFilters();
           renderWordGrid();
+          trackEvent('word_view', getWordTrackingParams(foundWord, {
+            source: 'deep_link'
+          }));
           // Clean the URL without reloading
           window.history.replaceState({}, '', window.location.pathname + window.location.hash);
           return;
@@ -2697,6 +2767,9 @@
         persistState();
         renderCategoryFilters();
         renderWordGrid();
+        trackEvent('word_view', getWordTrackingParams(word, {
+          source: 'quiz_deep_link'
+        }));
         // Switch to quiz view
         setTimeout(() => scrollToQuiz(), 100);
         return;
@@ -2711,6 +2784,9 @@
       persistState();
       renderCategoryFilters();
       renderWordGrid();
+      trackEvent('word_view', getWordTrackingParams(word, {
+        source: 'initial'
+      }));
     }
 
     // Handle hash changes (e.g., shared quiz link)

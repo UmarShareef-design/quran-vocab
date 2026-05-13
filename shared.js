@@ -25,6 +25,64 @@ function normalizeExtensionlessUrl() {
 
 normalizeExtensionlessUrl();
 
+// ========== GA4 EVENT TRACKING ==========
+function trackEvent(eventName, params) {
+  try {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', eventName, Object.assign({
+      page_path: window.location.pathname
+    }, params || {}));
+  } catch(e) {}
+}
+
+function getSavedWordCount() {
+  try {
+    return JSON.parse(localStorage.getItem('qv_bookmarked') || '[]').length;
+  } catch(e) {
+    return 0;
+  }
+}
+
+function getWordTrackingParams(word, extraParams) {
+  if (!word) return extraParams || {};
+  return Object.assign({
+    word_id: word.id,
+    transliteration: word.transliteration,
+    meaning: word.meaning,
+    frequency: word.frequency
+  }, extraParams || {});
+}
+
+function initSharedAnalytics() {
+  document.addEventListener('click', function(event) {
+    const link = event.target.closest('a');
+    if (!link || !link.href) return;
+
+    if (link.href.indexOf('docs.google.com/forms') > -1) {
+      trackEvent('feedback_click', {
+        link_url: link.href,
+        link_text: link.textContent.trim()
+      });
+    }
+
+    if (link.hostname === 'quran.com') {
+      trackEvent('verse_link_click', {
+        link_url: link.href,
+        verse_label: link.textContent.trim()
+      });
+    }
+
+    if (link.hash === '#quiz') {
+      trackEvent('quiz_link_click', {
+        link_url: link.href,
+        source_page: window.location.pathname
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initSharedAnalytics);
+
 // ========== SURAH NAME LOOKUP (1–114) ==========
 const SURAH_NAMES = {
   1:'Al-Fatihah',2:'Al-Baqarah',3:'Ali \'Imran',4:'An-Nisa',5:'Al-Ma\'idah',
