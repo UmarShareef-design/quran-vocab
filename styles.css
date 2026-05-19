@@ -1240,6 +1240,13 @@ main {
     width: 100%;
     padding: 0 10px;
   }
+
+  /* Keep privacy controls away from the scroll-to-top button on mobile */
+  .cookie-preferences-button {
+    left: 10px;
+    right: auto;
+    bottom: 10px;
+  }
 }
 
 :focus-visible {
