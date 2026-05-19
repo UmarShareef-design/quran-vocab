@@ -1,8 +1,8 @@
-# robots.txt for learnquranwords.com
-# https://learnquranwords.com/robots.txt
+# robots.txt for www.learnquranwords.com
+# https://www.learnquranwords.com/robots.txt
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://learnquranwords.com/sitemap.xml
+Sitemap: https://www.learnquranwords.com/sitemap.xml

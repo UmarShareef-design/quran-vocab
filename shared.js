@@ -27,8 +27,10 @@ normalizeExtensionlessUrl();
 
 // ========== GA4 EVENT TRACKING ==========
 const GA_MEASUREMENT_ID = 'G-7PB10R3FZK';
+const CLARITY_PROJECT_ID = 'wmggynxiwo';
 const ANALYTICS_CONSENT_KEY = 'lqw_analytics_consent';
 let analyticsScriptLoaded = false;
+let clarityScriptLoaded = false;
 
 function getAnalyticsConsent() {
   try {
@@ -63,6 +65,21 @@ function loadGoogleAnalytics() {
   document.head.appendChild(script);
 }
 
+function loadMicrosoftClarity() {
+  if (clarityScriptLoaded || !hasAnalyticsConsent()) return;
+  clarityScriptLoaded = true;
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", CLARITY_PROJECT_ID);
+}
+
+function loadAnalyticsTools() {
+  loadGoogleAnalytics();
+  loadMicrosoftClarity();
+}
+
 function deleteAnalyticsCookies() {
   const hostParts = window.location.hostname.split('.');
   const domains = [window.location.hostname];
@@ -71,7 +88,7 @@ function deleteAnalyticsCookies() {
 
   document.cookie.split(';').forEach(function(cookie) {
     const name = cookie.split('=')[0].trim();
-    if (!/^_ga($|_)|^_gid$|^_gat/.test(name)) return;
+    if (!/^_ga($|_)|^_gid$|^_gat|^_clck$|^_clsk$/.test(name)) return;
     document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
     domains.forEach(function(domain) {
       document.cookie = name + '=; Max-Age=0; path=/; domain=' + domain + '; SameSite=Lax';
@@ -86,11 +103,14 @@ function setAnalyticsConsent(status) {
 
   if (status === 'granted') {
     window['ga-disable-' + GA_MEASUREMENT_ID] = false;
-    loadGoogleAnalytics();
+    loadAnalyticsTools();
     trackEvent('analytics_consent_update', { analytics_consent: 'granted' });
   } else {
     if (typeof window.gtag === 'function') {
       window.gtag('consent', 'update', { analytics_storage: 'denied' });
+    }
+    if (typeof window.clarity === 'function') {
+      window.clarity('consent', false);
     }
     window['ga-disable-' + GA_MEASUREMENT_ID] = true;
     deleteAnalyticsCookies();
@@ -102,7 +122,7 @@ function setAnalyticsConsent(status) {
 function trackEvent(eventName, params) {
   try {
     if (!hasAnalyticsConsent()) return;
-    loadGoogleAnalytics();
+    loadAnalyticsTools();
     if (typeof window.gtag !== 'function') return;
     window.gtag('event', eventName, Object.assign({
       page_path: window.location.pathname
@@ -129,7 +149,7 @@ function getWordTrackingParams(word, extraParams) {
 }
 
 function initSharedAnalytics() {
-  if (hasAnalyticsConsent()) loadGoogleAnalytics();
+  if (hasAnalyticsConsent()) loadAnalyticsTools();
   renderConsentControls();
 
   document.addEventListener('click', function(event) {
@@ -176,7 +196,7 @@ function renderConsentControls(forceOpen) {
       <div class="cookie-consent__content">
         <div>
           <h2 id="cookie-consent-title">Analytics preferences</h2>
-          <p>We use Google Analytics to understand which Quran vocabulary features help learners. Choose whether analytics data can be collected. Necessary site features still work either way.</p>
+          <p>We use analytics tools to understand which Quran vocabulary features help learners. Choose whether analytics data can be collected. Necessary site features still work either way.</p>
         </div>
         <div class="cookie-consent__actions">
           <button type="button" class="cookie-consent__btn cookie-consent__btn--secondary" id="cookie-consent-reject">Reject analytics</button>
