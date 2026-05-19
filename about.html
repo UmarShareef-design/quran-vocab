@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.alquran.cloud https://www.google-analytics.com https://region1.google-analytics.com https://www.clarity.ms; base-uri 'self'; form-action 'self'; frame-ancestors 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.alquran.cloud https://www.google-analytics.com https://region1.google-analytics.com https://www.clarity.ms; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>About LearnQuranwords — Quran Words Companion for Quran Classes</title>
 
@@ -255,7 +255,7 @@
           <a href="saved" class="nav-link">🔖 Saved <span class="saved-count" id="saved-count" data-count="0">0</span></a>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
         </div>
-        <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu" aria-expanded="false">
+        <button class="nav-hamburger" id="nav-hamburger" data-action="toggle-mobile-menu" aria-label="Toggle menu" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
@@ -371,10 +371,16 @@
     document.addEventListener('DOMContentLoaded', function() {
       initScrollToTop();
       syncSavedCount();
+      document.addEventListener('click', function(event) {
+        const actionEl = event.target.closest('[data-action]');
+        if (!actionEl) return;
+        if (actionEl.dataset.action === 'toggle-mobile-menu') toggleMobileMenu();
+        if (actionEl.dataset.action === 'scroll-top') window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     });
   </script>
   <!-- Scroll to top -->
-  <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+  <button class="scroll-top" id="scroll-top" data-action="scroll-top" aria-label="Scroll to top">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
 
