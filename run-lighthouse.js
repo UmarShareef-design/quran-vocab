@@ -1,15 +1,15 @@
 const lighthouse = require('lighthouse/core/index.js').default;
 const chromeLauncher = require('chrome-launcher');
 
-const BASE_URL = 'https://umarshareef-design.github.io/quran-vocab';
-const PAGES = ['/', '/about.html', '/saved.html', '/similar.html'];
+const BASE_URL = 'https://www.learnquranwords.com';
+const PAGES = ['/', '/about', '/saved', '/similar'];
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo'];
 
 async function runLighthouse(url) {
   const chrome = await chromeLauncher.launch({
     chromeFlags: ['--headless', '--no-sandbox', '--disable-gpu'],
   });
-  
+
   try {
     const options = {
       logLevel: 'error',
@@ -17,26 +17,22 @@ async function runLighthouse(url) {
       onlyCategories: CATEGORIES,
       port: chrome.port,
     };
-    
+
     const runnerResult = await lighthouse(url, options);
     const reportJson = runnerResult.lhr;
-    
+
     const scores = {};
     for (const cat of CATEGORIES) {
       const category = reportJson.categories[cat];
-      if (category) {
-        scores[cat] = Math.round(category.score * 100);
-      }
+      if (category) scores[cat] = Math.round(category.score * 100);
     }
-    
-    // Collect failed audits
+
     const failedAudits = [];
     for (const [auditKey, audit] of Object.entries(reportJson.audits)) {
       if (audit.score !== null && audit.score < 1) {
-        // Only include audits that belong to our categories
         for (const cat of CATEGORIES) {
           const catAuditRefs = reportJson.categories[cat]?.auditRefs || [];
-          if (catAuditRefs.some(ref => ref.id === auditKey)) {
+          if (catAuditRefs.some((ref) => ref.id === auditKey)) {
             failedAudits.push({
               category: cat,
               id: auditKey,
@@ -49,13 +45,12 @@ async function runLighthouse(url) {
         }
       }
     }
-    
+
     return { url, scores, failedAudits };
   } finally {
     try {
       await chrome.kill();
     } catch (e) {
-      // Ignore cleanup errors on Windows - the audit data is already collected
       console.log('  (Chrome cleanup skipped - non-fatal)');
     }
   }
@@ -63,10 +58,10 @@ async function runLighthouse(url) {
 
 async function main() {
   const results = [];
-  
+
   for (const page of PAGES) {
     const url = BASE_URL + page;
-    console.log(`\n🔍 Auditing: ${url}`);
+    console.log(`\nAuditing: ${url}`);
     try {
       const result = await runLighthouse(url);
       results.push(result);
@@ -75,14 +70,13 @@ async function main() {
       console.log(`  Best Practices: ${result.scores['best-practices']}/100`);
       console.log(`  SEO: ${result.scores.seo}/100`);
     } catch (err) {
-      console.log(`  ❌ Error: ${err.message}`);
+      console.log(`  Error: ${err.message}`);
       results.push({ url, error: err.message });
     }
   }
-  
-  // Summary
+
   console.log('\n\n========== LIGHTHOUSE AUDIT SUMMARY ==========\n');
-  
+
   for (const result of results) {
     if (result.error) {
       console.log(`${result.url}: ERROR - ${result.error}`);
@@ -93,16 +87,15 @@ async function main() {
     console.log(`  Accessibility:  ${result.scores.accessibility}/100`);
     console.log(`  Best Practices: ${result.scores['best-practices']}/100`);
     console.log(`  SEO:            ${result.scores.seo}/100`);
-    
-    // Show failed audits grouped by category
+
     const failedByCat = {};
     for (const audit of result.failedAudits) {
       if (!failedByCat[audit.category]) failedByCat[audit.category] = [];
       failedByCat[audit.category].push(audit);
     }
-    
+
     for (const [cat, audits] of Object.entries(failedByCat)) {
-      console.log(`\n  ❌ ${cat.toUpperCase()} failures:`);
+      console.log(`\n  ${cat.toUpperCase()} failures:`);
       for (const audit of audits) {
         console.log(`    - [${audit.id}] ${audit.title} (score: ${audit.score})`);
       }
@@ -111,7 +104,7 @@ async function main() {
   }
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error('Fatal error:', err);
   process.exit(1);
 });

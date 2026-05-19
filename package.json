@@ -1,5 +1,10 @@
 {
+  "private": true,
+  "scripts": {
+    "audit:lighthouse": "node run-lighthouse.js"
+  },
   "devDependencies": {
+    "chrome-launcher": "^1.1.2",
     "lighthouse": "^13.1.0"
   }
 }

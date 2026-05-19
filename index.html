@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.alquran.cloud https://www.google-analytics.com https://region1.google-analytics.com https://www.clarity.ms; base-uri 'self'; form-action 'self'; frame-ancestors 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Learn Quran Words Free | Quranic Arabic Vocabulary - No Sign-up</title>
 
   <!-- Favicon -->
@@ -1760,14 +1762,65 @@
 
     // ========== FULL VERSE API ==========
     const VERSE_CACHE_KEY = 'qv_verses';
-    let verseCache = JSON.parse(localStorage.getItem(VERSE_CACHE_KEY) || '{}');
+    const VERSE_CACHE_TTL_MS = 1000 * 60 * 60 * 24 * 30; // 30 days
+    const VERSE_CACHE_MAX_ENTRIES = 1500;
+
+    function toVerseCacheEntry(value) {
+      if (!value || typeof value !== 'object') return null;
+      if (typeof value.arabic !== 'string' || typeof value.english !== 'string') return null;
+      const updatedAt = Number(value.updatedAt || 0);
+      return {
+        arabic: value.arabic,
+        english: value.english,
+        updatedAt: Number.isFinite(updatedAt) ? updatedAt : 0
+      };
+    }
+
+    function loadVerseCache() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(VERSE_CACHE_KEY) || '{}');
+        if (!parsed || typeof parsed !== 'object') return {};
+        const normalized = {};
+        Object.keys(parsed).forEach(function(key) {
+          const entry = toVerseCacheEntry(parsed[key]);
+          if (entry) normalized[key] = entry;
+        });
+        return normalized;
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function isVerseCacheExpired(entry) {
+      if (!entry || typeof entry.updatedAt !== 'number' || entry.updatedAt <= 0) return true;
+      return Date.now() - entry.updatedAt > VERSE_CACHE_TTL_MS;
+    }
+
+    function pruneVerseCache() {
+      const keys = Object.keys(verseCache);
+      keys.forEach(function(key) {
+        if (isVerseCacheExpired(verseCache[key])) delete verseCache[key];
+      });
+      const remaining = Object.keys(verseCache);
+      if (remaining.length <= VERSE_CACHE_MAX_ENTRIES) return;
+      remaining.sort(function(a, b) {
+        return (verseCache[a].updatedAt || 0) - (verseCache[b].updatedAt || 0);
+      });
+      const removeCount = remaining.length - VERSE_CACHE_MAX_ENTRIES;
+      for (let i = 0; i < removeCount; i++) delete verseCache[remaining[i]];
+    }
+
+    let verseCache = loadVerseCache();
+    pruneVerseCache();
 
     function saveVerseCache() {
+      pruneVerseCache();
       try { localStorage.setItem(VERSE_CACHE_KEY, JSON.stringify(verseCache)); } catch(e) {}
     }
 
     async function fetchFullVerse(verseRef) {
-      if (verseCache[verseRef]) return verseCache[verseRef];
+      const cached = verseCache[verseRef];
+      if (cached && !isVerseCacheExpired(cached)) return { arabic: cached.arabic, english: cached.english };
       const [surah, ayah] = verseRef.split(':');
       try {
         const res = await fetch(`https://api.alquran.cloud/v1/ayah/${surah}:${ayah}/editions/quran-uthmani,en.sahih`);
@@ -1776,9 +1829,9 @@
         if (data.code === 200 && data.data) {
           const arabic = data.data[0].text;   // Uthmani Arabic
           const english = data.data[1].text;  // Sahih International English
-          verseCache[verseRef] = { arabic, english };
+          verseCache[verseRef] = { arabic, english, updatedAt: Date.now() };
           saveVerseCache();
-          return verseCache[verseRef];
+          return { arabic, english };
         }
       } catch(e) {
         console.warn('Verse fetch failed for', verseRef, e);

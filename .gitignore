@@ -15,6 +15,7 @@ lighthouse-audit.json
 lighthouse-reports/
 lighthouse-reportstmp/
 *.report.html
+CUsersumarsTemp/
 
 # Dependencies
 node_modules/

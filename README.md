@@ -1,29 +1,34 @@
 # LearnQuranwords
 
-A free, responsive web app to learn the 600 most common words in the Quran. Features Arabic text, English meanings, transliterations, and Quran verse examples.
+A free, responsive web app to learn the 600 most common words in the Quran. It includes Arabic text, English meanings, transliterations, and verse references.
 
-**Live site:** [learnquranwords.com](https://learnquranwords.com)
+Live site: [www.learnquranwords.com](https://www.learnquranwords.com)
 
 ## Features
 
-- 📖 600 essential Quran words with Arabic text, transliteration, and English meaning
-- 🔍 Search and filter by category or frequency
-- 🔖 Save words for later review
-- 📱 Fully responsive design with mobile hamburger menu
-- 🆓 Free and works offline (data cached locally)
+- 600 essential Quran words with Arabic, transliteration, and meaning
+- Search and filter by category or frequency
+- Save words for later review
+- Fully responsive layout with mobile navigation
+- Works without accounts or sign-up
 
-## Run Locally
+## Local Run
 
-Just open `index.html` in a browser — no build step or server needed.
+Open `index.html` in a browser. No build step is required.
 
-## Files
+## Validation
 
-| File | Description |
-|------|-------------|
-| `index.html` | Main app — daily word card, explore grid, saved words |
-| `about.html` | About page — why vocabulary matters for Quranic Arabic |
-| `data.js` | Quran word dataset (600 words with frequency & verse references) |
-| `favicon.svg` | Open book icon |
+- Lighthouse audit: `npm run audit:lighthouse`
+
+## Core Files
+
+- `index.html`: main app (daily word, explore grid, quiz)
+- `saved.html`: saved words view
+- `similar.html`: similar-sounding words view
+- `about.html`: product context and learning rationale
+- `data.js`: Quran vocabulary dataset
+- `shared.js`: shared behavior (analytics, nav, parsing helpers)
+- `styles.css`: shared styling
 
 ## Author
 
