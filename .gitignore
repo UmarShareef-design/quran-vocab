@@ -1,0 +1,21 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+nul
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build artifacts
+lighthouse-audit.json
+lighthouse-reports/
+lighthouse-reportstmp/
+*.report.html
+CUsersumarsTemp/
+
+# Dependencies
+node_modules/

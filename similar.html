@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.alquran.cloud https://www.google-analytics.com https://region1.google-analytics.com https://www.clarity.ms; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Similar Sounding Quran Words — LearnQuranwords</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%235b21b6'/%3E%3Cpath d='M6 7.5C6 6.7 6.7 6 7.5 6H15C15.6 6 16 6.4 16 7V24.5C15.5 24 14.8 23.5 14 23.5H7.5C6.7 23.5 6 22.8 6 22V7.5Z' fill='white'/%3E%3Cpath d='M16 7C16 6.4 16.4 6 17 6H24.5C25.3 6 26 6.7 26 7.5V22C26 22.8 25.3 23.5 24.5 23.5H18C17.2 23.5 16.5 24 16 24.5V7Z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Easily confused Quranic Arabic words that sound similar but have different meanings. A helpful reference for Quran students and learners." />
+  <meta name="author" content="Umar Shareef" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#7c3aed" />
+  <link rel="canonical" href="https://www.learnquranwords.com/similar" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.learnquranwords.com/similar" />
+  <meta property="og:title" content="Similar Sounding Quran Words — LearnQuranwords" />
+  <meta property="og:description" content="Easily confused Quranic Arabic words that sound similar but have different meanings." />
+  <meta property="og:site_name" content="LearnQuranwords" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://www.learnquranwords.com/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="LearnQuranwords — Similar Sounding Quran Words" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Similar Sounding Quran Words — LearnQuranwords" />
+  <meta name="twitter:description" content="Easily confused Quranic Arabic words that sound similar but have different meanings." />
+  <meta name="twitter:image" content="https://www.learnquranwords.com/og-image.png" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Similar Sounding Quran Words",
+    "url": "https://www.learnquranwords.com/similar",
+    "description": "Easily confused Quranic Arabic words that sound similar but have different meanings.",
+    "isPartOf": {
+      "@type": "WebApplication",
+      "name": "LearnQuranwords",
+      "url": "https://www.learnquranwords.com/"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Umar Shareef"
+    }
+  }, {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.learnquranwords.com/"
+    }, {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Similar Sounding Words",
+      "item": "https://www.learnquranwords.com/similar"
+    }]
+  }]
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://api.alquran.cloud" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ========== PAGE-SPECIFIC STYLES (Shared styles in styles.css) ========== */
+
+    /* ========== CONTENT ========== */
+    .similar-section {
+      max-width: 920px; margin: 0 auto; padding: 60px 24px 40px; width: 100%;
+    }
+
+    .similar-hero {
+      text-align: center; margin-bottom: 48px;
+    }
+
+    .similar-hero h1 {
+      font-size: clamp(28px, 5vw, 42px); font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.2;
+    }
+    .similar-hero h1 span {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .similar-hero p {
+      font-size: 17px; color: var(--text-secondary); max-width: 640px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* Category filter */
+    .category-filters {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 32px;
+    }
+    .category-chip {
+      padding: 8px 18px; border-radius: 20px;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      color: var(--text-muted); font-size: 14px; font-weight: 500;
+      cursor: pointer; transition: var(--transition-fast); font-family: 'Inter', sans-serif;
+    }
+    .category-chip:hover { background: var(--glass-hover); color: var(--text-secondary); }
+    .category-chip.active {
+      background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.3); color: var(--accent);
+    }
+
+    /* Pair count */
+    .pair-count {
+      text-align: center; color: var(--text-muted); font-size: 14px; margin-bottom: 28px;
+    }
+
+    /* ========== PAIR SAVE BUTTON ========== */
+    .pair-save-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 2;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      padding: 0;
+      font-size: 16px;
+      line-height: 1;
+    }
+    .pair-save-btn:hover {
+      background: var(--glass-hover);
+      color: var(--accent);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .pair-save-btn.saved {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: var(--accent);
+    }
+    .pair-save-btn.saved:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .pair-save-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ========== PAIR CARDS ========== */
+    .pair-grid {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+
+    .pair-card {
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(40px) saturate(1.2);
+      -webkit-backdrop-filter: blur(40px) saturate(1.2);
+      padding: 28px 32px;
+      position: relative; overflow: hidden;
+      transition: var(--transition-fast);
+    }
+    .pair-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(167,139,250,0.06) 0%, transparent 40%, transparent 60%, rgba(251,191,36,0.03) 100%);
+      pointer-events: none;
+    }
+    .pair-card:hover {
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .pair-card-inner { position: relative; z-index: 1; }
+
+    .pair-category-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: 12px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    .pair-category-badge.swap {
+      background: rgba(220, 60, 60, 0.1); border: 1px solid rgba(220, 60, 60, 0.2); color: #e87070;
+    }
+    .pair-category-badge.vowel {
+      background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: var(--accent);
+    }
+    .pair-category-badge.added {
+      background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.2); color: var(--primary-light);
+    }
+
+    .pair-words {
+      display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center;
+    }
+
+    .pair-word {
+      text-align: center; padding: 12px;
+    }
+
+    .pair-word-arabic {
+      font-family: 'Scheherazade New', 'Amiri', serif;
+      font-size: clamp(32px, 6vw, 48px); font-weight: 700;
+      color: var(--text-primary); direction: rtl; line-height: 1.4;
+      margin-bottom: 4px;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "mark" 1, "mkmk" 1;
+      letter-spacing: normal;
+    }
+
+    .pair-word-translit {
+      font-size: 17px; font-weight: 600; color: var(--accent);
+      font-style: italic; margin-bottom: 4px;
+    }
+
+    .pair-word-meaning {
+      font-size: 15px; color: var(--text-secondary); margin-bottom: 6px;
+    }
+
+    .pair-word-freq {
+      font-size: 13px; color: var(--text-muted); opacity: 0.8;
+    }
+
+    .pair-vs {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      color: var(--text-muted); font-size: 13px; font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ========== TIP CARD ========== */
+    .tip-card {
+      border-radius: var(--radius-xl);
+      background: rgba(108, 74, 186, 0.08);
+      border: 1px solid rgba(108, 74, 186, 0.2);
+      padding: 28px 32px;
+      margin-top: 40px; margin-bottom: 20px;
+      position: relative;
+    }
+    .tip-card h2 {
+      font-size: 20px; font-weight: 700; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .tip-card h2 .card-icon { font-size: 24px; flex-shrink: 0; }
+    .tip-card p { color: var(--text-secondary); font-size: 15px; margin-bottom: 10px; line-height: 1.75; }
+    .tip-card p:last-child { margin-bottom: 0; }
+
+    /* ========== CTA ========== */
+    .about-cta {
+      text-align: center; padding: 48px 24px; margin-top: 16px;
+    }
+    .about-cta h2 {
+      font-size: clamp(22px, 3.5vw, 30px); font-weight: 700; margin-bottom: 12px;
+    }
+    .about-cta h2 span {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .about-cta p { color: var(--text-muted); font-size: 15px; margin-bottom: 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: var(--radius-md);
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+      cursor: pointer; border: none; transition: var(--transition-fast);
+      text-decoration: none; position: relative; overflow: hidden;
+    }
+    .btn::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+      pointer-events: none; opacity: 0; transition: opacity var(--transition-fast);
+    }
+    .btn:hover::after { opacity: 1; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; box-shadow: 0 4px 16px rgba(108, 74, 186, 0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(108, 74, 186, 0.45); }
+    .btn svg { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+
+  </style>
+
+</head>
+<body>
+  <!-- Skip Navigation -->
+  <a href="#similar-content" class="skip-nav">Skip to main content</a>
+
+  <!-- Animated Background -->
+  <div class="bg-layer">
+    <div class="bg-gradient"></div>
+    <div class="bg-pattern"></div>
+    <div class="floating-orb"></div>
+    <div class="floating-orb"></div>
+    <div class="floating-orb"></div>
+  </div>
+
+  <!-- App Container -->
+  <div class="app-container">
+  <main id="main-content">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="navbar-inner">
+        <a href="./" class="nav-brand">
+          <div class="nav-brand-icon">📖</div>
+          <div class="nav-brand-text">LearnQuran<span>words</span></div>
+        </a>
+        <div class="nav-links">
+          <a href="./" class="nav-link">Daily Word</a>
+          <a href="./#repository" class="nav-link">Explore</a>
+          <a href="./#quiz" class="nav-link">Take a Quiz</a>
+          <a href="similar" class="nav-link active">Similar Words</a>
+          <a href="about" class="nav-link">About</a>
+          <a href="saved" class="nav-link">🔖 Saved <span class="saved-count" id="saved-count" data-count="0">0</span></a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
+        </div>
+        <button class="nav-hamburger" id="nav-hamburger" data-action="toggle-mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="nav-mobile-menu" id="nav-mobile-menu">
+      <a href="./" class="nav-link">Daily Word</a>
+      <a href="./#repository" class="nav-link">Explore</a>
+      <a href="./#quiz" class="nav-link">Take a Quiz</a>
+      <a href="similar" class="nav-link active">Similar Words</a>
+      <a href="about" class="nav-link">About</a>
+      <a href="saved" class="nav-link">🔖 Saved <span class="saved-count" id="saved-count-mobile" data-count="0">0</span></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="nav-link">Feedback</a>
+    </div>
+
+    <!-- Similar Words Content -->
+    <section class="similar-section" id="similar-content">
+      <!-- Hero -->
+      <div class="similar-hero">
+        <h1>Similar Sounding <span>Quran Words</span></h1>
+        <p>These Quranic Arabic words sound almost identical but have completely different meanings. Learning to distinguish them will sharpen your understanding and help you avoid common mistakes.</p>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="category-filters" id="category-filters">
+        <button class="category-chip active" data-action="filter-category" data-cat="all">All Pairs</button>
+        <button class="category-chip" data-action="filter-category" data-cat="One-Letter Swap">🔤 One-Letter Swap</button>
+        <button class="category-chip" data-action="filter-category" data-cat="Vowel Shift">🔄 Vowel Shift</button>
+        <button class="category-chip" data-action="filter-category" data-cat="Letter Added/Removed">➕ Letter Added/Removed</button>
+        <button class="category-chip" data-action="filter-category" data-cat="saved">🔖 Saved</button>
+      </div>
+
+      <div class="pair-count" id="pair-count">Showing 223 confusable pairs</div>
+
+      <!-- Pair Cards -->
+      <div class="pair-grid" id="pair-grid"></div>
+
+      <!-- Load More -->
+      <div class="load-more-container" id="load-more-container" style="display:none">
+        <button class="load-more-btn" id="load-more-btn" data-action="load-more">
+          <span id="load-more-text">Load more pairs</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
+
+      <!-- No results -->
+      <div class="no-results" id="no-results" style="display:none">
+        <div class="no-results-icon">🔍</div>
+        <div class="no-results-text" id="no-results-text">No pairs in this category</div>
+      </div>
+
+      <!-- Study Tips -->
+      <div class="tip-card">
+        <h2><span class="card-icon">💡</span> How to Tell Them Apart</h2>
+        <p><strong>Listen for the vowel:</strong> Many pairs differ only by a single vowel (e.g., <em>Qalb</em> vs <em>Kalb</em>). Pay attention to the short <strong>a</strong>, <strong>i</strong>, or <strong>u</strong> sounds — they completely change the meaning.</p>
+        <p><strong>Watch the diacritics:</strong> In voweled Quranic text, the harakat (fatḥah, ḍammah, kasrah) make the difference obvious. Learn to read with vowel marks and the confusion disappears.</p>
+        <p><strong>Use context:</strong> When you hear "Salaah" (Prayer) vs "Salaam" (Peace) in a verse, the surrounding words always make the intended meaning clear.</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="about-cta">
+        <h2>Test Yourself with the <span>Quiz</span></h2>
+        <p>Now that you know these tricky pairs, try the quiz mode to see if you can tell them apart under pressure!</p>
+        <a href="./#quiz" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Start Quiz
+        </a>
+      </div>
+    </section>
+
+    </main>
+    <!-- Initiative Credit -->
+    <!-- Footer -->
+    <footer class="footer">
+      <p>LearnQuranwords — Learn Quranic Arabic with 600 essential Quran words · <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvVjBZ1983VLhFJEgFQibZvt42TKdW4y6ZxN89D06Jm8POtQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Feedback</a></p>
+      <p>Made with ❤️ by <a href="https://umarshareef.framer.website" target="_blank" rel="noopener">Umar Shareef</a></p>
+    </footer>
+  </div>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scroll-top" data-action="scroll-top" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <script src="shared.js" defer></script>
+  <script src="similar-data.js" defer></script>
+<script>
+    // Scroll to top — handled by initScrollToTop() in shared.js
+
+
+    const PAIRS_PER_PAGE = 10;
+    let activeFilter = 'all';
+    let visibleCount = PAIRS_PER_PAGE;
+    let savedPairs = new Set(JSON.parse(localStorage.getItem('qv_saved_pairs') || '[]'));
+    // Migrate old index-based saves to composite keys
+    if (savedPairs.size > 0 && [...savedPairs][0].match(/^\d+$/)) {
+      savedPairs.clear();
+      saveSavedPairs();
+    }
+
+    function saveSavedPairs() {
+      localStorage.setItem('qv_saved_pairs', JSON.stringify([...savedPairs]));
+    }
+
+    function getFilteredPairs() {
+      return activeFilter === 'all'
+        ? SIMILAR_PAIRS
+        : activeFilter === 'saved'
+          ? SIMILAR_PAIRS.filter(p => savedPairs.has(p.arabic1+'|'+p.arabic2))
+          : SIMILAR_PAIRS.filter(p => p.category === activeFilter);
+    }
+
+    function togglePairSave(key) {
+      const pair = SIMILAR_PAIRS.find(p => p.arabic1 + '|' + p.arabic2 === key);
+      const wasSaved = savedPairs.has(key);
+      if (savedPairs.has(key)) {
+        savedPairs.delete(key);
+      } else {
+        savedPairs.add(key);
+      }
+      saveSavedPairs();
+      renderPairs();
+      syncSavedCount(); // Update the saved count badge across all pages
+      trackEvent(wasSaved ? 'similar_pair_remove' : 'similar_pair_save', {
+        pair_key: key,
+        category: pair ? pair.category : '',
+        total_saved_pairs: savedPairs.size
+      });
+    }
+
+    function filterCategory(cat) {
+      activeFilter = cat;
+      visibleCount = PAIRS_PER_PAGE; // reset pagination on filter change
+      document.querySelectorAll('.category-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.getAttribute('data-cat') === cat);
+      });
+      renderPairs();
+      trackEvent('similar_filter_select', {
+        category: cat,
+        results_count: getFilteredPairs().length
+      });
+      window.scrollTo({ top: document.getElementById('category-filters').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function loadMore() {
+      const prevCount = visibleCount;
+      visibleCount += PAIRS_PER_PAGE;
+      renderPairs();
+      trackEvent('similar_load_more', {
+        category: activeFilter,
+        visible_count: Math.min(visibleCount, getFilteredPairs().length),
+        results_count: getFilteredPairs().length
+      });
+      // Scroll to the first newly loaded card
+      const cards = document.querySelectorAll('.pair-card');
+      if (cards[prevCount]) {
+        cards[prevCount].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function renderPairs() {
+      const grid = document.getElementById('pair-grid');
+      const noResults = document.getElementById('no-results');
+      const countEl = document.getElementById('pair-count');
+      const loadMoreContainer = document.getElementById('load-more-container');
+      const loadMoreText = document.getElementById('load-more-text');
+
+      const filtered = getFilteredPairs();
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noResults.style.display = '';
+        loadMoreContainer.style.display = 'none';
+        const noResultsText = document.getElementById('no-results-text');
+        if (noResultsText) noResultsText.textContent = activeFilter === 'saved' ? 'No saved pairs yet \u2014 tap the bookmark icon on any pair to save it' : 'No pairs in this category';
+        countEl.textContent = activeFilter === 'saved' ? 'No saved pairs' : 'No pairs found';
+        return;
+      }
+
+      noResults.style.display = 'none';
+      const showing = Math.min(visibleCount, filtered.length);
+      countEl.textContent = `Showing ${showing} of ${filtered.length} confusable pair${filtered.length !== 1 ? 's' : ''}`;
+
+      grid.innerHTML = filtered.slice(0, visibleCount).map((p, i) => {
+        const badgeClass = p.category === 'One-Letter Swap' ? 'swap' : p.category === 'Vowel Shift' ? 'vowel' : 'added';
+        const badgeIcon = p.category === 'One-Letter Swap' ? '🔤' : p.category === 'Vowel Shift' ? '🔄' : '➕';
+        return `
+          <div class="pair-card">
+            <div class="pair-card-inner">
+              <button class="pair-save-btn ${savedPairs.has(p.arabic1+'|'+p.arabic2) ? 'saved' : ''}" data-action="toggle-pair-save" data-pair-key="${p.arabic1}|${p.arabic2}" title="${savedPairs.has(p.arabic1+'|'+p.arabic2) ? 'Remove from saved' : 'Save this pair'}" aria-label="${savedPairs.has(p.arabic1+'|'+p.arabic2) ? 'Unsave pair' : 'Save pair'}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+              <div class="pair-category-badge ${badgeClass}">${badgeIcon} ${p.category}</div>
+              <div class="pair-words">
+                <div class="pair-word">
+                  <div class="pair-word-arabic" lang="ar" dir="rtl">${p.arabic1}</div>
+                  <div class="pair-word-translit">${p.translit1}</div>
+                  <div class="pair-word-meaning">${p.meaning1}</div>
+                  <div class="pair-word-freq">~${p.freq1}× in Quran</div>
+                </div>
+                <div class="pair-vs">vs</div>
+                <div class="pair-word">
+                  <div class="pair-word-arabic" lang="ar" dir="rtl">${p.arabic2}</div>
+                  <div class="pair-word-translit">${p.translit2}</div>
+                  <div class="pair-word-meaning">${p.meaning2}</div>
+                  <div class="pair-word-freq">~${p.freq2}× in Quran</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Show/hide load more button
+      if (visibleCount < filtered.length) {
+        loadMoreContainer.style.display = 'flex';
+        const remaining = filtered.length - visibleCount;
+        loadMoreText.textContent = `Load ${Math.min(PAIRS_PER_PAGE, remaining)} more (${remaining} remaining)`;
+      } else {
+        loadMoreContainer.style.display = 'none';
+      }
+    }
+
+    // toggleMobileMenu — now in shared.js
+    // syncSavedCount — now in shared.js
+
+    document.addEventListener('DOMContentLoaded', function() {
+      initScrollToTop();
+      syncSavedCount();
+      document.addEventListener('click', function(event) {
+        const actionEl = event.target.closest('[data-action]');
+        if (!actionEl) return;
+        const action = actionEl.dataset.action;
+        if (action === 'toggle-mobile-menu') {
+          toggleMobileMenu();
+          return;
+        }
+        if (action === 'scroll-top') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        if (action === 'filter-category') {
+          filterCategory(actionEl.dataset.cat);
+          return;
+        }
+        if (action === 'load-more') {
+          loadMore();
+          return;
+        }
+        if (action === 'toggle-pair-save') {
+          event.stopPropagation();
+          togglePairSave(actionEl.dataset.pairKey);
+        }
+      });
+      renderPairs();
+    });
+  </script>
+</body>
+</html>
