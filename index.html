@@ -6,8 +6,8 @@
   <title>Learn Quran Words Free | Quranic Arabic Vocabulary - No Sign-up</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="alternate icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%235b21b6'/%3E%3Cpath d='M6 7.5C6 6.7 6.7 6 7.5 6H15C15.6 6 16 6.4 16 7V24.5C15.5 24 14.8 23.5 14 23.5H7.5C6.7 23.5 6 22.8 6 22V7.5Z' fill='white'/%3E%3Cpath d='M16 7C16 6.4 16.4 6 17 6H24.5C25.3 6 26 6.7 26 7.5V22C26 22.8 25.3 23.5 24.5 23.5H18C17.2 23.5 16.5 24 16 24.5V7Z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="alternate icon" type="image/png" href="favicon.png" />
   <link rel="manifest" href="manifest.json" />
 
   <!-- SEO Meta Tags -->
@@ -91,7 +91,7 @@
   <style>
     body{font-family:system-ui,-apple-system,sans-serif}.word-arabic,.word-example .arabic-part,.modal-arabic,.modal-example .arabic-part,.pair-word-arabic,.grid-item-arabic,.word-verse a,.modal-verse a{font-family:Georgia,'Times New Roman',serif}
   </style>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
   <style>
     /* ========== PAGE-SPECIFIC STYLES ========== */
     .hero-section {
@@ -1733,8 +1733,8 @@
   </noscript>
 
   <!-- Data & App Logic -->
-  <script src="shared.js" defer></script>
-  <script src="data.js" defer></script>
+  <script src="shared.js?v=2" defer></script>
+  <script src="data.js?v=2" defer></script>
   <script>
     // ========== APP STATE ==========
     const state = {
@@ -1783,9 +1783,9 @@
     }
 
     async function fetchFullVerse(verseRef) {
-      if (verseCache[verseRef]) return verseCache[verseRef];
-      const [surah, ayah] = verseRef.split(':');
       try {
+        if (verseCache[verseRef]) return verseCache[verseRef];
+        const [surah, ayah] = verseRef.split(':');
         const res = await fetch(`https://api.alquran.cloud/v1/ayah/${surah}:${ayah}/editions/quran-uthmani,en.sahih`);
         if (!res.ok) throw new Error('API error');
         const data = await res.json();
@@ -2237,21 +2237,25 @@
       if (previousFocusEl) previousFocusEl.focus();
     }
 
-    // Focus trap inside modal
-    document.getElementById('modal-overlay').addEventListener('keydown', (e) => {
-      if (e.key !== 'Tab') return;
-      const modal = document.querySelector('.modal-overlay.open .modal');
-      if (!modal) return;
-      const focusable = modal.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
-      if (focusable.length === 0) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault(); last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault(); first.focus();
-      }
-    });
+    // Focus trap inside modal — attached in DOMContentLoaded below
+    function initModalFocusTrap() {
+      var overlay = document.getElementById('modal-overlay');
+      if (!overlay) return;
+      overlay.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') return;
+        const modal = document.querySelector('.modal-overlay.open .modal');
+        if (!modal) return;
+        const focusable = modal.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      });
+    }
 
     function closeModalOutside(event) {
       if (event.target === event.currentTarget) {
@@ -2355,32 +2359,40 @@
       scrollTicking = true;
       requestAnimationFrame(() => {
         const btn = document.getElementById('scroll-top');
-        btn.classList.toggle('visible', window.scrollY > 400);
+        if (btn) btn.classList.toggle('visible', window.scrollY > 400);
 
-        const repoTop = document.getElementById('repository').getBoundingClientRect().top;
-        const exploreActive = repoTop < window.innerHeight / 2;
-        document.getElementById('nav-explore').classList.toggle('active', exploreActive);
-        document.getElementById('nav-daily').classList.toggle('active', !exploreActive);
+        const repo = document.getElementById('repository');
+        if (repo) {
+          const repoTop = repo.getBoundingClientRect().top;
+          const exploreActive = repoTop < window.innerHeight / 2;
+          const navExplore = document.getElementById('nav-explore');
+          const navDaily = document.getElementById('nav-daily');
+          if (navExplore) navExplore.classList.toggle('active', exploreActive);
+          if (navDaily) navDaily.classList.toggle('active', !exploreActive);
+        }
         scrollTicking = false;
       });
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
 
     // ========== SEARCH ==========
     let searchTrackingTimer = null;
-    document.getElementById('search-input').addEventListener('input', (e) => {
-      state.searchQuery = e.target.value;
-      renderWordGrid({ resetPage: true });
-      clearTimeout(searchTrackingTimer);
-      searchTrackingTimer = setTimeout(() => {
-        const query = state.searchQuery.trim();
-        if (!query) return;
-        trackEvent('search', {
-          search_term: query,
-          results_count: getFilteredWords().length
-        });
-      }, 600);
-    });
+    function initSearchInput() {
+      var searchInput = document.getElementById('search-input');
+      if (!searchInput) return;
+      searchInput.addEventListener('input', (e) => {
+        state.searchQuery = e.target.value;
+        renderWordGrid({ resetPage: true });
+        clearTimeout(searchTrackingTimer);
+        searchTrackingTimer = setTimeout(() => {
+          const query = state.searchQuery.trim();
+          if (!query) return;
+          trackEvent('search', {
+            search_term: query,
+            results_count: getFilteredWords().length
+          });
+        }, 600);
+      });
+    }
 
     // ========== KEYBOARD SHORTCUTS ==========
     document.addEventListener('keydown', (e) => {
@@ -2733,6 +2745,18 @@
 
     // ========== INIT ==========
     function init() {
+      // Guard: ensure defer'd scripts have loaded
+      if (typeof quranVocabulary === 'undefined' || !quranVocabulary || !quranVocabulary.length) {
+        console.warn('[LearnQuranwords] quranVocabulary not yet loaded — retrying in 200ms');
+        setTimeout(init, 200);
+        return;
+      }
+      if (typeof displayArabic === 'undefined' || typeof parseExample === 'undefined') {
+        console.warn('[LearnQuranwords] shared.js helpers not yet loaded — retrying in 200ms');
+        setTimeout(init, 200);
+        return;
+      }
+
       // Check for ?word= query parameter (deep link from saved page)
       const params = new URLSearchParams(window.location.search);
       const wordParam = params.get('word');
@@ -2799,6 +2823,10 @@
 
     // With defer on data.js, wait for DOMContentLoaded to ensure data is loaded
     document.addEventListener('DOMContentLoaded', function() {
+      // Attach event listeners that depend on DOM elements
+      initModalFocusTrap();
+      initSearchInput();
+      window.addEventListener('scroll', onScroll, { passive: true });
       initGridKeyboardNav();
       init();
     });
