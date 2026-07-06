@@ -1265,8 +1265,10 @@ main {
 
 @media (max-width: 480px) {
   .onboarding-content {
-    padding: 30px 20px;
-    max-height: 70vh;
+    padding: 24px 20px;
+    max-height: 50vh;
+    width: 90vw;
+    margin: auto;
     overflow-y: auto;
   }
 }

@@ -2880,7 +2880,10 @@
       if (!hasSeenOnboarding && !hasSeenSession) {
         setTimeout(() => {
           const modal = document.getElementById('onboardingModal');
-          if (modal) modal.classList.add('active');
+          if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+          }
         }, 500);
       }
 
@@ -2888,7 +2891,10 @@
         const modal = document.getElementById('onboardingModal');
         const dontShowCheckbox = document.getElementById('dontShowAgain');
         
-        if (modal) modal.classList.remove('active');
+        if (modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = ''; // Restore background scrolling
+        }
         sessionStorage.setItem('qv_onboarding_seen_session', 'true');
         
         if (dontShowCheckbox && dontShowCheckbox.checked) {
