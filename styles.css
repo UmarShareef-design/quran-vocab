@@ -1266,5 +1266,7 @@ main {
 @media (max-width: 480px) {
   .onboarding-content {
     padding: 30px 20px;
+    max-height: 70vh;
+    overflow-y: auto;
   }
 }
