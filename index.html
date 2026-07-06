@@ -6,7 +6,7 @@
   <title>Learn Quran Words Free | Quranic Arabic Vocabulary - No Sign-up</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" type="image/png" href="favicon.png" />
   <link rel="manifest" href="manifest.json" />
 
@@ -1465,7 +1465,7 @@
     <nav class="navbar">
       <div class="navbar-inner">
         <a href="#" class="nav-brand" onclick="scrollToTop(); return false;">
-          <div class="nav-brand-icon"><img src="favicon.png" alt="Logo" style="width: 24px; height: 24px; object-fit: contain;" /></div>
+          <div class="nav-brand-icon"><img src="favicon.svg" alt="Logo" style="width: 24px; height: 24px; object-fit: contain;" /></div>
           <div class="nav-brand-text">LearnQuran<span>words</span></div>
         </a>
         <div class="nav-links">
@@ -1699,6 +1699,51 @@
   <!-- Keyboard shortcut hint -->
   <div class="shortcut-hint">
     <span class="kbd">Space</span> New Word
+  </div>
+
+  <!-- Onboarding Modal -->
+  <div id="onboardingModal" class="onboarding-overlay">
+    <div class="onboarding-content">
+      <button class="onboarding-close" aria-label="Close" onclick="closeOnboarding()">×</button>
+      <h2>Welcome to LearnQuranwords!</h2>
+      <p>Master Quranic Arabic vocabulary with 600 essential words. Our interactive flashcards, quizzes, and examples will help you memorize faster.</p>
+      <div class="onboarding-features">
+        <div class="onboarding-feature">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+          <div>
+            <h3>600+ Essential Words</h3>
+            <p>Learn the most frequent words in the Quran.</p>
+          </div>
+        </div>
+        <div class="onboarding-feature">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+          <div>
+            <h3>Daily Discovery</h3>
+            <p>A new random word is displayed on every page refresh.</p>
+          </div>
+        </div>
+        <div class="onboarding-feature">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+          <div>
+            <h3>Save & Connect</h3>
+            <p>Bookmark your favorite words and explore similar vocabulary.</p>
+          </div>
+        </div>
+        <div class="onboarding-feature">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div>
+            <h3>Interactive Quizzes</h3>
+            <p>Test your knowledge and track your progress.</p>
+          </div>
+        </div>
+      </div>
+      <div class="onboarding-actions">
+        <button class="btn btn-primary" onclick="closeOnboarding()">Get Started</button>
+        <label class="onboarding-dont-show">
+          <input type="checkbox" id="dontShowAgain"> Do not show this again
+        </label>
+      </div>
+    </div>
   </div>
 
   <!-- Noscript fallback for search engines and no-JS browsers -->
@@ -2828,6 +2873,29 @@
       initSearchInput();
       window.addEventListener('scroll', onScroll, { passive: true });
       initGridKeyboardNav();
+
+      // Onboarding Logic
+      const hasSeenOnboarding = localStorage.getItem('qv_onboarding_seen');
+      const hasSeenSession = sessionStorage.getItem('qv_onboarding_seen_session');
+      if (!hasSeenOnboarding && !hasSeenSession) {
+        setTimeout(() => {
+          const modal = document.getElementById('onboardingModal');
+          if (modal) modal.classList.add('active');
+        }, 500);
+      }
+
+      window.closeOnboarding = function() {
+        const modal = document.getElementById('onboardingModal');
+        const dontShowCheckbox = document.getElementById('dontShowAgain');
+        
+        if (modal) modal.classList.remove('active');
+        sessionStorage.setItem('qv_onboarding_seen_session', 'true');
+        
+        if (dontShowCheckbox && dontShowCheckbox.checked) {
+          localStorage.setItem('qv_onboarding_seen', 'true');
+        }
+      };
+
       init();
     });
   </script>
