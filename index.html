@@ -2002,7 +2002,7 @@
       renderWordCard(word, true);
       updateBookmarkButton();
       trackEvent('word_view', getWordTrackingParams(word, {
-        source: 'new_word'
+        ui_source: 'new_word'
       }));
     }
 
@@ -2024,7 +2024,7 @@
         gridItem.classList.toggle('marked', state.bookmarkedWords.has(word.id));
       }
       trackEvent(wasBookmarked ? 'bookmark_remove' : 'bookmark_add', getWordTrackingParams(word, {
-        source: 'daily_card',
+        ui_source: 'daily_card',
         total_saved: state.bookmarkedWords.size
       }));
     }
@@ -2268,7 +2268,7 @@
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
       trackEvent('word_open', getWordTrackingParams(word, {
-        source: source
+        ui_source: source
       }));
       // Focus trap: move focus into modal
       requestAnimationFrame(() => overlay.querySelector('.modal-close').focus());
@@ -2333,7 +2333,7 @@
       const gridItem = document.querySelector(`.word-grid-item[data-word-id="${word.id}"]`);
       if (gridItem) gridItem.classList.toggle('marked', state.bookmarkedWords.has(word.id));
       trackEvent(wasBookmarked ? 'bookmark_remove' : 'bookmark_add', getWordTrackingParams(word, {
-        source: 'modal',
+        ui_source: 'modal',
         total_saved: state.bookmarkedWords.size
       }));
     }
@@ -2364,7 +2364,7 @@
       renderWordCard(word, true);
       updateBookmarkButton();
       trackEvent('word_view', getWordTrackingParams(word, {
-        source: 'modal_focus'
+        ui_source: 'modal_focus'
       }));
       scrollToTop();
     }
@@ -2817,7 +2817,7 @@
           renderCategoryFilters();
           renderWordGrid();
           trackEvent('word_view', getWordTrackingParams(foundWord, {
-            source: 'deep_link'
+            ui_source: 'deep_link'
           }));
           // Clean the URL without reloading
           window.history.replaceState({}, '', window.location.pathname + window.location.hash);
@@ -2837,7 +2837,7 @@
         renderCategoryFilters();
         renderWordGrid();
         trackEvent('word_view', getWordTrackingParams(word, {
-          source: 'quiz_deep_link'
+          ui_source: 'quiz_deep_link'
         }));
         // Switch to quiz view
         setTimeout(() => scrollToQuiz(), 100);
@@ -2854,7 +2854,7 @@
       renderCategoryFilters();
       renderWordGrid();
       trackEvent('word_view', getWordTrackingParams(word, {
-        source: 'initial'
+        ui_source: 'initial'
       }));
     }
 
